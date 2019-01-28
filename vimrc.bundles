@@ -18,7 +18,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Theme solarized
 Plug 'altercation/vim-colors-solarized'
-
+" git
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 
@@ -46,3 +47,6 @@ call plug#end()
     let g:solarized_visibility="normal"
     " let g:solarized_termcolors=256
 " }}}
+
+" ################### git ###################
+let g:gitgutter_map_keys = 0        "If you don't want vim-gitgutter to set up any mappings at all, use this

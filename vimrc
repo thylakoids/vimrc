@@ -31,7 +31,7 @@ let g:mapleader = ","                           " 设置 vim 参数
 
 set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
-
+set updatetime=100                              " gitgutter 刷新更快(default=400)
 
 "==========================
 "Display settings 界面设置
@@ -73,3 +73,5 @@ set autoindent
 "Themes setting 主题设置
 "==========================
 colorscheme solarized
+highlight clear LineNr
+highlight clear SignColumn
