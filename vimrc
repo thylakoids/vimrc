@@ -75,3 +75,7 @@ set autoindent
 colorscheme solarized
 highlight clear LineNr
 highlight clear SignColumn
+highlight GitGutterAdd ctermfg=white
+highlight GitGutterChange ctermfg=LightGreen
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChangeDelete ctermfg=LightGreen
