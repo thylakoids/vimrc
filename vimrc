@@ -1,54 +1,75 @@
-syntax enable
+"==========================
+" Author: Clay
+" Version: 1.0
+" Email: maze@sjtu.edu.cn
+" referrences:
+"   https://github.com/wklken/k-vim/blob/master/vimrc
+"   https://github.com/wklken/k-vim/blob/master/vimrc
+" Sections:
+"   ->Initial Plugin 加载插件
+"	->Operation settings 操作设置
+"   ->Display settings 界面设置
+"   ->Themes settings 主题设置
+"
+" Note: Don't put anything in your .vimrc you don't understand!
+"==========================
+
+
+"==========================
+"Initial Plugin 加载插件
+"==========================
+if filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
+endif
+
+
+"==========================
+"Operation settings 操作设置
+"==========================
+let mapleader = ","   	                        " let 语句
+let g:mapleader = ","                           " 设置 vim 参数
+
+set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
+set nocompatible                                " 关闭兼容模式
+
+
+"==========================
+"Display settings 界面设置
+"==========================
+
+
+syntax on           " 开启语法高亮
+set number          " 显示行号
+set ruler           " 显示当前行号列号
+" set cursorcolumn  " 突出显示当前列
+set cursorline      " 突出显示当前行
+set showmode        " 左下角显示当前vim模式
+set nowrap          " 取消换行
+set showcmd         " 显示现有命令（在右下角）
+set showmatch       " 输入时显示相对应的括号
+set scrolloff=7     " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+
+" 设置文内智能搜索提示
+set hlsearch        " 高亮search命中的文本
+set incsearch       " 打开增量搜索模式,随着键入即时搜索
+set ignorecase      " 搜索时忽略大小写
+set smartcase       " 有一个或以上大写字母时仍大小写敏感
+set wildmenu        " vim 自身命令行模式智能补全
+
+" tab相关变更
+set tabstop=4       " 设置Tab键的宽度 [等同的空格个数]
+set shiftwidth=4    " 每一次缩进对应的空格数
+set softtabstop=4   " 按退格键时可以一次删掉 4 个空格
+set smarttab        " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
+set expandtab       " 将Tab自动转化成空格[需要输入真正的Tab键时，使用 Ctrl+V + Tab]
+set shiftround      " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
+
+" 缩进配置
+set smartindent
+set autoindent
+
+
+"==========================
+"Themes setting 主题设置
+"==========================
 colorscheme solarized
-set number "show line number"
-set background=dark
-set nowrap "设置不折行"
-set tabstop=4 "设置table长度"
-set expandtab "用空格代替tab"
-set softtabstop=4 "统一缩进为4，方便在开启了et后使用退格(backspace)键，每次退格将删除X个空格"
-set cursorline "突出显示当前行"
-set autoread "文件被改动时候自动载入"
-
-"enable powerline"
-let g:Powerline_symbols = 'fancy'
-
-"""""""""""""""""""""
-"Quickly Run
-"""""""""""""""""""""
-map <F5> :w<CR> :call RunPython()<CR>
-function RunPython()
-    let mp = &makeprg
-    let ef = &errorformat
-    let exeFile = expand("%:t")
-    setlocal makeprg=python\ -u
-    set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-    silent make %
-    copen
-    let &makeprg = mp
-    let &errorformat = ef
-endfunction
-
-
-""""""""""""""""""
-"Vundle.vim
-""""""""""""""""""
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'tell-k/vim-autopep8'
-Plugin 'scrooloose/nerdcommenter'
-call vundle#end()
-filetype plugin indent on
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
