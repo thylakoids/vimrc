@@ -13,6 +13,7 @@ call plug#begin('~/.vim/bundle')
 " 移动光标到插件名上, 使用'#'快速跳转到每个插件的配置处
 
 " 美观
+"-------------------
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -20,6 +21,18 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 " git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+" 快速去行尾空格 :FixWhitespace
+Plug 'bronson/vim-trailing-whitespace'
+" markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'suan/vim-instant-markdown'    " npm -g install instant-markdown-d
+Plug 'scrooloose/nerdtree'
+Plug 'Yggdroot/indentLine'
+" 自动补全
+"-------------------
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 
@@ -38,15 +51,41 @@ call plug#end()
     let g:airline_symbols.linenr = '¶'
     let g:airline_symbols.branch = '⎇'
     let g:airline_theme='powerlineish'
-    "let g:airline_solarized_bg='light'
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#left_sep = '>'
+    let g:airline#extensions#tabline#left_alt_sep = '>'
 " }}}
 
 " solarized {{{
     let g:solarized_termtrans=1
     let g:solarized_contrast="normal"
     let g:solarized_visibility="normal"
-    " let g:solarized_termcolors=256
 " }}}
 
 " ################### git ###################
-let g:gitgutter_map_keys = 0        "If you don't want vim-gitgutter to set up any mappings at all, use this
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+nmap <Leader>hp <Plug>GitGutterPreviewHunk
+nmap <leader>hu <Plug>GitGutterUndoHunk
+
+" ################# markdown ################
+" markdown {{{
+    let g:vim_markdown_folding_disabled=1
+    let g:vim_markdown_no_default_key_mappings = 1
+" }}}
+" ################ YCM #######################
+" YouCompleteMe{{{
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_list_stop_completion = ['<CR>']
+let g:ycm_python_interpreter_path = '/usr/local/opt/python/bin/python'
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+"}}}
