@@ -28,11 +28,19 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown'    " npm -g install instant-markdown-d
+" 快速注释, 文件浏览
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'Yggdroot/indentLine'
 " 自动补全
 "-------------------
 Plug 'Valloric/YouCompleteMe'
+" input methods
+Plug 'ybian/smartim'
+" folding for python???
+Plug 'tmhedberg/SimpylFold'
+Plug 'Yggdroot/indentLine'
+" 语法高亮
+Plug 'scrooloose/syntastic'
 call plug#end()
 
 
@@ -77,7 +85,7 @@ nmap <leader>hu <Plug>GitGutterUndoHunk
 " YouCompleteMe{{{
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_key_list_stop_completion = ['<CR>']
@@ -88,4 +96,42 @@ let g:ycm_extra_conf_vim_data = [
   \  'g:ycm_python_sys_path'
   \]
 let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+"}}}
+
+" ############## Programming ###############
+"nerdcommenter{{{
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims=1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+"}}}
+"indentLine{{{
+let g:indentLine_concealcursor = ''
+"}}}
+"smartim{{{
+"some people reported that it is slow while editing with vim-multiple-cursors, to fix this, put this in .vimrc:
+function! Multiple_cursors_before()
+  let g:smartim_disable = 1
+endfunction
+function! Multiple_cursors_after()
+  unlet g:smartim_disable
+endfunction
+"}}}
+"SimpylFold{{{
+let g:SimpylFold_docstring_preview=1
+let g:SimpylFold_fold_docstring =0
+let g:SimpylFold_fold_import=0
+"}}}
+"syntastic'{{{
+let python_highlight_all=1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 "}}}

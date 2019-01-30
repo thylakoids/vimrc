@@ -28,11 +28,13 @@ endif
 "==========================
 "General settings 基础设置
 "==========================
+set encoding=utf-8
 filetype on										" 检测文件类型
 filetype indent on								" 针对不同的文件类型采用不同的缩进格式
 filetype plugin on								" 允许插件
 filetype plugin indent on						" 启动自动补全
 set autoread									" 文件修改之后自动载入
+set clipboard=unnamed                           " 系统剪切板
 
 let mapleader = ","   	                		" let 语句
 let g:mapleader = ","                   		" 设置 vim 参数
@@ -79,6 +81,18 @@ set shiftround      " 缩进时，取整 use multiple of shiftwidth when indenti
 set smartindent
 set autoindent
 
+" 窗口布局，窗口切换
+set splitbelow
+set splitright
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" 代码折叠
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za         "Enable folding with the spacebar
 
 "==========================
 "Themes setting 主题设置
