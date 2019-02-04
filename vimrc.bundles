@@ -21,7 +21,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 " git
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 " 快速去行尾空格 :FixWhitespace
 Plug 'bronson/vim-trailing-whitespace'
 " markdown
@@ -34,13 +34,18 @@ Plug 'scrooloose/nerdtree'
 " 自动补全
 "-------------------
 Plug 'Valloric/YouCompleteMe'
+Plug 'ervandew/supertab'
 " input methods
 Plug 'ybian/smartim'
 " folding for python???
 Plug 'tmhedberg/SimpylFold'
 Plug 'Yggdroot/indentLine'
 " 语法高亮
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
+" Plug 'tell-k/vim-autopep8'
+" Plug 'andviro/flake8-vim'
+" Plug 'nvie/vim-flake8'
 call plug#end()
 
 
@@ -85,6 +90,7 @@ nmap <leader>hu <Plug>GitGutterUndoHunk
 " YouCompleteMe{{{
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_min_num_of_chars_for_completion = 1
 nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
@@ -124,14 +130,33 @@ let g:SimpylFold_docstring_preview=1
 let g:SimpylFold_fold_docstring =0
 let g:SimpylFold_fold_import=0
 "}}}
-"syntastic'{{{
-let python_highlight_all=1
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" "syntastic'{{{
+" let python_highlight_all=1
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-"}}}
+" let g:syntastic_always_populate_loc_list = 0
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 1
+" "}}}
+" ale{{{
+let g:ale_sign_error = 'EE'
+let g:ale_sign_warning = 'WW'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" let g:ale_python_flake8_args="--ignore=E501"
+let g:ale_linters = {
+\   'javascript': ['jshint'],
+\   'python': ['flake8'],
+\   'go': ['go', 'golint', 'errcheck']
+\}
+" }}}
+" " flake8{{{
+" autocmd BufWritePost *.py call Flake8()
+" let g:flake8_show_quickfix=0
+" let g:flake8_show_in_gutter=1
+" let g:flake8_show_in_file=1
+" " }}}
