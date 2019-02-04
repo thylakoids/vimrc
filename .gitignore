@@ -1,5 +1,5 @@
 #?
-bak
+colors
 # plugin
 bundle
 *.pyc
@@ -8,6 +8,9 @@ bundle
 configs
 myconfig.sh
 init.vim
+.netrwhist
 
 # osx
 .DS_Store
+#rope
+.ropeproject
