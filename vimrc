@@ -28,6 +28,7 @@ endif
 "==========================
 "General settings 基础设置
 "==========================
+autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc	" Automatic reloading of .vimrc
 set encoding=utf-8
 filetype on										" 检测文件类型
 filetype indent on								" 针对不同的文件类型采用不同的缩进格式
@@ -58,9 +59,12 @@ set cursorline      " 突出显示当前行
 set showmode        " 左下角显示当前vim模式
 set nowrap          " 取消换行
 set showcmd         " 显示现有命令（在右下角）
-set scrolloff=5     " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set scrolloff=7     " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set showmatch       " 括号配对情况, 跳转并高亮一下匹配的括号
 set matchtime=1     " How many tenths of a second to blink when matching brackets
+set tw=79
+set fo-=t			" don't automatically wrap text when typing
+set colorcolumn=80
 
 " 设置文内智能搜索提示
 set hlsearch        " 高亮search命中的文本
@@ -90,7 +94,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " 代码折叠
-set foldmethod=indent
+" set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za         "Enable folding with the spacebar
 
@@ -108,9 +112,19 @@ highlight GitGutterChangeDelete ctermfg=LightGreen
 "==========================
 "ShortCuts settings 快捷键设置
 "==========================
-vnoremap <leader>y "+y      " 复制选中区到系统剪切板中
-vnoremap <leader>p "+p      " 粘贴选中区到系统剪切板中
-
+"Quick saving
+noremap <leader>s :update<CR>
+vnoremap <leader>s <C-O>:update<CR>
+inoremap <leader>s <C-O>:update<CR>
+"Quick quit
+noremap <leader>q :quit<CR>
+noremap <leader>Q :qa!<CR>
+"Easier moving between tabs
+map <leader>n <esc>:tabprevious<CR>
+map <leader>m <esc>:tabnext<CR>
+"Easier moving code blocks
+vnoremap > >gv
+vnoremap < <gv
 "==========================================
 " FileType Settings  文件类型设置
 "==========================================
@@ -128,3 +142,5 @@ if has("autocmd")
     autocmd Syntax * call matchadd('Debug', '\W\zs\(DEBUG\|INFO\)')
   endif
 endif
+
+

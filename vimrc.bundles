@@ -46,6 +46,10 @@ Plug 'w0rp/ale'
 " Plug 'tell-k/vim-autopep8'
 " Plug 'andviro/flake8-vim'
 " Plug 'nvie/vim-flake8'
+" search
+Plug 'kien/ctrlp.vim'
+" quickrun
+Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 
@@ -78,7 +82,7 @@ call plug#end()
 " ################### git ###################
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
-nmap <Leader>hp <Plug>GitGutterPreviewHunk
+nmap <leader>hp <Plug>GitGutterPreviewHunk
 nmap <leader>hu <Plug>GitGutterUndoHunk
 
 " ################# markdown ################
@@ -103,7 +107,10 @@ let g:ycm_extra_conf_vim_data = [
   \]
 let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
 "}}}
-
+"supertabe{{{
+"Why does <tab> navigate the completion menu from bottom to top
+let g:SuperTabDefaultCompletionType = "<c-n>"
+"}}}
 " ############## Programming ###############
 "nerdcommenter{{{
 " Add spaces after comment delimiters by default
@@ -142,8 +149,8 @@ let g:SimpylFold_fold_import=0
 " let g:syntastic_check_on_wq = 1
 " "}}}
 " ale{{{
-let g:ale_sign_error = 'EE'
-let g:ale_sign_warning = 'WW'
+let g:ale_sign_error = 'E>'
+let g:ale_sign_warning = 'W>'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -153,6 +160,11 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \   'go': ['go', 'golint', 'errcheck']
 \}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'python' : ['autopep8','black','isort']
+\}
 " }}}
 " " flake8{{{
 " autocmd BufWritePost *.py call Flake8()
@@ -160,3 +172,35 @@ let g:ale_linters = {
 " let g:flake8_show_in_gutter=1
 " let g:flake8_show_in_file=1
 " " }}}
+" quickrun{{{
+" Quick run via <F5>
+nnoremap <F5> :call <SID>compile_and_run()<CR>
+
+function! s:compile_and_run()
+    exec 'w'
+    if &filetype == 'c'
+        exec "AsyncRun! gcc % -o %<; time ./%<"
+    elseif &filetype == 'cpp'
+       exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
+    elseif &filetype == 'java'
+       exec "AsyncRun! javac %; time java %<"
+    elseif &filetype == 'sh'
+       exec "AsyncRun! time bash %"
+    elseif &filetype == 'python'
+       exec "AsyncRun! python %"
+    elseif &filetype =='javascript'
+        exec "AsyncRun! node %"
+    endif
+endfunction
+
+" Deprecated:
+" augroup SPACEVIM_ASYNCRUN
+"     autocmd!
+"    " Automatically open the quickfix window
+"     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
+" augroup END
+"
+" asyncrun now has an option for opening quickfix automatically
+let g:asyncrun_open = 15
+let g:asyncrun_open = 8
+" }}n
