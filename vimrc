@@ -125,6 +125,10 @@ map <leader>m <esc>:tabnext<CR>
 "Easier moving code blocks
 vnoremap > >gv
 vnoremap < <gv
+"Put breakpoint before current line
+map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
+" Code Formatter
+autocmd FileType python nnoremap <Leader>= :0,$!yapf<CR>
 "==========================================
 " FileType Settings  文件类型设置
 "==========================================

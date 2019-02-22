@@ -28,6 +28,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown'    " npm -g install instant-markdown-d
+Plug 'mzlogin/vim-markdown-toc'
 " 快速注释, 文件浏览
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -89,6 +90,9 @@ nmap <leader>hu <Plug>GitGutterUndoHunk
 " markdown {{{
     let g:vim_markdown_folding_disabled=1
     let g:vim_markdown_no_default_key_mappings = 1
+" }}}
+" vim-markdown-toc{{{
+    let g:vmt_list_item_char='1.'
 " }}}
 " ################ YCM #######################
 " YouCompleteMe{{{
