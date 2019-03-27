@@ -29,18 +29,24 @@ endif
 "General settings 基础设置
 "==========================
 autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc	" Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc	" Automatic reloading of .vimrc
 set encoding=utf-8
 filetype on										" 检测文件类型
 filetype indent on								" 针对不同的文件类型采用不同的缩进格式
 filetype plugin on								" 允许插件
 filetype plugin indent on						" 启动自动补全
 set autoread									" 文件修改之后自动载入
+au CursorHold * checktime                       "Generally autoread will only trigger after executing an external command.
 set clipboard=unnamed                           " 系统剪切板
+set nobackup                                    " no backup files
+set noswapfile                                  " no swap files
+set nowritebackup                               " only in case you don't want a backup file while editing
+set noundofile                                  " no undo files
 
 let mapleader = ","   	                		" let 语句
 let g:mapleader = ","                   		" 设置 vim 参数
 
-set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
+" set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
 set backspace=eol,start,indent                  " Configure backspace so it acts as it should act
@@ -54,7 +60,7 @@ set conceallevel=2								" 隐藏markdown 中的[]** 等
 syntax on           " 开启语法高亮
 set number          " 显示行号
 set ruler           " 显示当前行号列号
-" set cursorcolumn  " 突出显示当前列
+set cursorcolumn  " 突出显示当前列
 set cursorline      " 突出显示当前行
 set showmode        " 左下角显示当前vim模式
 set nowrap          " 取消换行
@@ -115,7 +121,7 @@ highlight GitGutterChangeDelete ctermfg=LightGreen
 "Quick saving
 noremap <leader>s :update<CR>
 vnoremap <leader>s <C-O>:update<CR>
-inoremap <leader>s <C-O>:update<CR>
+inoremap <leader>s <C-O>:update<CR><Esc>
 "Quick quit
 noremap <leader>q :quit<CR>
 noremap <leader>Q :qa!<CR>

@@ -51,6 +51,10 @@ Plug 'w0rp/ale'
 Plug 'kien/ctrlp.vim'
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
+" multiple cursors
+" Plug 'terryma/vim-multiple-cursors'
+" Latex
+Plug 'lervag/vimtex'
 call plug#end()
 
 
@@ -83,7 +87,7 @@ call plug#end()
 " ################### git ###################
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
-nmap <leader>hp <Plug>GitGutterPreviewHunk
+nmap <leader>hw <Plug>GitGutterPreviewHunk
 nmap <leader>hu <Plug>GitGutterUndoHunk
 
 " ################# markdown ################
@@ -103,7 +107,7 @@ nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_key_list_stop_completion = ['<CR>']
-let g:ycm_python_interpreter_path = '/usr/local/opt/python/bin/python'
+let g:ycm_python_interpreter_path = '/usr/local/opt/python/libexec/bin/python'
 let g:ycm_python_sys_path = []
 let g:ycm_extra_conf_vim_data = [
   \  'g:ycm_python_interpreter_path',
@@ -129,12 +133,12 @@ let g:indentLine_concealcursor = ''
 "}}}
 "smartim{{{
 "some people reported that it is slow while editing with vim-multiple-cursors, to fix this, put this in .vimrc:
-function! Multiple_cursors_before()
-  let g:smartim_disable = 1
-endfunction
-function! Multiple_cursors_after()
-  unlet g:smartim_disable
-endfunction
+" function! Multiple_cursors_before()
+"   let g:smartim_disable = 1
+" endfunction
+" function! Multiple_cursors_after()
+"   unlet g:smartim_disable
+" endfunction
 "}}}
 "SimpylFold{{{
 let g:SimpylFold_docstring_preview=1
@@ -207,4 +211,11 @@ endfunction
 " asyncrun now has an option for opening quickfix automatically
 let g:asyncrun_open = 15
 let g:asyncrun_open = 8
-" }}n
+" }}}
+"vimtex{{{
+" let g:tex_flavor='latex'
+" let g:vimtex_view_method='general'
+" let g:vimtex_view_automatic = 1
+" let g:vimtex_quickfix_mode=0
+" let g:tex_conceal='abdmg'
+"}}}
