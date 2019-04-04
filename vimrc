@@ -63,7 +63,7 @@ set ruler           " 显示当前行号列号
 set cursorcolumn  " 突出显示当前列
 set cursorline      " 突出显示当前行
 set showmode        " 左下角显示当前vim模式
-set nowrap          " 取消换行
+" set nowrap          " 取消换行
 set showcmd         " 显示现有命令（在右下角）
 set scrolloff=7     " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set showmatch       " 括号配对情况, 跳转并高亮一下匹配的括号
