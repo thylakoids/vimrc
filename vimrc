@@ -50,7 +50,7 @@ let g:mapleader = ","                   		" 设置 vim 参数
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
 set backspace=eol,start,indent                  " Configure backspace so it acts as it should act
-set conceallevel=2								" 隐藏markdown 中的[]** 等
+set conceallevel=0								" 隐藏markdown 中的[]** 等
 
 "==========================
 "Display settings 界面设置
