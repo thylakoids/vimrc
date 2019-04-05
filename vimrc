@@ -31,6 +31,10 @@ endif
 autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc	" Automatic reloading of .vimrc
 autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc	" Automatic reloading of .vimrc
 set encoding=utf-8
+autocmd Filetype markdown,tex,python set spell
+set spelllang=en
+set complete+=kspell                            " todo
+set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
 filetype on										" 检测文件类型
 filetype indent on								" 针对不同的文件类型采用不同的缩进格式
 filetype plugin on								" 允许插件
@@ -46,46 +50,49 @@ set noundofile                                  " no undo files
 let mapleader = ","   	                		" let 语句
 let g:mapleader = ","                   		" 设置 vim 参数
 
-" set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
+set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
 set backspace=eol,start,indent                  " Configure backspace so it acts as it should act
-set conceallevel=0								" 隐藏markdown 中的[]** 等
+set conceallevel=2								" 隐藏markdown 中的[]** 等
 
 "==========================
 "Display settings 界面设置
 "==========================
 
 
-syntax on           " 开启语法高亮
-set number          " 显示行号
-set ruler           " 显示当前行号列号
-set cursorcolumn  " 突出显示当前列
-set cursorline      " 突出显示当前行
-set showmode        " 左下角显示当前vim模式
-" set nowrap          " 取消换行
-set showcmd         " 显示现有命令（在右下角）
-set scrolloff=7     " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
-set showmatch       " 括号配对情况, 跳转并高亮一下匹配的括号
-set matchtime=1     " How many tenths of a second to blink when matching brackets
+syntax on               " 开启语法高亮
+set number              " 显示行号
+set ruler               " 显示当前行号列号
+" set cursorcolumn      " 突出显示当前列
+" set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
+set showmode            " 左下角显示当前vim模式
+set nowrap              " 取消换行
+set showcmd             " 显示现有命令（在右下角）
+set scrolloff=7         " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
+set matchtime=1         " How many tenths of a second to blink when matching brackets
 set tw=79
-set fo-=t			" don't automatically wrap text when typing
+set fo-=t               " don't automatically wrap text when typing
 set colorcolumn=80
 
+" performance
+set lazyredraw          " Don’t update screen during macro and script execution.
+
 " 设置文内智能搜索提示
-set hlsearch        " 高亮search命中的文本
-set incsearch       " 打开增量搜索模式,随着键入即时搜索
-set ignorecase      " 搜索时忽略大小写
-set smartcase       " 有一个或以上大写字母时仍大小写敏感
-set wildmenu        " vim 自身命令行模式智能补全
+set hlsearch            " 高亮search命中的文本
+set incsearch           " 打开增量搜索模式,随着键入即时搜索
+set ignorecase          " 搜索时忽略大小写
+set smartcase           " 有一个或以上大写字母时仍大小写敏感
+set wildmenu            " vim 自身命令行模式智能补全
 
 " tab相关变更
-set tabstop=4       " 设置Tab键的宽度 [等同的空格个数]
-set shiftwidth=4    " 每一次缩进对应的空格数
-set softtabstop=4   " 按退格键时可以一次删掉 4 个空格
-set smarttab        " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
-set expandtab       " 将Tab自动转化成空格[需要输入真正的Tab键时，使用 Ctrl+V + Tab]
-set shiftround      " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
+set tabstop=4           " 设置Tab键的宽度 [等同的空格个数]
+set shiftwidth=4        " 每一次缩进对应的空格数
+set softtabstop=4       " 按退格键时可以一次删掉 4 个空格
+set smarttab            " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
+set expandtab           " 将Tab自动转化成空格[需要输入真正的Tab键时，使用 Ctrl+V + Tab]
+set shiftround          " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
 
 " 缩进配置
 set smartindent

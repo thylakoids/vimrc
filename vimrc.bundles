@@ -57,6 +57,7 @@ Plug 'skywind3000/asyncrun.vim'
 " Plug 'terryma/vim-multiple-cursors'
 " Latex
 Plug 'lervag/vimtex' , {'for':['tex']}
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 call plug#end()
 
 
@@ -200,6 +201,8 @@ function! s:compile_and_run()
        exec "AsyncRun! python %"
     elseif &filetype =='javascript'
         exec "AsyncRun! node %"
+    elseif &filetype =='tex'
+        exec "VimtexCompile"
     endif
 endfunction
 
