@@ -14,3 +14,5 @@ init.vim
 .DS_Store
 #rope
 .ropeproject
+# test file
+xx.*

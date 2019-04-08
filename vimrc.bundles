@@ -18,7 +18,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Theme solarized
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 " git
 Plug 'airblade/vim-gitgutter'
 "Plug 'tpope/vim-fugitive'
@@ -38,6 +38,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
+Plug 'davidhalter/jedi-vim'
 " input methods
 Plug 'ybian/smartim'
 " folding for python???
@@ -49,8 +50,9 @@ Plug 'w0rp/ale'
 " Plug 'tell-k/vim-autopep8'
 " Plug 'andviro/flake8-vim'
 " Plug 'nvie/vim-flake8'
+" Plug 'luochen1990/rainbow'
 " search
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
 " multiple cursors
@@ -58,6 +60,8 @@ Plug 'skywind3000/asyncrun.vim'
 " Latex
 Plug 'lervag/vimtex' , {'for':['tex']}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
+" cursor shape
+Plug 'jszakmeister/vim-togglecursor'
 call plug#end()
 
 
@@ -90,8 +94,8 @@ call plug#end()
 " ################### git ###################
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
-nmap <leader>hw <Plug>GitGutterPreviewHunk
-nmap <leader>hu <Plug>GitGutterUndoHunk
+nmap <leader>] <Plug>GitGutterPreviewHunk
+nmap <leader>[ <Plug>GitGutterUndoHunk
 
 " ################# markdown ################
 " markdown {{{
@@ -174,8 +178,11 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
-\   'python' : ['autopep8','black','isort']
+\   'python' : ['autopep8', 'isort']
 \}
+" Code Formatter
+" autocmd FileType python nnoremap <Leader>= :0,$!yapf<CR>
+" autocmd FileType python nnoremap <Leader>= :ALEFix<CR>
 " }}}
 " " flake8{{{
 " autocmd BufWritePost *.py call Flake8()
@@ -235,4 +242,23 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+"}}}
+"jedi-vim{{{
+let g:jedi#completions_enabled = 0
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#max_doc_height = 15
+let g:jedi#show_call_signatures = 1
+let g:jedi#show_call_signatures_delay = 60
+"}}}
+"togglecursor{{{
+let g:togglecursor_default = "block"
+let g:togglecursor_insert = "line"
+let g:togglecursor_leave = "line"
+let g:togglecursor_disable_tmux = 0
 "}}}

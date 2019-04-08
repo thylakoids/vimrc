@@ -33,7 +33,7 @@ autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc	" Automatic reloa
 set encoding=utf-8
 autocmd Filetype markdown,tex,python set spell
 set spelllang=en
-set complete+=kspell                            " todo
+" set complete+=kspell                            " todo
 set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
 filetype on										" 检测文件类型
 filetype indent on								" 针对不同的文件类型采用不同的缩进格式
@@ -64,6 +64,7 @@ set conceallevel=2								" 隐藏markdown 中的[]** 等
 syntax on               " 开启语法高亮
 set number              " 显示行号
 set ruler               " 显示当前行号列号
+set relativenumber
 " set cursorcolumn      " 突出显示当前列
 " set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
 set showmode            " 左下角显示当前vim模式
@@ -90,7 +91,7 @@ set wildmenu            " vim 自身命令行模式智能补全
 set tabstop=4           " 设置Tab键的宽度 [等同的空格个数]
 set shiftwidth=4        " 每一次缩进对应的空格数
 set softtabstop=4       " 按退格键时可以一次删掉 4 个空格
-set smarttab            " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
+set smarttab            " injjjjjjjjjjjjsert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
 set expandtab           " 将Tab自动转化成空格[需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 set shiftround          " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
 
@@ -111,10 +112,18 @@ nnoremap <C-H> <C-W><C-H>
 set foldlevel=99
 nnoremap <space> za         "Enable folding with the spacebar
 
+" 光标形状 cursor shape
+" For iterm2 on Mac
+" Also, see jszakmeister/vim-togglecursor
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"    "SI = INSERT mode (vertical bar)
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7"    "SR = REPLACE mode (under line)
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"    "EI = NORMAL mode (ELSE) (block)
+" autocmd VimLeave * let &t_me="\<Esc>]50;CursorShape=1\x7"
 "==========================
 "Themes setting 主题设置
 "==========================
 colorscheme solarized
+set background=dark
 highlight clear LineNr
 highlight clear SignColumn
 highlight GitGutterAdd ctermfg=white
@@ -140,8 +149,6 @@ vnoremap > >gv
 vnoremap < <gv
 "Put breakpoint before current line
 map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
-" Code Formatter
-autocmd FileType python nnoremap <Leader>= :0,$!yapf<CR>
 "==========================================
 " FileType Settings  文件类型设置
 "==========================================
