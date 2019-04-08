@@ -61,7 +61,12 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'lervag/vimtex' , {'for':['tex']}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 " cursor shape
-Plug 'jszakmeister/vim-togglecursor'
+if !has('nvim')
+    Plug 'jszakmeister/vim-togglecursor'
+endif
+" outline viewer
+" Plug 'majutsushi/tagbar'
+" Plug 'vim-scripts/taglist.vim'
 call plug#end()
 
 
@@ -85,11 +90,11 @@ call plug#end()
     let g:airline#extensions#tabline#left_alt_sep = '>'
 " }}}
 
-" solarized {{{
-    let g:solarized_termtrans=1
-    let g:solarized_contrast="normal"
-    let g:solarized_visibility="normal"
-" }}}
+" " solarized {{{
+"     let g:solarized_termtrans=1
+"     let g:solarized_contrast="normal"
+"     let g:solarized_visibility="normal"
+" " }}}
 
 " ################### git ###################
 nmap ]h <Plug>GitGutterNextHunk
@@ -256,9 +261,15 @@ let g:jedi#max_doc_height = 15
 let g:jedi#show_call_signatures = 1
 let g:jedi#show_call_signatures_delay = 60
 "}}}
-"togglecursor{{{
-let g:togglecursor_default = "block"
-let g:togglecursor_insert = "line"
-let g:togglecursor_leave = "line"
-let g:togglecursor_disable_tmux = 0
+if !has('nvim')
+    "togglecursor{{{
+    let g:togglecursor_default = "block"
+    let g:togglecursor_insert = "line"
+    let g:togglecursor_leave = "line"
+    let g:togglecursor_disable_tmux = 0
+    "}}}
+endif
+
+"nerdtree{{{
+" noremap <Leader>f :NERDTreeToggle<Enter>
 "}}}
