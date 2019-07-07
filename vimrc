@@ -123,7 +123,7 @@ nnoremap <space> za         "Enable folding with the spacebar
 "==========================
 "Themes setting 主题设置
 "==========================
-colorscheme solarized
+colorscheme monokai
 set background=dark
 highlight clear LineNr
 highlight clear SignColumn

@@ -121,7 +121,7 @@ let g:ycm_min_num_of_chars_for_completion = 3
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
 let g:ycm_key_list_stop_completion = ['<CR>']
-let g:ycm_python_interpreter_path = '/usr/local/opt/python/libexec/bin/python'
+let g:ycm_python_interpreter_path = '/usr/bin/python3'
 let g:ycm_python_sys_path = []
 let g:ycm_extra_conf_vim_data = [
   \  'g:ycm_python_interpreter_path',
