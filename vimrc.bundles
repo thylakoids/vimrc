@@ -17,11 +17,12 @@ call plug#begin('~/.vim/bundle')
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Theme solarized
-" Plug 'altercation/vim-colors-solarized'
+" colorscheme
+Plug 'altercation/vim-colors-solarized'
+Plug 'crusoexia/vim-monokai'
 " git
 Plug 'airblade/vim-gitgutter'
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " 快速去行尾空格 :FixWhitespace
 Plug 'bronson/vim-trailing-whitespace'
 " markdown
@@ -86,8 +87,8 @@ call plug#end()
     let g:airline_symbols.branch = '⎇'
     let g:airline_theme='powerlineish'
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#left_sep = '>'
-    let g:airline#extensions#tabline#left_alt_sep = '>'
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
 " }}}
 
 " " solarized {{{
@@ -97,10 +98,11 @@ call plug#end()
 " " }}}
 
 " ################### git ###################
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-nmap <leader>] <Plug>GitGutterPreviewHunk
-nmap <leader>[ <Plug>GitGutterUndoHunk
+let g:gitgutter_map_keys = 0
+" nmap ]h <Plug>GitGutterNextHunk
+" nmap [h <Plug>GitGutterPrevHunk
+" nmap <leader>] <Plug>GitGutterPreviewHunk
+" nmap <leader>[ <Plug>GitGutterUndoHunk
 
 " ################# markdown ################
 " markdown {{{
@@ -115,7 +117,7 @@ nmap <leader>[ <Plug>GitGutterUndoHunk
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_of_chars_for_completion = 3
-nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
 let g:ycm_key_list_stop_completion = ['<CR>']
@@ -271,5 +273,5 @@ if !has('nvim')
 endif
 
 "nerdtree{{{
-" noremap <Leader>f :NERDTreeToggle<Enter>
+noremap <F2> :NERDTreeToggle<CR>
 "}}}

@@ -49,6 +49,7 @@ set noundofile                                  " no undo files
 
 let mapleader = ","   	                		" let 语句
 let g:mapleader = ","                   		" 设置 vim 参数
+set timeoutlen=140
 
 set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
