@@ -41,7 +41,7 @@ filetype plugin on								" 允许插件
 filetype plugin indent on						" 启动自动补全
 set autoread									" 文件修改之后自动载入
 au CursorHold * checktime                       "Generally autoread will only trigger after executing an external command.
-set clipboard=unnamed                           " 系统剪切板
+set clipboard=unnamedplus                       " 系统剪切板
 set nobackup                                    " no backup files
 set noswapfile                                  " no swap files
 set nowritebackup                               " only in case you don't want a backup file while editing
