@@ -235,7 +235,7 @@ let g:asyncrun_open = 8
 " }}}
 "vimtex{{{
 let g:tex_flavor='latex'       "set filetype to tex instead plaintex
-let g:vimtex_view_method='zathura'       "need xdotool
+let g:vimtex_view_method='general'       "need xdotool
 " let g:vimtex_view_automatic = 1
 " let g:vimtex_quickfix_mode=0
 let g:tex_conceal='abdmgs'
