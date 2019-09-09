@@ -116,6 +116,7 @@ let g:gitgutter_map_keys = 0
 " }}}
 " ################ YCM #######################
 " YouCompleteMe{{{
+let g:ycm_semantic_triggers = {'python': ['re!from\s+\S+\s+import\s']}
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_of_chars_for_completion = 3
