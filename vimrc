@@ -31,7 +31,7 @@ endif
 autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc	" Automatic reloading of .vimrc
 autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc	" Automatic reloading of .vimrc
 set encoding=utf-8
-autocmd Filetype markdown,tex,python set spell
+" autocmd Filetype markdown,tex,python set spell
 set spelllang=en,cjk
 " set complete+=kspell                            " todo
 set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
@@ -49,8 +49,9 @@ set noundofile                                  " no undo files
 
 let mapleader = ","   	                		" let 语句
 let g:mapleader = ","                   		" 设置 vim 参数
-set timeoutlen=140
+set timeoutlen=600
 
+set ttymouse=xterm2                             " using mouse within tmux
 set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
@@ -109,9 +110,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " 代码折叠
-" set foldmethod=indent
+set foldmethod=indent
 set foldlevel=99
-nnoremap <space> za         "Enable folding with the spacebar
+" nnoremap <space> za         "Enable folding with the spacebar
 
 " 光标形状 cursor shape
 " For iterm2 on Mac

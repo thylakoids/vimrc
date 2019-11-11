@@ -70,6 +70,8 @@ endif
 " outline viewer
 " Plug 'majutsushi/tagbar'
 " Plug 'vim-scripts/taglist.vim'
+" Restore session
+Plug 'tpope/vim-obsession'
 call plug#end()
 
 
@@ -100,11 +102,11 @@ call plug#end()
 " " }}}
 
 " ################### git ###################
-let g:gitgutter_map_keys = 0
+" let g:gitgutter_map_keys = 0
 " nmap ]h <Plug>GitGutterNextHunk
 " nmap [h <Plug>GitGutterPrevHunk
-" nmap <leader>] <Plug>GitGutterPreviewHunk
-" nmap <leader>[ <Plug>GitGutterUndoHunk
+nmap <leader>] <Plug>(GitGutterPreviewHunk)
+nmap <leader>[ <Plug>(GitGutterUndoHunk)
 
 " ################# markdown ################
 " markdown {{{
