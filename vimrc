@@ -32,7 +32,7 @@ autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc	" Automatic reloading of 
 autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc	" Automatic reloading of .vimrc
 set encoding=utf-8
 autocmd Filetype markdown,tex,python set spell
-set spelllang=en
+set spelllang=en,cjk
 " set complete+=kspell                            " todo
 set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
 filetype on										" 检测文件类型
