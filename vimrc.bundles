@@ -45,9 +45,11 @@ Plug 'ybian/smartim'
 " folding for python???
 Plug 'tmhedberg/SimpylFold'
 Plug 'Yggdroot/indentLine'
+" docstring for python
+Plug 'heavenshell/vim-pydocstring'
 " 语法高亮
 "Plug 'scrooloose/syntastic'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 " Plug 'tell-k/vim-autopep8'
 " Plug 'andviro/flake8-vim'
 " Plug 'nvie/vim-flake8'
@@ -68,6 +70,11 @@ endif
 " outline viewer
 " Plug 'majutsushi/tagbar'
 " Plug 'vim-scripts/taglist.vim'
+" Restore session
+Plug 'tpope/vim-obsession'
+" Plugin to help you stop repeating the basic movement keys
+Plug 'takac/vim-hardtime'
+" Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 
@@ -98,11 +105,11 @@ call plug#end()
 " " }}}
 
 " ################### git ###################
-let g:gitgutter_map_keys = 0
+" let g:gitgutter_map_keys = 0
 " nmap ]h <Plug>GitGutterNextHunk
 " nmap [h <Plug>GitGutterPrevHunk
-" nmap <leader>] <Plug>GitGutterPreviewHunk
-" nmap <leader>[ <Plug>GitGutterUndoHunk
+nmap <leader>] <Plug>(GitGutterPreviewHunk)
+nmap <leader>[ <Plug>(GitGutterUndoHunk)
 
 " ################# markdown ################
 " markdown {{{
@@ -114,6 +121,7 @@ let g:gitgutter_map_keys = 0
 " }}}
 " ################ YCM #######################
 " YouCompleteMe{{{
+let g:ycm_semantic_triggers = {'python': ['re!from\s+\S+\s+import\s']}
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_of_chars_for_completion = 3
@@ -121,7 +129,11 @@ let g:ycm_min_num_of_chars_for_completion = 3
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
 let g:ycm_key_list_stop_completion = ['<CR>']
-let g:ycm_python_interpreter_path = '/usr/local/opt/python/libexec/bin/python'
+if has('unix')
+    let g:ycm_python_interpreter_path = '/usr/bin/python3'
+elseif has('mac')
+    let g:ycm_python_interpreter_path = '/usr/'
+endif
 let g:ycm_python_sys_path = []
 let g:ycm_extra_conf_vim_data = [
   \  'g:ycm_python_interpreter_path',
@@ -171,14 +183,22 @@ let g:SimpylFold_fold_import=0
 " let g:syntastic_check_on_wq = 1
 " "}}}
 " ale{{{
-let g:ale_sign_error = 'E>'
-let g:ale_sign_warning = 'W>'
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+highlight link ALEWarningSign Todo
+highlight link ALEErrorSign SpecialChar
+
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '◉ '               "'⚠'
+let g:ale_sign_style_error = "◉"
+let g:ale_sign_style_warning = "sw"
+
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " let g:ale_python_flake8_args="--ignore=E501"
 let g:ale_linters = {
-\   'javascript': ['jshint'],
+\   'javascript': ['eslint'],
 \   'python': ['flake8'],
 \   'go': ['go', 'golint', 'errcheck']
 \}
@@ -187,16 +207,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'python' : ['autopep8', 'isort']
 \}
-" Code Formatter
-" autocmd FileType python nnoremap <Leader>= :0,$!yapf<CR>
-" autocmd FileType python nnoremap <Leader>= :ALEFix<CR>
 " }}}
-" " flake8{{{
-" autocmd BufWritePost *.py call Flake8()
-" let g:flake8_show_quickfix=0
-" let g:flake8_show_in_gutter=1
-" let g:flake8_show_in_file=1
-" " }}}
 " quickrun{{{
 " Quick run via <F5>
 nnoremap <F5> :call <SID>compile_and_run()<CR>
@@ -220,20 +231,16 @@ function! s:compile_and_run()
     endif
 endfunction
 
-" Deprecated:
-" augroup SPACEVIM_ASYNCRUN
-"     autocmd!
-"    " Automatically open the quickfix window
-"     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
-" augroup END
-"
 " asyncrun now has an option for opening quickfix automatically
-let g:asyncrun_open = 15
-let g:asyncrun_open = 8
+let g:asyncrun_open = 10
 " }}}
 "vimtex{{{
 let g:tex_flavor='latex'       "set filetype to tex instead plaintex
-let g:vimtex_view_method='skim'
+if has('unix')
+    let g:vimtex_view_method='general'       "need xdotool
+elseif has('mac')
+    lset g:vimtex_view_method='skim'
+endif
 " let g:vimtex_view_automatic = 1
 " let g:vimtex_quickfix_mode=0
 let g:tex_conceal='abdmgs'
@@ -275,6 +282,9 @@ endif
 "nerdtree{{{
 noremap <F2> :NERDTreeToggle<CR>
 "}}}
+"pydocstring{{{
+nmap <silent> <C-I> <Plug>(pydocstring)
+"}}}
 "rainbow{{{
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
@@ -299,4 +309,11 @@ let g:rainbow_conf = {
     \        'css': 0,
     \    }
     \}
+"}}}
+"vim-hardtime{{{
+let g:hardtime_ignore_quickfix = 1
+let g:hardtime_allow_different_key = 1
+let g:hardtime_maxcount = 5
+let g:hardtime_default_on = 0
+let g:hardtime_showmsg = 1
 "}}}

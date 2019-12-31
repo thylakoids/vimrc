@@ -28,7 +28,7 @@ endif
 "==========================
 "General settings 基础设置
 "==========================
-autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc    " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc            " Automatic reloading of .vimrc
 autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc    " Automatic reloading of .vimrc
 set encoding=utf-8
 " autocmd Filetype markdown,tex,python set spell
@@ -52,8 +52,9 @@ set noundofile                                  " no undo files
 
 let mapleader = ","                             " let 语句
 let g:mapleader = ","                           " 设置 vim 参数
-set timeoutlen=500
+set timeoutlen=600
 
+set ttymouse=xterm2                             " using mouse within tmux
 set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
@@ -162,6 +163,7 @@ autocmd FileType ruby,javascript,html,css,xml set tabstop=2 shiftwidth=2 softtab
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+" autocmd FileType markdown.mkd set conceallevel=2          "DEBUG: not working
 
 " 设置可以高亮的关键字
 " :h group-name, 显示可用的group
@@ -169,7 +171,7 @@ if has("autocmd")
   " Highlight TODO, FIXME, NOTE, etc.
   if v:version > 701
     autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|todo\)')
-    autocmd Syntax * call matchadd('Debug', '\W\zs\(DEBUG\|INFO\)')
+    autocmd Syntax * call matchadd('Debug', '\W\zs\(DEBUG\|INFO\|debug\)')
     autocmd Syntax * call matchadd('SpecialComment', '\W\zs\(deprecated\|DEPRECATED\)')
   endif
 endif
