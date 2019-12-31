@@ -44,9 +44,10 @@ filetype plugin indent on                       " 启动自动补全
 "checktime 会导致打开cmdline-window错误, 所以判断是不是cmdline-window
 set autoread                                    " 文件修改之后自动载入
 au CursorHold * if !bufexists("[Command Line]") | checktime | endif
-if has('unix')
+" let os = substitute(system('uname'), "\n", "", "")
+if os=='Linux'
     set clipboard=unnamedplus                   " 系统剪切板
-elseif has('mac')
+elseif os=='Darwin'
     set clipboard=unnamed
 endif
 set nobackup                                    " no backup files
@@ -58,7 +59,7 @@ let mapleader = ","                             " let 语句
 let g:mapleader = ","                           " 设置 vim 参数
 set timeoutlen=600
 
-if has('unix')
+if os=='Linux'
     set ttymouse=xterm2                         " using mouse within tmux
 endif
 set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式

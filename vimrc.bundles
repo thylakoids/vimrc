@@ -11,6 +11,7 @@
 call plug#begin('~/.vim/bundle')
 
 " 移动光标到插件名上, 使用'#'快速跳转到每个插件的配置处
+let os = substitute(system('uname'), "\n", "", "")
 
 " 美观
 "-------------------
@@ -129,10 +130,10 @@ let g:ycm_min_num_of_chars_for_completion = 3
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
 let g:ycm_key_list_stop_completion = ['<CR>']
-if has('unix')
+if os=='Linux'
     let g:ycm_python_interpreter_path = '/usr/bin/python3'
-elseif has('mac')
-    let g:ycm_python_interpreter_path = '/usr/'
+elseif os=='Darwin'
+    let g:ycm_python_interpreter_path = '/usr/local/opt/python/libexec/bin/python'
 endif
 let g:ycm_python_sys_path = []
 let g:ycm_extra_conf_vim_data = [
@@ -236,10 +237,10 @@ let g:asyncrun_open = 10
 " }}}
 "vimtex{{{
 let g:tex_flavor='latex'       "set filetype to tex instead plaintex
-if has('unix')
+if os=='Linux'
     let g:vimtex_view_method='general'       "need xdotool
-elseif has('mac')
-    lset g:vimtex_view_method='skim'
+elseif os=='Darwin'
+    let g:vimtex_view_method='skim'
 endif
 " let g:vimtex_view_automatic = 1
 " let g:vimtex_quickfix_mode=0
