@@ -44,7 +44,11 @@ filetype plugin indent on                       " 启动自动补全
 "checktime 会导致打开cmdline-window错误, 所以判断是不是cmdline-window
 set autoread                                    " 文件修改之后自动载入
 au CursorHold * if !bufexists("[Command Line]") | checktime | endif
-set clipboard=unnamedplus                       " 系统剪切板
+if has('unix')
+    set clipboard=unnamedplus                   " 系统剪切板
+elseif has('mac')
+    set clipboard=unnamed
+endif
 set nobackup                                    " no backup files
 set noswapfile                                  " no swap files
 set nowritebackup                               " only in case you don't want a backup file while editing
@@ -54,13 +58,15 @@ let mapleader = ","                             " let 语句
 let g:mapleader = ","                           " 设置 vim 参数
 set timeoutlen=600
 
-set ttymouse=xterm2                             " using mouse within tmux
+if has('unix')
+    set ttymouse=xterm2                         " using mouse within tmux
+endif
 set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
 set backspace=eol,start,indent                  " Configure backspace so it acts as it should act
-set conceallevel=2                              " 隐藏markdown 中的[]** 等, debug:notworking
-set listchars=eol:¬,tab:▸·,trail:.,extends:>,precedes:<           " 效果		   	
+" set conceallevel=2                              " 隐藏markdown 中的[]** 等, debug:notworking
+set listchars=eol:¬,tab:▸·,trail:.,extends:>,precedes:<           " 效果		   	end
 set list
 
 "==========================
