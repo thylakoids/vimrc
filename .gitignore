@@ -5,6 +5,7 @@ bundle
 *.pyc
 *.bak
 *.bk
+*.log
 configs
 myconfig.sh
 init.vim

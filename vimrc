@@ -7,11 +7,11 @@
 "   https://github.com/wklken/k-vim/blob/master/vimrc
 " Sections:
 "   ->Initial Plugin 加载插件
-"	->General settings 基础设置
+"    ->General settings 基础设置
 "   ->Display settings 界面设置
 "   ->Themes settings 主题设置
 "   ->ShortCuts settings 快捷键设置
-" 	->FileType Settings  文件类型设置
+"     ->FileType Settings  文件类型设置
 "
 " Note: Don't put anything in your .vimrc you don't understand!
 "==========================
@@ -28,34 +28,39 @@ endif
 "==========================
 "General settings 基础设置
 "==========================
-autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc	" Automatic reloading of .vimrc
-autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc	" Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc    " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc    " Automatic reloading of .vimrc
 set encoding=utf-8
-autocmd Filetype markdown,tex,python set spell
+" autocmd Filetype markdown,tex,python set spell
 set spelllang=en,cjk
-" set complete+=kspell                            " todo
+" set complete+=kspell                          " todo
 set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
-filetype on										" 检测文件类型
-filetype indent on								" 针对不同的文件类型采用不同的缩进格式
-filetype plugin on								" 允许插件
-filetype plugin indent on						" 启动自动补全
-set autoread									" 文件修改之后自动载入
-au CursorHold * checktime                       "Generally autoread will only trigger after executing an external command.
-set clipboard=unnamed                           " 系统剪切板
+filetype on                                     " 检测文件类型
+filetype indent on                              " 针对不同的文件类型采用不同的缩进格式
+filetype plugin on                              " 允许插件
+filetype plugin indent on                       " 启动自动补全
+"Generally autoread will only trigger after executing an external command.
+"所以需要cursorhold
+"checktime 会导致打开cmdline-window错误, 所以判断是不是cmdline-window
+set autoread                                    " 文件修改之后自动载入
+au CursorHold * if !bufexists("[Command Line]") | checktime | endif
+set clipboard=unnamed                           " INFO:diff from linux?系统剪切板
 set nobackup                                    " no backup files
 set noswapfile                                  " no swap files
 set nowritebackup                               " only in case you don't want a backup file while editing
 set noundofile                                  " no undo files
 
-let mapleader = ","   	                		" let 语句
-let g:mapleader = ","                   		" 设置 vim 参数
+let mapleader = ","                             " let 语句
+let g:mapleader = ","                           " 设置 vim 参数
 set timeoutlen=500
 
 set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
 set backspace=eol,start,indent                  " Configure backspace so it acts as it should act
-set conceallevel=2								" 隐藏markdown 中的[]** 等
+" set conceallevel=2                            " 隐藏markdown 中的[]** 等, debug:notworking
+set listchars=eol:¬,tab:▸·,trail:.,extends:>,precedes:<           "效果		   	end
+set list
 
 "==========================
 "Display settings 界面设置
@@ -109,9 +114,8 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " 代码折叠
-" set foldmethod=indent
+set foldmethod=indent
 set foldlevel=99
-nnoremap <space> za         "Enable folding with the spacebar
 
 " 光标形状 cursor shape
 " For iterm2 on Mac
@@ -123,7 +127,7 @@ nnoremap <space> za         "Enable folding with the spacebar
 "==========================
 "Themes setting 主题设置
 "==========================
-colorscheme solarized
+colorscheme monokai
 set background=dark
 highlight clear LineNr
 highlight clear SignColumn
@@ -160,12 +164,12 @@ autocmd BufRead,BufNewFile *.part set filetype=html
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 
 " 设置可以高亮的关键字
+" :h group-name, 显示可用的group
 if has("autocmd")
   " Highlight TODO, FIXME, NOTE, etc.
   if v:version > 701
     autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|todo\)')
     autocmd Syntax * call matchadd('Debug', '\W\zs\(DEBUG\|INFO\)')
+    autocmd Syntax * call matchadd('SpecialComment', '\W\zs\(deprecated\|DEPRECATED\)')
   endif
 endif
-
-
