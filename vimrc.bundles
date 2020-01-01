@@ -107,10 +107,12 @@ call plug#end()
 
 " ################### git ###################
 " let g:gitgutter_map_keys = 0
-" nmap ]h <Plug>GitGutterNextHunk
-" nmap [h <Plug>GitGutterPrevHunk
-nmap <leader>] <Plug>(GitGutterPreviewHunk)
-nmap <leader>[ <Plug>(GitGutterUndoHunk)
+" nmap ]c <Plug>(GitGutterNextHunk)
+" nmap [c <Plug>(GitGutterPrevHunk)
+" map <leader>hp <plug>(gitgutterpreviewhunk)
+" nmap <leader>hu <plug>(gitgutterundohunk)
+nnoremap <silent> ]c :GitGutterNextHunk<CR>:GitGutterPreviewHunk<CR>
+nnoremap <silent> [c :GitGutterPrevHunk<CR>:GitGutterPreviewHunk<CR>
 
 " ################# markdown ################
 " markdown {{{
@@ -197,6 +199,8 @@ let g:ale_sign_style_warning = "sw"
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nmap [e <plug>(ale_previous_wrap)
+nmap ]e <plug>(ale_next_wrap)
 " let g:ale_python_flake8_args="--ignore=E501"
 let g:ale_linters = {
 \   'javascript': ['eslint'],
