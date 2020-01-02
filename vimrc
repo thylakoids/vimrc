@@ -28,8 +28,10 @@ endif
 "==========================
 "General settings 基础设置
 "==========================
-autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc            " Automatic reloading of .vimrc
-autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc    " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc             " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vim/vimrc source $HOME/.vimrc         " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc     " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vim/vimrc.bundles source $HOME/.vimrc " Automatic reloading of .vimrc
 set encoding=utf-8
 " autocmd Filetype markdown,tex,python set spell
 set spelllang=en,cjk
@@ -105,7 +107,7 @@ set wildmenu            " vim 自身命令行模式智能补全
 set tabstop=4           " 设置Tab键的宽度 [等同的空格个数]
 set shiftwidth=4        " 每一次缩进对应的空格数
 set softtabstop=4       " 按退格键时可以一次删掉 4 个空格
-set smarttab            " injjjjjjjjjjjjsert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
+set smarttab            " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
 set expandtab           " 将Tab自动转化成空格[需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 set shiftround          " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
 
@@ -135,7 +137,7 @@ set foldlevel=99
 "==========================
 "Themes setting 主题设置
 "==========================
-colorscheme monokai
+colorscheme solarized8
 set background=dark
 highlight clear LineNr
 highlight clear SignColumn

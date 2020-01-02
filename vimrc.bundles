@@ -21,6 +21,10 @@ Plug 'vim-airline/vim-airline-themes'
 " colorscheme
 Plug 'altercation/vim-colors-solarized'
 Plug 'crusoexia/vim-monokai'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'w0ng/vim-hybrid'
+Plug 'dracula/vim'
+Plug 'lifepillar/vim-solarized8'
 " git
 Plug 'airblade/vim-gitgutter'
 " Plug 'tpope/vim-fugitive'
