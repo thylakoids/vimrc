@@ -167,7 +167,7 @@ map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
 "==========================================
 " FileType Settings  文件类型设置
 "==========================================
-autocmd FileType python, javascript set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType python,javascript set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby,html,css,xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
