@@ -73,8 +73,7 @@ if !has('nvim')
     Plug 'jszakmeister/vim-togglecursor'
 endif
 " outline viewer
-" Plug 'majutsushi/tagbar'
-" Plug 'vim-scripts/taglist.vim'
+Plug 'majutsushi/tagbar'
 " Restore session
 Plug 'tpope/vim-obsession'
 " Plugin to help you stop repeating the basic movement keys
@@ -295,6 +294,25 @@ endif
 
 "nerdtree{{{
 noremap <F2> :NERDTreeToggle<CR>
+"}}}
+"tagbar{{{
+let g:tagbar_type_javascript = {
+      \ 'ctagstype': 'javascript',
+      \ 'kinds': [
+      \ 'A:arrays',
+      \ 'P:properties',
+      \ 'T:tags',
+      \ 'O:objects',
+      \ 'G:generator functions',
+      \ 'F:functions',
+      \ 'C:constructors/classes',
+      \ 'M:methods',
+      \ 'V:variables',
+      \ 'I:imports',
+      \ 'E:exports',
+      \ 'S:styled components'
+      \ ]}
+noremap <F3> :TagbarToggle<CR>
 "}}}
 "pydocstring{{{
 nmap <silent> <C-I> <Plug>(pydocstring)
