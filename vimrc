@@ -149,13 +149,15 @@ highlight GitGutterChangeDelete ctermfg=LightGreen
 "==========================
 "ShortCuts settings 快捷键设置
 "==========================
+"Quick <esc>
+inoremap jj <esc>
 "Quick saving
 noremap <leader>s :update<CR>
 vnoremap <leader>s <C-O>:update<CR>
 inoremap <leader>s <C-O>:update<CR><Esc>
 "Quick quit
-noremap <leader>q :quit<CR>
-noremap <leader>Q :qa!<CR>
+noremap <leader>q :pc<CR>
+noremap <leader>Q :q<CR>
 "Easier moving between tabs
 map <leader>n <esc>:tabprevious<CR>
 map <leader>m <esc>:tabnext<CR>
