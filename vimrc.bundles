@@ -199,17 +199,25 @@ highlight clear ALEWarningSign
 highlight link ALEWarningSign Todo
 highlight link ALEErrorSign SpecialChar
 
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-let g:ale_sign_style_error = "◉"
-let g:ale_sign_style_warning = "◉"
+" let g:ale_sign_error = '✘'
+" let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '!'
+let g:ale_sign_warning = '?'
+" let g:ale_sign_error = '😡'
+" let g:ale_sign_warning = '😅'
+let g:ale_sign_style_error = '◉'
+let g:ale_sign_style_warning = '◉'
+let g:ale_fix_on_save = 1
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 nmap [e <plug>(ale_previous_wrap)
 nmap ]e <plug>(ale_next_wrap)
+" let g:ale_set_balloons=1
 " let g:ale_python_flake8_args="--ignore=E501"
+" let g:ale_sign_priority=11
+let g:gitgutter_preview_win_floating=1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
