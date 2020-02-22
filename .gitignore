@@ -6,6 +6,7 @@ bundle
 *.bak
 *.bk
 *.log
+*.swp
 configs
 myconfig.sh
 init.vim
