@@ -34,6 +34,7 @@ autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc     " Automatic r
 autocmd! bufwritepost $HOME/.vim/vimrc.bundles source $HOME/.vimrc " Automatic reloading of .vimrc
 set encoding=utf-8
 " autocmd Filetype markdown,tex,python set spell
+autocmd FileType markdown set spell
 set spelllang=en,cjk
 " set complete+=kspell                          " todo
 set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
@@ -80,7 +81,7 @@ set list
 syntax on               " 开启语法高亮
 set number              " 显示行号
 set ruler               " 显示当前行号列号
-set relativenumber
+" set relativenumber
 " set cursorcolumn      " 突出显示当前列
 " set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
 set showmode            " 左下角显示当前vim模式
