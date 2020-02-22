@@ -31,10 +31,9 @@ endsnippet
 
 snippet try "try...except..." b
 try:
-	${1:code to be checked}
-except Exception as e:
-	${2:print(e)}
+	${1:${VISUAL:code to be checked}}
+except:
 	import traceback
-	traceback.print_exc()
+	logger.debug('\n' + traceback.format_exc())
 $0
 endsnippet

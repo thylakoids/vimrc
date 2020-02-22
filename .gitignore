@@ -19,3 +19,5 @@ init.vim
 # test file
 xx.*
 xx
+# spell
+spell/en.utf-8.add.spl
