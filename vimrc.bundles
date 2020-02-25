@@ -29,7 +29,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'airblade/vim-gitgutter'
 " Plug 'tpope/vim-fugitive'
 " 快速去行尾空格 :FixWhitespace
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
 " markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
