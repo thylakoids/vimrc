@@ -123,7 +123,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
+nnoremap <C-W>j <C-W>-
+nnoremap <C-W>k <C-W>+
+nnoremap <C-W>h <C-W><
+nnoremap <C-W>l <C-W>>
+-
 " 代码折叠
 set foldmethod=indent
 set foldlevel=99
