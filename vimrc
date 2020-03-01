@@ -146,6 +146,11 @@ set foldlevel=99
 " let &t_SR = "\<Esc>]50;CursorShape=2\x7"    "SR = REPLACE mode (under line)
 " let &t_EI = "\<Esc>]50;CursorShape=0\x7"    "EI = NORMAL mode (ELSE) (block)
 " autocmd VimLeave * let &t_me="\<Esc>]50;CursorShape=1\x7"
+
+" statusline:lightweight and sexy status bar in vim
+if filereadable(expand("~/.vim/statusline.vim"))
+    source ~/.vim/statusline.vim
+endif
 "==========================
 "Themes setting 主题设置
 "==========================

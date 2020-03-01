@@ -150,6 +150,39 @@ Normal And Execute
     :onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
 Status Lines
 ------------
+### Basic Commands
+    :set statusline=%f\ -\ FileType:\ %y
+    :set statusline=%f         " path to the file
+    :set statusline+=\ -\      " separator
+    :set statusline+=filetype: " label
+    :set statusline+=%y        " Filetype of the file
+
+    :set statusline=%l    " current line
+    :set statusline+=/    " separator
+    :set statusline+=%L   " Total lines
+### Width And Padding
+Minimal and maximum width
+
+    :set statusline=[%4l]
+    :set statusline=%.20F
+
+Padding direction and characters
+
+    :set statusline=Current:\ %4l\ Total:\ %4L
+    :set statusline=Current:\ %-4l\ Total:\ %-4L
+    :set statusline=%04l
+
+### General Format
+See `:help statusline`
+
+    %-0{minwid}.{maxwid}{item}
+### Splitting
+    :set statusline=%f         " path to the file
+    :set statusline+=%=        " switch to the right side
+    :set statusline+=%l        " current line
+    :set statusline+=/         " separator
+    :set statusline+=%L        " Total lines
+
 Motions
 ------
 The right way to use Vim is to get out of insert mode as soon as you can and use normal mode to move around.
