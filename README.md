@@ -1,5 +1,5 @@
-vim 安装
-=============
+Vim 安装
+======
 1. 安装vim（注意版本支持）
 
 `sudo apt install vim`
@@ -31,14 +31,29 @@ Plug '~/my-prototype-plugin'
 call plug#end()
 ```
 
-3. 安装YouCompleteMe
+4. 安装YouCompleteMe
 
 - 使用`vim-plug`获得源码。
 - 在源码目录运行 `git submodule update --init --recursive` 来获取 YouCompleteMe 的相关依赖 (虽然使用 vundle 或 vim-plug 安装时都会下载所有的依赖)。
 
-
-4. 编译YouCompleteMe
+5. 编译YouCompleteMe
 
 YouCompleteMe 需要手工编译出库文件 ycm_core.so(以及依赖的libclang.so) 才可使用。
 
 假设使用 vim-plug 下载的 YouCompleteMe 源码保存在目录 `~/.vim/plugged/YouCompleteMe`，在该目录下执行 `./install.py --clang-completer` 即可编译具有C族语言的语义补全功能的 YouCompleteMe 插件。
+
+
+Vim 学习
+======
+1. `shift v`: Visual-line
+2. `normal!`: Something like the nnoremap version of nmap for normal.
+3. `function!`: Will override function with the same name defined before.
+4. macro:
+    - `qq`: recording, `q` stop. `@q` to repeat.
+    - In insert mode, `<ctrl-r> q` to paste the register "q.
+
+
+Vim and Tmux
+============
+1. Vim Tmux Navigator
+2. How to send code from vim to tmux window?

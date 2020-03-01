@@ -12,7 +12,6 @@ call plug#begin('~/.vim/bundle')
 
 " 移动光标到插件名上, 使用'#'快速跳转到每个插件的配置处
 let os = substitute(system('uname'), "\n", "", "")
-
 " 美观
 "-------------------
 " airline
@@ -27,9 +26,6 @@ Plug 'dracula/vim'
 Plug 'lifepillar/vim-solarized8'
 " git
 Plug 'airblade/vim-gitgutter'
-" Plug 'tpope/vim-fugitive'
-" 快速去行尾空格 :FixWhitespace
-" Plug 'bronson/vim-trailing-whitespace'
 " markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -43,7 +39,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 Plug 'davidhalter/jedi-vim'
 " input methods
 Plug 'ybian/smartim'
@@ -53,14 +48,10 @@ Plug 'Yggdroot/indentLine'
 " docstring for python
 Plug 'heavenshell/vim-pydocstring'
 " 语法高亮
-"Plug 'scrooloose/syntastic'
 Plug 'dense-analysis/ale'
-" Plug 'tell-k/vim-autopep8'
-" Plug 'andviro/flake8-vim'
-" Plug 'nvie/vim-flake8'
 Plug 'luochen1990/rainbow'
 " search
-" Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
 " multiple cursors
@@ -76,9 +67,15 @@ endif
 Plug 'majutsushi/tagbar'
 " Restore session
 Plug 'tpope/vim-obsession'
-" Plugin to help you stop repeating the basic movement keys
-Plug 'takac/vim-hardtime'
-" Plug 'sheerun/vim-polyglot'
+" operator: like `gU` Uppercase
+" -------------------------------
+" Teach Vim about titlecase, with support for motions and text objects. Using `gt`, `gT` will apply to a line.
+Plug 'christoomey/vim-titlecase'
+Plug 'christoomey/vim-system-copy'    "cp cv
+"System Integration
+" -------------------
+Plug 'christoomey/vim-tmux-navigator'    " Seamless navigation between tmux panes and vim splits
+Plug 'christoomey/vim-tmux-runner'
 call plug#end()
 
 
@@ -116,7 +113,8 @@ call plug#end()
 " nmap <leader>hu <plug>(gitgutterundohunk)
 nnoremap <silent> ]c :GitGutterNextHunk<CR>:GitGutterPreviewHunk<CR>
 nnoremap <silent> [c :GitGutterPrevHunk<CR>:GitGutterPreviewHunk<CR>
-" nmap <silent> gp <plug>gitgutterundohunk "DEBUG
+nnoremap <silent> gu :GitGutterUndoHunk<CR>
+nnoremap <silent> gs :GitGutterStageHunk<CR>
 
 " ################# markdown ################
 " markdown {{{
@@ -352,10 +350,13 @@ let g:rainbow_conf = {
     \    }
     \}
 "}}}
-"vim-hardtime{{{
-let g:hardtime_ignore_quickfix = 1
-let g:hardtime_allow_different_key = 1
-let g:hardtime_maxcount = 5
-let g:hardtime_default_on = 0
-let g:hardtime_showmsg = 1
+"vim-tmux-runner{{{
+" python
+let g:VtrStripLeadingWhitespace = 0
+let g:VtrClearEmptyLines = 0
+let g:VtrAppendNewline = 1
+"}}}
+"vim-tmux-runner{{{
+let g:VtrUseVtrMaps = 1
+let g:VtrPercentage = 30
 "}}}

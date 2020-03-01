@@ -48,11 +48,11 @@ filetype plugin indent on                       " 启动自动补全
 set autoread                                    " 文件修改之后自动载入
 au CursorHold * if !bufexists("[Command Line]") | checktime | endif
 " let os = substitute(system('uname'), "\n", "", "")
-if os=='Linux'
-    set clipboard=unnamedplus                   " 系统剪切板
-elseif os=='Darwin'
-    set clipboard=unnamed
-endif
+" if os=='Linux'
+"     set clipboard=unnamedplus                   " 系统剪切板
+" elseif os=='Darwin'
+"     set clipboard=unnamed
+" endif
 set nobackup                                    " no backup files
 set noswapfile                                  " no swap files
 set nowritebackup                               " only in case you don't want a backup file while editing
@@ -60,7 +60,7 @@ set noundofile                                  " no undo files
 
 let mapleader = ","                             " let 语句
 let g:mapleader = ","                           " 设置 vim 参数
-set timeoutlen=600
+set timeoutlen=800
 
 if os=='Linux'
     set ttymouse=xterm2                         " using mouse within tmux
@@ -119,10 +119,10 @@ set autoindent
 " 窗口布局，窗口切换
 set splitbelow
 set splitright
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 nnoremap <C-W>j <C-W>-
 nnoremap <C-W>k <C-W>+
 nnoremap <C-W>h <C-W><
@@ -155,14 +155,11 @@ highlight GitGutterChangeDelete ctermfg=LightGreen
 "ShortCuts settings 快捷键设置
 "==========================
 "Quick <esc>
-inoremap jj <esc>
+inoremap jk <esc>
 "Quick saving
-noremap <leader>s :update<CR>
-vnoremap <leader>s <C-O>:update<CR>
-inoremap <leader>s <C-O>:update<CR><Esc>
-"Quick quit
-noremap <leader>q :pc<CR>
-noremap <leader>Q :q<CR>
+" noremap <leader>s :update<CR>
+" vnoremap <leader>s <C-O>:update<CR>
+" inoremap <leader>s <C-O>:update<CR><Esc>
 "Easier moving between tabs
 map <leader>n <esc>:tabprevious<CR>
 map <leader>m <esc>:tabnext<CR>
@@ -171,6 +168,32 @@ vnoremap > >gv
 vnoremap < <gv
 "Put breakpoint before current line
 map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
+"markdown heading u1, u2, u3
+:autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! yypVr=<CR>
+:autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! yypVr-<CR>
+:autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l
+"Quick quoting
+" todo: how to make this to an operator
+nnoremap <leader>' viw<esc>`>a'<esc>bi'<esc>lel
+nnoremap <leader>" viw<esc>`>a"<esc>bi"<esc>lel
+nnoremap <leader>` viw<esc>`>a`<esc>bi`<esc>lel
+vnoremap <leader>' <esc>`>a'<esc>bi'<esc>lel
+vnoremap <leader>" <esc>`>a"<esc>bi"<esc>lel
+vnoremap <leader>` <esc>`>a`<esc>bi`<esc>lel
+" todo: how to do this:
+" :autocmd BufNewFile * :write
+"          ^          ^ ^
+"          |          | |
+"          |          | The command to run.
+"          |          |
+"          |          A "pattern" to filter the event.
+"          |
+"          The "event" to watch for.
+" Quick open .vimrc
+nnoremap <leader>ev :sp $MYVIMRC<cr>/Quick open .vimrc<cr>:noh<cr>
+" Quick get rid of old habit
+" this will cause some problem
+inoremap <esc> <nop>
 "==========================================
 " FileType Settings  文件类型设置
 "==========================================
