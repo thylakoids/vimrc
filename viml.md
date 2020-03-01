@@ -19,6 +19,8 @@ Learn Vimscript The Hard Way
     1. [Autocommand Groups](#autocommand-groups)
     1. [Clearing Groups](#clearing-groups)
     1. [Filetype Events](#filetype-events)
+1. [Normal And Execute](#normal-and-execute)
+1. [Status Lines](#status-lines)
 1. [Motions](#motions)
 
 <!-- vim-markdown-toc -->
@@ -136,10 +138,18 @@ If you want to clear a group you can use `autocmd!` inside the group.
     :    autocmd!
     :    autocmd BufWrite * :echom "Cats"
     :augroup END
+When the [group] argument is not given, Vim uses the current group (as defined
+with ":augroup"); otherwise, Vim uses the group defined with [group].
 ### Filetype Events
 
     :autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
     :autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
+Normal And Execute
+------------------
+
+    :onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+Status Lines
+------------
 Motions
 ------
 The right way to use Vim is to get out of insert mode as soon as you can and use normal mode to move around.

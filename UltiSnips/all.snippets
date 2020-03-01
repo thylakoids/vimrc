@@ -3,6 +3,9 @@ priority -60
 global !p
 from vimsnippets import foldmarker, make_box, get_comment_format
 endglobal
+#########
+#  box  #
+#########
 
 snippet box "A nice box with the current comment symbol" b
 `!p
@@ -38,9 +41,10 @@ endsnippet
 snippet datetime "YYYY-MM-DD hh:mm" w
 `!v strftime("%Y-%m-%d %H:%M")`
 endsnippet
-
-
-
-
-
-
+#################
+#  parentheses  #
+#################
+# todo:using reguralr expression apply to { "
+snippet () "parentheses and quote" iA
+(${1:${VISUAL}})$0
+endsnippet

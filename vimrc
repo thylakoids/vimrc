@@ -28,13 +28,12 @@ endif
 "==========================
 "General settings 基础设置
 "==========================
-autocmd! bufwritepost $HOME/.vimrc source $HOME/.vimrc             " Automatic reloading of .vimrc
-autocmd! bufwritepost $HOME/.vim/vimrc source $HOME/.vimrc         " Automatic reloading of .vimrc
-autocmd! bufwritepost $HOME/.vimrc.bundles source $HOME/.vimrc     " Automatic reloading of .vimrc
-autocmd! bufwritepost $HOME/.vim/vimrc.bundles source $HOME/.vimrc " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vimrc source $MYVIMRC             " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vim/vimrc source $MYVIMRC         " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vimrc.bundles source $MYVIMRC     " Automatic reloading of .vimrc
+autocmd! bufwritepost $HOME/.vim/vimrc.bundles source $MYVIMRC " Automatic reloading of .vimrc
 set encoding=utf-8
-" autocmd Filetype markdown,tex,python set spell
-autocmd FileType markdown set spell
+autocmd FileType markdown,txt set spell
 set spelllang=en,cjk
 " set complete+=kspell                          " todo
 set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
@@ -78,6 +77,15 @@ set list
 "==========================
 
 
+"todo: what bug?(https://lotabout.me/2018/true-color-for-tmux-and-vim/)
+if has("termguicolors")
+    " fix bug for vim
+    set t_8f=[38;2;%lu;%lu;%lum
+    set t_8b=[48;2;%lu;%lu;%lum
+
+    " enable true color
+    set termguicolors
+endif
 syntax on               " 开启语法高亮
 set number              " 显示行号
 set ruler               " 显示当前行号列号
@@ -87,7 +95,8 @@ set ruler               " 显示当前行号列号
 set showmode            " 左下角显示当前vim模式
 set nowrap              " 取消换行
 set showcmd             " 显示现有命令（在右下角）
-set scrolloff=7         " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set scrolloff=9999      " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set sidescrolloff=7
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
 set matchtime=1         " How many tenths of a second to blink when matching brackets
 set tw=79
@@ -199,10 +208,9 @@ inoremap <esc> <nop>
 "==========================================
 autocmd FileType python,javascript set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby,html,css,xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
-autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
+" autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
-" autocmd FileType markdown.mkd set conceallevel=2          "DEBUG: not working
 
 " 设置可以高亮的关键字
 " :h group-name, 显示可用的group
