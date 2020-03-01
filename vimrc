@@ -61,9 +61,7 @@ let mapleader = ","                             " let 语句
 let g:mapleader = ","                           " 设置 vim 参数
 set timeoutlen=800
 
-if os=='Linux'
-    set ttymouse=xterm2                         " using mouse within tmux
-endif
+set ttymouse=xterm2                             " using mouse within tmux
 set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
@@ -77,7 +75,7 @@ set list
 "==========================
 
 
-"todo: what bug?(https://lotabout.me/2018/true-color-for-tmux-and-vim/)
+"what bug?(https://lotabout.me/2018/true-color-for-tmux-and-vim/)
 if has("termguicolors")
     " fix bug for vim
     set t_8f=[38;2;%lu;%lu;%lum
@@ -98,7 +96,7 @@ set showcmd             " 显示现有命令（在右下角）
 set scrolloff=9999      " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set sidescrolloff=7
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
-set matchtime=1         " How many tenths of a second to blink when matching brackets
+set matchtime=2         " How many tenths of a second to blink when matching brackets
 set tw=79
 set fo-=t               " don't automatically wrap text when typing
 set colorcolumn=80
