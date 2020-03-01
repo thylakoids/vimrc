@@ -61,7 +61,9 @@ let mapleader = ","                             " let 语句
 let g:mapleader = ","                           " 设置 vim 参数
 set timeoutlen=800
 
-set ttymouse=xterm2                             " using mouse within tmux
+if !has('nvim')
+    set ttymouse=xterm2                         " using mouse within tmux
+endif
 set mouse=a                                     " 允许鼠标（点击）， a 代表所有模式
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
@@ -84,6 +86,7 @@ if has("termguicolors")
     " enable true color
     set termguicolors
 endif
+
 syntax on               " 开启语法高亮
 set number              " 显示行号
 set ruler               " 显示当前行号列号
@@ -95,6 +98,7 @@ set nowrap              " 取消换行
 set showcmd             " 显示现有命令（在右下角）
 set scrolloff=9999      " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set sidescrolloff=7
+set laststatus=2        " always show status line
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
 set matchtime=2         " How many tenths of a second to blink when matching brackets
 set tw=79
@@ -136,9 +140,9 @@ nnoremap <C-W>h <C-W><
 nnoremap <C-W>l <C-W>>
 -
 " 代码折叠
-set foldmethod=indent
+autocmd FileType python setlocal foldmethod=indent
+autocmd FileType vim setlocal foldmethod=marker
 set foldlevel=99
-
 " 光标形状 cursor shape
 " For iterm2 on Mac
 " Also, see jszakmeister/vim-togglecursor

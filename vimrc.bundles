@@ -291,15 +291,14 @@ let g:jedi#max_doc_height = 15
 let g:jedi#show_call_signatures = 1
 let g:jedi#show_call_signatures_delay = 60
 "}}}
+"togglecursor{{{
 if !has('nvim')
-    "togglecursor{{{
     let g:togglecursor_default = "block"
     let g:togglecursor_insert = "line"
     let g:togglecursor_leave = "line"
     let g:togglecursor_disable_tmux = 0
-    "}}}
 endif
-
+    "}}}
 "nerdtree{{{
 noremap <F2> :NERDTreeToggle<CR>
 "}}}

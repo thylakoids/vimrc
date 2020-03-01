@@ -21,6 +21,11 @@ Learn Vimscript The Hard Way
     1. [Filetype Events](#filetype-events)
 1. [Normal And Execute](#normal-and-execute)
 1. [Status Lines](#status-lines)
+    1. [Basic Commands](#basic-commands)
+    1. [Width And Padding](#width-and-padding)
+    1. [General Format](#general-format)
+    1. [Splitting](#splitting)
+1. [Variables](#variables)
 1. [Motions](#motions)
 
 <!-- vim-markdown-toc -->
@@ -182,7 +187,8 @@ See `:help statusline`
     :set statusline+=%l        " current line
     :set statusline+=/         " separator
     :set statusline+=%L        " Total lines
-
+Variables
+---------
 Motions
 ------
 The right way to use Vim is to get out of insert mode as soon as you can and use normal mode to move around.
