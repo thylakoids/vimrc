@@ -43,7 +43,7 @@ Plug 'davidhalter/jedi-vim'
 " input methods
 Plug 'ybian/smartim'
 " folding for python???
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold'
 Plug 'Yggdroot/indentLine'
 " docstring for python
 Plug 'heavenshell/vim-pydocstring'
@@ -51,11 +51,13 @@ Plug 'heavenshell/vim-pydocstring'
 Plug 'dense-analysis/ale'
 Plug 'luochen1990/rainbow'
 " search
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
 " multiple cursors
 " Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Latex
 Plug 'lervag/vimtex' , {'for':['tex']}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
@@ -64,14 +66,14 @@ if !has('nvim')
     Plug 'jszakmeister/vim-togglecursor'
 endif
 " outline viewer
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'    "deprecated:using LeaderfFunction
 " Restore session
 Plug 'tpope/vim-obsession'
 " operator: like `gU` Uppercase
 " -------------------------------
 " Teach Vim about titlecase, with support for motions and text objects. Using `gt`, `gT` will apply to a line.
-Plug 'christoomey/vim-titlecase'
-Plug 'christoomey/vim-system-copy'    "cp cv
+Plug 'christoomey/vim-titlecase'      "gt gT
+Plug 'christoomey/vim-system-copy'    "cp cP cv cV
 "System Integration
 " -------------------
 Plug 'christoomey/vim-tmux-navigator'    " Seamless navigation between tmux panes and vim splits
@@ -358,4 +360,11 @@ let g:VtrAppendNewline = 1
 "vim-tmux-runner{{{
 let g:VtrUseVtrMaps = 1
 let g:VtrPercentage = 30
+"}}}
+"LeaderF{{{
+let g:Lf_WindowPosition='popup'
+let g:Lf_ShortcutF='<C-P>'
+let g:Lf_HideHelp=1
+noremap <C-n> :LeaderfFunction!<cr>
+let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
 "}}}
