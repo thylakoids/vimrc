@@ -225,7 +225,7 @@ if has("autocmd")
   " Highlight TODO, FIXME, NOTE, etc.
   if v:version > 701
     autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|todo\)')
-    autocmd Syntax * call matchadd('Debug', '\W\zs\(DEBUG\|INFO\|debug\)')
+    autocmd Syntax * call matchadd('Debug', '\W\zs\(DEBUG\|INFO\|debug\|issue\)')
     autocmd Syntax * call matchadd('SpecialComment', '\W\zs\(deprecated\|DEPRECATED\)')
   endif
 endif

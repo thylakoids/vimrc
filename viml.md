@@ -26,6 +26,11 @@ Learn Vimscript The Hard Way
     1. [General Format](#general-format)
     1. [Splitting](#splitting)
 1. [Variables](#variables)
+    1. [Basics](#basics)
+    1. [Registers As Variables](#registers-as-variables)
+    1. [Variable Scoping](#variable-scoping)
+    1. [Conditionals](#conditionals)
+    1. [Functions](#functions)
 1. [Motions](#motions)
 
 <!-- vim-markdown-toc -->
@@ -189,6 +194,137 @@ See `:help statusline`
     :set statusline+=%L        " Total lines
 Variables
 ---------
+### Basics
+
+    :let foo="bar"
+    :echo foo
+
+Options as Variables
+
+    :echo &textwidth
+    :echo &wrap
+
+We can set options as variables using the `let`
+
+    :let &textwidth=100
+    :let &textwidth=&textwidth+10
+    :set textwidth+=10
+
+Local Options
+
+    :let &l:number=1
+    :let &l:number=0
+
+### Registers As Variables
+
+    :let @a="hello!"
+
+    :echo @a
+
+Select a word in your file and yank it with `y`, then run this command:
+
+    :echo @"
+
+The `"` register is the "unnamed" register, which is where text you yank
+without specifying a destination will go.
+
+Perform a search in your file with `/someword`, then run the following command:
+
+    :echo @/
+
+### Variable Scoping
+
+    :let b:hello = "world"    "b   buffer variable
+    :help internal-variables
+
+### Conditionals
+
+Multiple-Line Statements
+
+    :echom "foo" | echom "bar"
+
+**Basic If**
+
+    :if 1
+    :    echom "ONE"
+    :endif
+
+Vim does not necessarily treat a non-empty string as "truthy", so it will not
+display anything!
+
+    :if "something"
+    :     echom "INDEED"
+    :endif
+
+Run these commands:
+
+    :if "9024"
+    :    echom "WHAT?"
+    :endif
+
+This time Vim dose display the text!
+Run the following commands:
+
+    :echom "hello"+10
+    :echom "10hello"+10
+    :echom "hello10"+10
+
+**Else and Elseif**
+
+    :if 0
+    :    echom "if"
+    :elseif "nope!"
+    :    echom "elseif"
+    :else
+    :    echom "finally!"
+    :endif
+
+**Comparisons**
+
+```vim
+    :set ignorecase
+    :if "foo" == "FOO"
+    :    echom "no, it couldn't be"
+    :elseif "foo" == "foo"
+    :    echom "this must be the one"
+    :endif
+```
+
+This means you can never trust the `==` comparison. Instead using this:
+
+    case-insensitive: `==?`
+    case-sensitive: `==#`
+
+### Functions
+
+Define A Function:
+
+    :function Meow()
+    :    echom "Meow!"
+    :    return "Meow str!"
+    :endfunction
+
+Calling Functions, vim function implicitly return 0.
+
+    :call Meow()
+
+**varrags**
+
+`a:` Function argument (only inside a function)
+
+Vim can't reassign argument variables.
+
+see :help internal-variables
+
+    :function Varg(...)
+    :  echom a:0
+    :  echom a:1
+    :  echom a:2
+    :  echo a:000
+    :endfunction
+
+    :call Varg("a", "b")
+
 Motions
 ------
 The right way to use Vim is to get out of insert mode as soon as you can and use normal mode to move around.

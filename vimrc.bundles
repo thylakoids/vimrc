@@ -46,7 +46,7 @@ Plug 'ybian/smartim'
 " Plug 'tmhedberg/SimpylFold'
 Plug 'Yggdroot/indentLine'
 " docstring for python
-Plug 'heavenshell/vim-pydocstring'
+Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
 " 语法高亮
 Plug 'dense-analysis/ale'
 Plug 'luochen1990/rainbow'
@@ -57,7 +57,7 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'skywind3000/asyncrun.vim'
 " multiple cursors
 " Plug 'terryma/vim-multiple-cursors'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Latex
 Plug 'lervag/vimtex' , {'for':['tex']}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
@@ -77,7 +77,7 @@ Plug 'christoomey/vim-system-copy'    "cp cP cv cV
 "System Integration
 " -------------------
 Plug 'christoomey/vim-tmux-navigator'    " Seamless navigation between tmux panes and vim splits
-Plug 'christoomey/vim-tmux-runner'
+Plug 'christoomey/vim-tmux-runner'       " issue:Can't set orientation to h, <leader>ror, wrong.
 call plug#end()
 
 
