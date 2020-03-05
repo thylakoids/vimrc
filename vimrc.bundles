@@ -56,8 +56,7 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
 " multiple cursors
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Latex
 Plug 'lervag/vimtex' , {'for':['tex']}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
@@ -365,6 +364,8 @@ let g:VtrPercentage = 30
 let g:Lf_WindowPosition='popup'
 let g:Lf_ShortcutF='<C-P>'
 let g:Lf_HideHelp=1
-noremap <C-n> :LeaderfFunction!<cr>
+" let g:LF_UseCache=0
+" let g:LF_UseMemoryCache=0
+noremap <F3> :LeaderfFunction!<cr>
 let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
 "}}}
