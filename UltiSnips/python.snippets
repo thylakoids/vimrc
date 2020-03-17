@@ -1,10 +1,8 @@
-snippet if__name "if __name__=='__main__':"
+extends pythonColorPrint
+
+snippet if__name "if __name__=='__main__':" b
 if __name__ == '__main__':
 	$0
-endsnippet
-# see snippets options
-snippet \033 "print('\033[1;32mtext\033[0m')" i
-\033[1;36m${1:${VISUAL:#content here}}\033[0m$0
 endsnippet
 
 snippet defparser "argparse" b
@@ -33,7 +31,8 @@ snippet try "try...except..." b
 try:
 	${1:${VISUAL:code to be checked}}
 except:
-	import traceback
-	logger.debug('\n' + traceback.format_exc())
+	# import traceback
+	# logger.debug('\n' + traceback.format_exc())
+	logger.exception()
 $0
 endsnippet

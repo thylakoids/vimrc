@@ -96,8 +96,8 @@ set ruler               " 显示当前行号列号
 set showmode            " 左下角显示当前vim模式
 set nowrap              " 取消换行
 set showcmd             " 显示现有命令（在右下角）
-set scrolloff=9999      " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
-set sidescrolloff=3
+set scrolloff=1      " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set sidescrolloff=2
 set laststatus=2        " always show status line
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
 set matchtime=2         " How many tenths of a second to blink when matching brackets
@@ -207,6 +207,7 @@ vnoremap <leader>` <esc>`>a`<esc>bi`<esc>lel
 "          The "event" to watch for.
 " Quick open .vimrc
 nnoremap <leader>ev :sp $MYVIMRC<cr>/Quick open .vimrc<cr>:noh<cr>
+nnoremap <leader>es :UltiSnipsEdit<cr>
 " Quick get rid of old habit
 " FileType Settings  文件类型设置
 "==========================================

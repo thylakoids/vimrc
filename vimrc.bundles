@@ -274,10 +274,11 @@ let g:vimtex_complete_bib_simple = 1
   let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 "}}}
 "ultisnips{{{
-let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsExpandTrigger = '<s-tab>'
 
-let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+let g:UltiSnipsJumpForwardTrigger      = '<nope>'
+let g:UltiSnipsJumpBackwardTrigger     = '<nope>'
+let g:UltiSnipsEditSplit="horizontal"
 "}}}
 "jedi-vim{{{
 let g:jedi#completions_enabled = 0
