@@ -51,9 +51,13 @@ Vim 学习
 4. macro:
     - `qq`: recording, `q` stop. `@q` to repeat.
     - In insert mode, `<ctrl-r> q` to paste the register "q.
+5. syntime on;syntime report;
 
 
 Vim and Tmux
 ============
 1. Vim Tmux Navigator
-2. How to send code from vim to tmux window?
+2. How to send code from vim to tmux window?(vim-tmux-runner)
+
+[Ultisnips](Https://Vimzijun.Net/2016/10/30/Ultisnip/)
+======================================================

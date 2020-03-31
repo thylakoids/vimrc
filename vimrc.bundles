@@ -63,6 +63,8 @@ Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 " cursor shape
 if !has('nvim')
     Plug 'jszakmeister/vim-togglecursor'
+" input method
+Plug 'lyokha/vim-xkbswitch'
 endif
 " outline viewer
 " Plug 'majutsushi/tagbar'    "deprecated:using LeaderfFunction
@@ -77,6 +79,7 @@ Plug 'christoomey/vim-system-copy'    "cp cP cv cV
 " -------------------
 Plug 'christoomey/vim-tmux-navigator'    " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-runner'       " issue:Can't set orientation to h, <leader>ror, wrong.
+Plug 'Townk/vim-autoclose'
 call plug#end()
 
 
@@ -267,6 +270,15 @@ endif
 " let g:vimtex_quickfix_mode=0
 let g:tex_conceal='abdmgs'
 let g:Tex_CompileRule_pdf = 'xelatex --interaction=nonstopmode --shell-escape $*'
+let g:vimtex_compiler_latexmk = {
+        \ 'executable' : 'latexmk',
+        \ 'options' : [
+        \   '-xelatex',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \ ],
+        \}
 let g:vimtex_complete_bib_simple = 1
   if !exists('g:ycm_semantic_triggers')
     let g:ycm_semantic_triggers = {}
@@ -303,6 +315,7 @@ endif
     "}}}
 "nerdtree{{{
 noremap <F2> :NERDTreeToggle<CR>
+autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 "}}}
 "tagbar{{{
 let g:tagbar_type_javascript = {
@@ -368,5 +381,8 @@ let g:Lf_HideHelp=1
 " let g:LF_UseCache=0
 " let g:LF_UseMemoryCache=0
 noremap <F3> :LeaderfFunction!<cr>
-let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
+" let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
+"}}}
+"vim-xkbswitch{{{
+let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
 "}}}

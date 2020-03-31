@@ -44,16 +44,6 @@ endsnippet
 #################
 #  parentheses  #
 #################
-# todo:using reguralr expression apply to { "
-snippet () "parentheses and quote" i
-(${1:${VISUAL}})$0
-endsnippet
-snippet "" "parentheses and quote" i
-"${1:${VISUAL}}"$0
-endsnippet
-snippet '' "parentheses and quote" i
-'${1:${VISUAL}}'$0
-endsnippet
-snippet `` "parentheses and quote" i
-\`${1:${VISUAL}}\`$0
+snippet '("")|(\'\')|(``)|(\(\))|(\[\])|({})|(<>)' "parentheses and quote" ri
+`!p snip.rv = match.group(0)[0]`${1:${VISUAL}}`!p snip.rv = match.group(0)[1]`$0
 endsnippet

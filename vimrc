@@ -35,8 +35,9 @@ autocmd! bufwritepost $HOME/.vim/vimrc.bundles source $MYVIMRC " Automatic reloa
 set encoding=utf-8
 autocmd FileType markdown,txt set spell
 set spelllang=en,cjk
-" set complete+=kspell                          " todo
-set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
+" set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
+set complete=.
+set complete+=kspell                            " match dictionary words
 filetype on                                     " 检测文件类型
 filetype indent on                              " 针对不同的文件类型采用不同的缩进格式
 filetype plugin on                              " 允许插件
@@ -92,7 +93,7 @@ set number              " 显示行号
 set ruler               " 显示当前行号列号
 " set relativenumber
 " set cursorcolumn      " 突出显示当前列
-" set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
+set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
 set showmode            " 左下角显示当前vim模式
 set nowrap              " 取消换行
 set showcmd             " 显示现有命令（在右下角）
@@ -100,7 +101,9 @@ set scrolloff=1      " 在上下移动光标时，光标的上方或下方至少
 set sidescrolloff=2
 set laststatus=2        " always show status line
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
-set matchtime=2         " How many tenths of a second to blink when matching brackets
+set matchtime=1         " How many tenths of a second to blink when matching brackets
+let g:matchparen_timeout = 2 "Highlighting matching parens, if file is too large, matchparen would make vim slow
+let g:matchparen_insert_timeout = 2
 set tw=79
 set fo-=t               " don't automatically wrap text when typing
 set colorcolumn=80
@@ -208,6 +211,7 @@ vnoremap <leader>` <esc>`>a`<esc>bi`<esc>lel
 " Quick open .vimrc
 nnoremap <leader>ev :sp $MYVIMRC<cr>/Quick open .vimrc<cr>:noh<cr>
 nnoremap <leader>es :UltiSnipsEdit<cr>
+nnoremap <Leader>jf :%!python -m json.tool<cr>
 " Quick get rid of old habit
 " FileType Settings  文件类型设置
 "==========================================
