@@ -63,8 +63,6 @@ Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 " cursor shape
 if !has('nvim')
     Plug 'jszakmeister/vim-togglecursor'
-" input method
-Plug 'lyokha/vim-xkbswitch'
 endif
 " outline viewer
 " Plug 'majutsushi/tagbar'    "deprecated:using LeaderfFunction
@@ -382,7 +380,4 @@ let g:Lf_HideHelp=1
 " let g:LF_UseMemoryCache=0
 noremap <F3> :LeaderfFunction!<cr>
 " let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
-"}}}
-"vim-xkbswitch{{{
-let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
 "}}}
