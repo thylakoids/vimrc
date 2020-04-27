@@ -189,7 +189,7 @@ vnoremap < <gv
 map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
 "markdown heading u1, u2, u3
 :autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! yypVr=<CR>
-:autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! yypVr-<CR>
+:autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! yypVr-i-----<esc><CR>
 :autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l
 "Quick quoting
 " todo: how to make this to an operator

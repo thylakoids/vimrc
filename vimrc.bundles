@@ -313,7 +313,8 @@ endif
     "}}}
 "nerdtree{{{
 noremap <F2> :NERDTreeToggle<CR>
-autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+" autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+let g:NERDTreeWinSize = 15
 "}}}
 "tagbar{{{
 let g:tagbar_type_javascript = {
