@@ -1,7 +1,28 @@
 priority -60
 
 global !p
-from vimsnippets import foldmarker, make_box, get_comment_format
+from vimsnippets import *
+def runexpression(s):
+	import time
+	s = s.strip()
+
+	# time.time 的值也会变, 改写这个函数
+	timetime = time.time
+	def mytimetime():
+		return int(timetime()) + 0.000001
+	time.time = mytimetime
+
+	# 跟当前区域相关的函数也一直改变
+	if s == 't':
+		return '<UltiSnips.text_objects.python_code._Tabs object at 0x?????????>'
+	if s == 'time.time':
+		return '<function runexpression.<locals>.mytimetime at 0x?????????> '
+
+	random.seed(int(time.time()/60))
+	try:
+		return eval(s)
+	except Exception:
+		return ''
 endglobal
 #########
 #  box  #
@@ -46,4 +67,22 @@ endsnippet
 #################
 snippet '("")|(\'\')|(``)|(\(\))|(\[\])|({})|(<>)' "parentheses and quote" ri
 `!p snip.rv = match.group(0)[0]`${1:${VISUAL}}`!p snip.rv = match.group(0)[1]`$0
+endsnippet
+
+##############
+#  complete  #
+##############
+snippet st "Status" b
+status $1`!p snip.rv=complete(t[1], ['start', 'stop', 'restart'])`
+endsnippet
+################
+#  python exp  #
+################
+snippet python "python block" Ab
+`!p snip.rv=get_comment_format2()[0]`python[  $1 = `!p snip.rv = runexpression(t[1])`  ]python`!p snip.rv=get_comment_format2()[1]`
+endsnippet
+
+priority 100
+snippet 'python\[\s*(.*?)\s*=.*?\]python' "evaluate python" Ar
+python[  ${1:`!p snip.rv=match.group(1)`} = `!p snip.rv = runexpression(t[1])`  ]python
 endsnippet

@@ -18,17 +18,23 @@ def create_table(snip):
 
     # expand anonymous snippet
     snip.expand_anon(anon_snippet_table)
+
 endglobal
 
 pre_expand "create_table(snip)"
 snippet "tb(\d+\*\d+)" "Customizable table" Abr
 endsnippet
 
-# complict with `` in all.snippet
-# deprecated
 snippet codeblock "Codeblock" Ab
 \`\`\`${1:python}
 ${2:${VISUAL:code here}}
 \`\`\`
 $0
+endsnippet
+
+# example using snip.c
+snippet random "random" b
+`!p import random
+if not snip.c:
+	snip.rv=str(random.random())`
 endsnippet

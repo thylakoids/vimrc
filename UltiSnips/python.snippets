@@ -1,4 +1,7 @@
 extends pythonColorPrint
+global !p
+from vimsnippets import noexitdocstring
+endglobal
 
 snippet if__name "if __name__=='__main__':" b
 if __name__ == '__main__':
@@ -35,4 +38,20 @@ except:
 	# logger.debug('\n' + traceback.format_exc())
 	logger.exception()
 $0
+endsnippet
+
+context "noexitdocstring(snip)"
+snippet "(^\s*)def (\w*?)\((.*?)\)\s*(->\s*(\w*?))?\s*:" "doc string" rA
+`!p
+define = match.group(0)
+indent =  "\n" + match.group(1) + "    "
+fname = "\"\"\"" + match.group(2)
+params = [s.strip() for s in match.group(3).split(',')]
+params_str = indent.join([':param {}:'.format(p) for p in params if p not in ["", "self", "cls"]])
+return_typ = match.group(5)
+return_str = f":return {return_typ}:" if return_typ else ":return:"
+snip.rv = ((indent.join([define, fname, params_str, return_str, "\"\"\""])
+			if params_str else indent.join([define, fname, return_str, "\"\"\""])
+			) + indent)
+`$0
 endsnippet

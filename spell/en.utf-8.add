@@ -12,6 +12,11 @@ gif
 jpeg
 scapy
 ip
-#rp
 arp
 os
+ascii
+base64
+eval
+javascript
+js
+md5

@@ -1,6 +1,9 @@
 """Helper methods used in UltiSnips snippets."""
 
-import string, vim
+import re
+import string
+
+import vim
 
 
 def complete(tab, opts):
@@ -77,13 +80,21 @@ def get_comment_format():
     return comments[0][1:]
 
 
+def get_comment_format2():
+    """get_comment_format2
+    :return:(string before %s, string after %s)
+    """
+    commentstring = vim.eval("&commentstring")
+    return commentstring.split('%s')
+
+
 def make_box(twidth, bwidth=None):
     b, m, e, i = (s.strip() for s in get_comment_format())
     bwidth_inner = bwidth - 3 - max(len(b), len(i + e)) if bwidth else twidth + 2
     sline = b + m + bwidth_inner * m[0] + 2 * m[0]
     nspaces = (bwidth_inner - twidth) // 2
     mlines = i + m + " " + " " * nspaces
-    mlinee = " " + " "*(bwidth_inner - twidth - nspaces) + m
+    mlinee = " " + " " * (bwidth_inner - twidth - nspaces) + m
     eline = i + m + bwidth_inner * m[0] + 2 * m[0] + e
     return sline, mlines, mlinee, eline
 
@@ -91,3 +102,10 @@ def make_box(twidth, bwidth=None):
 def foldmarker():
     "Return a tuple of (open fold marker, close fold marker)"
     return vim.eval("&foldmarker").split(",")
+
+
+def noexitdocstring(snip) -> bool:
+    """Return if python function already exit docstring.
+    todo:notworking match '''
+    """
+    return (len(snip.buffer) == snip.line + 1) or not re.match('\s*(""")|(\'\'\')', snip.buffer[snip.line + 1])

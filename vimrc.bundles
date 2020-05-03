@@ -41,7 +41,7 @@ Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'davidhalter/jedi-vim'
 " input methods
-Plug 'ybian/smartim'
+Plug 'lyokha/vim-xkbswitch'
 " folding for python???
 " Plug 'tmhedberg/SimpylFold'
 Plug 'Yggdroot/indentLine'
@@ -251,6 +251,8 @@ function! s:compile_and_run()
         exec "AsyncRun! node %"
     elseif &filetype =='tex'
         exec "VimtexCompile"
+    elseif &filetype =='html'
+        exec "AsyncRun! open %"
     endif
 endfunction
 
@@ -286,8 +288,8 @@ let g:vimtex_complete_bib_simple = 1
 "ultisnips{{{
 let g:UltiSnipsExpandTrigger = '<s-tab>'
 
-let g:UltiSnipsJumpForwardTrigger      = '<nope>'
-let g:UltiSnipsJumpBackwardTrigger     = '<nope>'
+let g:UltiSnipsJumpForwardTrigger      = '<F12>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-F12>'
 let g:UltiSnipsEditSplit="horizontal"
 "}}}
 "jedi-vim{{{
@@ -376,7 +378,7 @@ let g:VtrPercentage = 30
 "LeaderF{{{
 let g:Lf_WindowPosition='popup'
 let g:Lf_ShortcutF='<C-P>'
-let g:Lf_HideHelp=1
+let g:Lf_HideHelp=0
 " let g:LF_UseCache=0
 " let g:LF_UseMemoryCache=0
 noremap <F3> :LeaderfFunction!<cr>

@@ -38,6 +38,7 @@ set spelllang=en,cjk
 " set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
 set complete=.
 set complete+=kspell                            " match dictionary words
+set autochdir
 filetype on                                     " 检测文件类型
 filetype indent on                              " 针对不同的文件类型采用不同的缩进格式
 filetype plugin on                              " 允许插件
@@ -47,12 +48,6 @@ filetype plugin indent on                       " 启动自动补全
 "checktime 会导致打开cmdline-window错误, 所以判断是不是cmdline-window
 set autoread                                    " 文件修改之后自动载入
 au CursorHold * if !bufexists("[Command Line]") | checktime | endif
-" let os = substitute(system('uname'), "\n", "", "")
-" if os=='Linux'
-"     set clipboard=unnamedplus                   " 系统剪切板
-" elseif os=='Darwin'
-"     set clipboard=unnamed
-" endif
 set nobackup                                    " no backup files
 set noswapfile                                  " no swap files
 set nowritebackup                               " only in case you don't want a backup file while editing
@@ -91,7 +86,7 @@ endif
 syntax on               " 开启语法高亮
 set number              " 显示行号
 set ruler               " 显示当前行号列号
-" set relativenumber
+set relativenumber
 " set cursorcolumn      " 突出显示当前列
 set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
 set showmode            " 左下角显示当前vim模式
@@ -102,7 +97,7 @@ set sidescrolloff=2
 set laststatus=2        " always show status line
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
 set matchtime=1         " How many tenths of a second to blink when matching brackets
-let g:matchparen_timeout = 2 "Highlighting matching parens, if file is too large, matchparen would make vim slow
+let g:matchparen_timeout = 20 "Highlighting matching parens, if file is too large, matchparen would make vim slow
 let g:matchparen_insert_timeout = 2
 set tw=79
 set fo-=t               " don't automatically wrap text when typing
@@ -110,6 +105,7 @@ set colorcolumn=80
 
 " performance
 set lazyredraw          " Don’t update screen during macro and script execution.
+set synmaxcol=500
 
 " 设置文内智能搜索提示
 set hlsearch            " 高亮search命中的文本
@@ -188,8 +184,8 @@ vnoremap < <gv
 "Put breakpoint before current line
 map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
 "markdown heading u1, u2, u3
-:autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! yypVr=<CR>
-:autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! yypVr-i-----<esc><CR>
+:autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! yypVr=i==================================<esc><CR>
+:autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! yypVr-i----------------------------------<esc><CR>
 :autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l
 "Quick quoting
 " todo: how to make this to an operator
@@ -211,6 +207,7 @@ vnoremap <leader>` <esc>`>a`<esc>bi`<esc>lel
 " Quick open .vimrc
 nnoremap <leader>ev :sp $MYVIMRC<cr>/Quick open .vimrc<cr>:noh<cr>
 nnoremap <leader>es :UltiSnipsEdit<cr>
+" 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 nnoremap <Leader>jf :%!python -m json.tool<cr>
 " Quick get rid of old habit
 " FileType Settings  文件类型设置
