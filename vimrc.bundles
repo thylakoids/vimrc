@@ -384,3 +384,6 @@ let g:Lf_HideHelp=0
 noremap <F3> :LeaderfFunction!<cr>
 " let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
 "}}}
+"lyokha/vim-xkbswitch{{{
+let g:XkbSwitchEnabled = 1
+"}}}
