@@ -41,7 +41,7 @@ $0
 endsnippet
 
 context "noexitdocstring(snip)"
-snippet "(^\s*)def (\w*?)\((.*?)\)\s*(->\s*(\w*?))?\s*:" "doc string" rA
+snippet "(^\s*)def (\w*?)\((.*?)\)\s*(->\s*(\w*?))?\s*:" "doc string" Abr
 `!p
 define = match.group(0)
 indent =  "\n" + match.group(1) + "    "
@@ -54,4 +54,11 @@ snip.rv = ((indent.join([define, fname, params_str, return_str, "\"\"\""])
 			if params_str else indent.join([define, fname, return_str, "\"\"\""])
 			) + indent)
 `$0
+endsnippet
+
+snippet "class Exc" "custom Error" Ab
+class ${1:LoginError}(Exception):
+    def __init__(self, msg):
+        pass
+$0
 endsnippet

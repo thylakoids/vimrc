@@ -46,7 +46,7 @@ Plug 'lyokha/vim-xkbswitch'
 " Plug 'tmhedberg/SimpylFold'
 Plug 'Yggdroot/indentLine'
 " docstring for python
-Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
+" Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
 " 语法高亮
 Plug 'dense-analysis/ale'
 Plug 'luochen1990/rainbow'
@@ -65,7 +65,6 @@ if !has('nvim')
     Plug 'jszakmeister/vim-togglecursor'
 endif
 " outline viewer
-" Plug 'majutsushi/tagbar'    "deprecated:using LeaderfFunction
 " Restore session
 Plug 'tpope/vim-obsession'
 " operator: like `gU` Uppercase
@@ -77,7 +76,12 @@ Plug 'christoomey/vim-system-copy'    "cp cP cv cV
 " -------------------
 Plug 'christoomey/vim-tmux-navigator'    " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-runner'       " issue:Can't set orientation to h, <leader>ror, wrong.
+" For instance if you type an '(', ``autoclose`` will automatically insert a ')' and put the cursor between than
 Plug 'Townk/vim-autoclose'
+" ---------------
+" vim-which-key(On-demand lazy load) todo: how to lazy load
+Plug 'liuchengxu/vim-which-key'
+
 call plug#end()
 
 
@@ -178,9 +182,9 @@ let g:indentLine_concealcursor = ''
 " endfunction
 "}}}
 "SimpylFold{{{
-let g:SimpylFold_docstring_preview=1
-let g:SimpylFold_fold_docstring =0
-let g:SimpylFold_fold_import=0
+" let g:SimpylFold_docstring_preview=1
+" let g:SimpylFold_fold_docstring =0
+" let g:SimpylFold_fold_import=0
 "}}}
 " "syntastic'{{{
 " let python_highlight_all=1
@@ -337,9 +341,6 @@ let g:tagbar_type_javascript = {
       \ ]}
 noremap <F3> :TagbarToggle<CR>
 "}}}
-"pydocstring{{{
-nmap <silent> <C-I> <Plug>(pydocstring)
-"}}}
 "rainbow{{{
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
@@ -386,4 +387,12 @@ noremap <F3> :LeaderfFunction!<cr>
 "}}}
 "lyokha/vim-xkbswitch{{{
 let g:XkbSwitchEnabled = 1
+"}}}
+"liuchengxu/vim-which-key{{{
+let g:mapleader = ","   "call it after plug load
+nnoremap <leader> :<c-u>WhichKey  ','<CR>
+vnoremap <leader> :<c-u>WhichKeyVisual  ','<CR>
+" autocmd! FileType which_key
+" autocmd  FileType which_key set laststatus=0 noshowmode noruler
+"   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 "}}}

@@ -108,4 +108,4 @@ def noexitdocstring(snip) -> bool:
     """Return if python function already exit docstring.
     todo:notworking match '''
     """
-    return (len(snip.buffer) == snip.line + 1) or not re.match('\s*(""")|(\'\'\')', snip.buffer[snip.line + 1])
+    return (len(snip.buffer) == snip.line + 1) or not re.match('\s*"""', snip.buffer[snip.line + 1])

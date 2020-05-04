@@ -7,11 +7,12 @@
 "   https://github.com/wklken/k-vim/blob/master/vimrc
 " Sections:
 "   ->Initial Plugin 加载插件
-"    ->General settings 基础设置
+"   ->General settings 基础设置
 "   ->Display settings 界面设置
 "   ->Themes settings 主题设置
 "   ->ShortCuts settings 快捷键设置
-"     ->FileType Settings  文件类型设置
+"   ->FileType Settings  文件类型设置
+"   ->Autocmd 智能的自动命令
 "
 " Note: Don't put anything in your .vimrc you don't understand!
 "==========================
@@ -105,7 +106,7 @@ set colorcolumn=80
 
 " performance
 set lazyredraw          " Don’t update screen during macro and script execution.
-set synmaxcol=500
+" set synmaxcol=3000
 
 " 设置文内智能搜索提示
 set hlsearch            " 高亮search命中的文本
@@ -139,9 +140,10 @@ nnoremap <C-W>h <C-W><
 nnoremap <C-W>l <C-W>>
 -
 " 代码折叠
-autocmd FileType python setlocal foldmethod=indent
-autocmd FileType vim setlocal foldmethod=marker
-set foldlevel=99
+" autocmd FileType python setlocal foldmethod=indent
+" autocmd FileType vim setlocal foldmethod=marker
+" set foldlevel=99
+set foldmethod=manual
 " 光标形状 cursor shape
 " For iterm2 on Mac
 " Also, see jszakmeister/vim-togglecursor
@@ -228,3 +230,18 @@ if has("autocmd")
     autocmd Syntax * call matchadd('SpecialComment', '\W\zs\(deprecated\|DEPRECATED\)')
   endif
 endif
+"==========================
+"Autocmd 智能的自动命令
+"==========================
+" close vim, if quickfix is the last window
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
+aug END
+
+"为字典添加引号, 比如从浏览器复制的数据转换为字典
+vnoremap <leader>aq :s/\n/",\r"/g <cr>:'<,'>s/: /": "/g<cr>jx'<i"<esc>:ALEFix<cr>:noh<cr>
+"fold
+autocmd BufWinLeave * mkview
+" break syntax
+" autocmd BufWinEnter * silent loadview
