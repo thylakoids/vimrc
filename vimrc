@@ -34,7 +34,17 @@ autocmd! bufwritepost $HOME/.vim/vimrc source $MYVIMRC         " Automatic reloa
 autocmd! bufwritepost $HOME/.vimrc.bundles source $MYVIMRC     " Automatic reloading of .vimrc
 autocmd! bufwritepost $HOME/.vim/vimrc.bundles source $MYVIMRC " Automatic reloading of .vimrc
 set encoding=utf-8
-autocmd FileType markdown,txt set spell
+fun! Setspellnospell()
+    " Don't set spell on these filetypes
+    let blacklist = ['markdown', 'txt', 'plaintex', 'latex']
+    if index(blacklist, &ft) < 0
+        set nospell
+        return
+    else
+        set spell
+    endif
+endfun
+autocmd FileType * call Setspellnospell()
 set spelllang=en,cjk
 " set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
 set complete=.
