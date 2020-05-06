@@ -79,10 +79,14 @@ endsnippet
 #  python exp  #
 ################
 snippet python "python block" Ab
-`!p snip.rv=get_comment_format2()[0]`python[  $1 = `!p snip.rv = runexpression(t[1])`  ]python`!p snip.rv=get_comment_format2()[1]`
+`!p snip.rv=get_nerdcomment_format()[0]`python[  $1 = `!p snip.rv = runexpression(t[1])`  ]python`!p snip.rv=get_nerdcomment_format()[1]`
 endsnippet
 
 priority 100
 snippet 'python\[\s*(.*?)\s*=.*?\]python' "evaluate python" Ar
 python[  ${1:`!p snip.rv=match.group(1)`} = `!p snip.rv = runexpression(t[1])`  ]python
+endsnippet
+
+snippet phi "Greek letter:phi" Aw
+φ
 endsnippet

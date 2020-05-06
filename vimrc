@@ -89,7 +89,7 @@ set number              " 显示行号
 set ruler               " 显示当前行号列号
 set relativenumber
 " set cursorcolumn      " 突出显示当前列
-set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
+" set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
 set showmode            " 左下角显示当前vim模式
 set nowrap              " 取消换行
 set showcmd             " 显示现有命令（在右下角）
@@ -173,6 +173,7 @@ highlight GitGutterChangeDelete ctermfg=LightGreen
 "==========================
 "Quick <esc>
 inoremap jk <esc>
+nnoremap J <nul>
 "Quick saving
 " noremap <leader>s :update<CR>
 " vnoremap <leader>s <C-O>:update<CR>
@@ -186,9 +187,12 @@ vnoremap < <gv
 "Put breakpoint before current line
 map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
 "markdown heading u1, u2, u3
-:autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! yypVr=i==================================<esc><CR>
-:autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! yypVr-i----------------------------------<esc><CR>
-:autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l
+aug mdheading
+    autocmd!
+    autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! yypVr=i<esc><CR>
+    autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! yypVr-i<esc><CR>
+    autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l
+aug END
 "Quick quoting
 " todo: how to make this to an operator
 nnoremap <leader>' viw<esc>`>a'<esc>bi'<esc>lel
@@ -209,8 +213,10 @@ vnoremap <leader>` <esc>`>a`<esc>bi`<esc>lel
 " Quick open .vimrc
 nnoremap <leader>ev :sp $MYVIMRC<cr>/Quick open .vimrc<cr>:noh<cr>
 nnoremap <leader>es :UltiSnipsEdit<cr>
+"为字典添加引号, 比如从浏览器复制的数据转换为字典
+vnoremap <leader>aq :s/\n/",\r"/g <cr>:'<,'>s/: /": "/g<cr>jx'<i"<esc>:Format<cr>:noh<cr>
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
-nnoremap <Leader>jf :%!python -m json.tool<cr>
+" nnoremap <Leader>jf :%!python -m json.tool<cr>
 " Quick get rid of old habit
 " FileType Settings  文件类型设置
 "==========================================
@@ -222,14 +228,13 @@ autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2
 
 " 设置可以高亮的关键字
 " :h group-name, 显示可用的group
-if has("autocmd")
-  " Highlight TODO, FIXME, NOTE, etc.
-  if v:version > 701
+aug highligth_keyword
+    " Highlight TODO, FIXME, NOTE, etc.
+    au!
     autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|todo\)')
     autocmd Syntax * call matchadd('Debug', '\W\zs\(DEBUG\|INFO\|debug\|issue\)')
     autocmd Syntax * call matchadd('SpecialComment', '\W\zs\(deprecated\|DEPRECATED\)')
-  endif
-endif
+aug END
 "==========================
 "Autocmd 智能的自动命令
 "==========================
@@ -238,10 +243,3 @@ aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
 aug END
-
-"为字典添加引号, 比如从浏览器复制的数据转换为字典
-vnoremap <leader>aq :s/\n/",\r"/g <cr>:'<,'>s/: /": "/g<cr>jx'<i"<esc>:ALEFix<cr>:noh<cr>
-"fold
-autocmd BufWinLeave * mkview
-" break syntax
-" autocmd BufWinEnter * silent loadview

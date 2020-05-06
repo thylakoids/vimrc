@@ -6,6 +6,8 @@
 "    - you can set colours with %#your_colour_name#
 "    - everything you need to know is in :help statusline
 autocmd! bufwritepost ~/.vim/statusline.vim source $MYVIMRC
+" hi mystatusline guibg='None' guifg='NONE' cterm=NONE ctermfg=grey ctermbg=blue
+
 set statusline=
 set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
@@ -23,6 +25,7 @@ set statusline+=%W                        " preview window flag
 set statusline+=%#Cursor#               " colour
 set statusline+=%#CursorLine#     " colour
 set statusline+=\ %t\                   " short file name
+set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
 set statusline+=%=                          " right align
 set statusline+=%#CursorLine#   " colour
 set statusline+=\ %Y\                   " file type

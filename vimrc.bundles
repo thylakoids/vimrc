@@ -14,9 +14,6 @@ call plug#begin('~/.vim/bundle')
 let os = substitute(system('uname'), "\n", "", "")
 " 美观
 "-------------------
-" airline
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 " colorscheme
 Plug 'altercation/vim-colors-solarized'
 Plug 'crusoexia/vim-monokai'
@@ -24,6 +21,9 @@ Plug 'danilo-augusto/vim-afterglow'
 Plug 'w0ng/vim-hybrid'
 Plug 'dracula/vim'
 Plug 'lifepillar/vim-solarized8'
+" Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
+Plug 'ryanoasis/vim-devicons'
+
 " git
 Plug 'airblade/vim-gitgutter'
 " markdown
@@ -36,15 +36,14 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 " 自动补全
 "-------------------
-Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
-Plug 'davidhalter/jedi-vim'
 " input methods
 Plug 'lyokha/vim-xkbswitch'
 " folding for python???
 " Plug 'tmhedberg/SimpylFold'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 " docstring for python
 " Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
 " 语法高亮
@@ -56,7 +55,7 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
 " multiple cursors
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Latex
 Plug 'lervag/vimtex' , {'for':['tex']}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
@@ -76,34 +75,17 @@ Plug 'christoomey/vim-system-copy'    "cp cP cv cV
 " -------------------
 Plug 'christoomey/vim-tmux-navigator'    " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-runner'       " issue:Can't set orientation to h, <leader>ror, wrong.
-" For instance if you type an '(', ``autoclose`` will automatically insert a ')' and put the cursor between than
-Plug 'Townk/vim-autoclose'
-" ---------------
 " vim-which-key(On-demand lazy load) todo: how to lazy load
-Plug 'liuchengxu/vim-which-key'
-
+if !has('nvim')
+    Plug 'liuchengxu/vim-which-key'
+endif
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 
 " ################### 插件管理 ##################
 
 " ################### 显示增强 ###################
-
-" airline {{{
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
-    let g:airline_left_sep = '▶'
-    let g:airline_left_alt_sep = '❯'
-    let g:airline_right_sep = '◀'
-    let g:airline_right_alt_sep = '❮'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.branch = '⎇'
-    let g:airline_theme='powerlineish'
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#left_sep = ' '
-    let g:airline#extensions#tabline#left_alt_sep = '|'
-" }}}
 
 " " solarized {{{
 "     let g:solarized_termtrans=1
@@ -130,33 +112,7 @@ nnoremap <silent> gs :GitGutterStageHunk<CR>
 " vim-markdown-toc{{{
     let g:vmt_list_item_char='1.'
 " }}}
-" ################ YCM #######################
-" YouCompleteMe{{{
-let g:ycm_semantic_triggers = {'python': ['re!from\s+\S+\s+import\s']}
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_min_num_of_chars_for_completion = 3
-" nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_key_list_select_completion = []
-let g:ycm_key_list_previous_completion = []
-let g:ycm_key_list_stop_completion = ['<CR>']
-if os=='Linux'
-    let g:ycm_python_interpreter_path = '/usr/bin/python3'
-elseif os=='Darwin'
-    let g:ycm_python_interpreter_path = '/usr/local/opt/python/libexec/bin/python'
-endif
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
-"disable diagnostic
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_echo_current_diagnostic = 0
-"}}}
-"supertabe{{{
+"supertab{{{
 "Why does <tab> navigate the completion menu from bottom to top
 let g:SuperTabDefaultCompletionType = "<c-n>"
 "}}}
@@ -170,7 +126,7 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDToggleCheckAllLines = 1
 "}}}
 "indentLine{{{
-let g:indentLine_concealcursor = ''
+" let g:indentLine_concealcursor = ''
 "}}}
 "smartim{{{
 "some people reported that it is slow while editing with vim-multiple-cursors, to fix this, put this in .vimrc:
@@ -207,6 +163,7 @@ highlight link ALEErrorSign SpecialChar
 " let g:ale_sign_warning = '⚠'
 let g:ale_sign_error = '!'
 let g:ale_sign_warning = '?'
+"python[  ('\uf1de') =   ]python
 " let g:ale_sign_error = '😡'
 " let g:ale_sign_warning = '😅'
 let g:ale_sign_style_error = '◉'
@@ -261,7 +218,7 @@ function! s:compile_and_run()
 endfunction
 
 " asyncrun now has an option for opening quickfix automatically
-let g:asyncrun_open = 10
+let g:asyncrun_open = 6
 " }}}
 "vimtex{{{
 let g:tex_flavor='latex'       "set filetype to tex instead plaintex
@@ -296,19 +253,19 @@ let g:UltiSnipsJumpForwardTrigger      = '<F12>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-F12>'
 let g:UltiSnipsEditSplit="horizontal"
 "}}}
-"jedi-vim{{{
-let g:jedi#completions_enabled = 0
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#max_doc_height = 15
-let g:jedi#show_call_signatures = 1
-let g:jedi#show_call_signatures_delay = 60
-"}}}
+" "jedi-vim{{{
+" let g:jedi#completions_enabled = 0
+" let g:jedi#goto_command = "<leader>d"
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_definitions_command = ""
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>r"
+" let g:jedi#max_doc_height = 15
+" let g:jedi#show_call_signatures = 1
+" let g:jedi#show_call_signatures_delay = 60
+" "}}}
 "togglecursor{{{
 if !has('nvim')
     let g:togglecursor_default = "block"
@@ -322,25 +279,25 @@ noremap <F2> :NERDTreeToggle<CR>
 " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 let g:NERDTreeWinSize = 15
 "}}}
-"tagbar{{{
-let g:tagbar_type_javascript = {
-      \ 'ctagstype': 'javascript',
-      \ 'kinds': [
-      \ 'A:arrays',
-      \ 'P:properties',
-      \ 'T:tags',
-      \ 'O:objects',
-      \ 'G:generator functions',
-      \ 'F:functions',
-      \ 'C:constructors/classes',
-      \ 'M:methods',
-      \ 'V:variables',
-      \ 'I:imports',
-      \ 'E:exports',
-      \ 'S:styled components'
-      \ ]}
-noremap <F3> :TagbarToggle<CR>
-"}}}
+" "tagbar{{{
+" let g:tagbar_type_javascript = {
+"       \ 'ctagstype': 'javascript',
+"       \ 'kinds': [
+"       \ 'A:arrays',
+"       \ 'P:properties',
+"       \ 'T:tags',
+"       \ 'O:objects',
+"       \ 'G:generator functions',
+"       \ 'F:functions',
+"       \ 'C:constructors/classes',
+"       \ 'M:methods',
+"       \ 'V:variables',
+"       \ 'I:imports',
+"       \ 'E:exports',
+"       \ 'S:styled components'
+"       \ ]}
+" noremap <F3> :TagbarToggle<CR>
+" "}}}
 "rainbow{{{
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
@@ -389,10 +346,26 @@ noremap <F3> :LeaderfFunction!<cr>
 let g:XkbSwitchEnabled = 1
 "}}}
 "liuchengxu/vim-which-key{{{
-let g:mapleader = ","   "call it after plug load
-nnoremap <leader> :<c-u>WhichKey  ','<CR>
-vnoremap <leader> :<c-u>WhichKeyVisual  ','<CR>
-" autocmd! FileType which_key
-" autocmd  FileType which_key set laststatus=0 noshowmode noruler
-"   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+if !has('nvim')
+    let g:mapleader = ","   "call it after plug load
+    nnoremap <silent><leader> :<c-u>WhichKey  ','<CR>
+    vnoremap <silent><leader> :<c-u>WhichKeyVisual  ','<CR>
+    " autocmd! FileType which_key
+    " autocmd  FileType which_key set laststatus=0 noshowmode noruler
+    "   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+endif
+"}}}
+"voldikss/vim-floaterm{{{
+let g:floaterm_keymap_new    = '<F6>'
+let g:floaterm_keymap_prev   = '<F7>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F8>'
+"}}}
+""""""""""""""
+"  coc.nvim  "
+""""""""""""""
+"coc.nvim{{{
+if filereadable(expand("~/.vim/coc.vim"))
+    source ~/.vim/coc.vim
+endif
 "}}}
