@@ -224,7 +224,7 @@ vnoremap <leader>` <esc>`>a`<esc>bi`<esc>lel
 nnoremap <leader>ev :sp $MYVIMRC<cr>/Quick open .vimrc<cr>:noh<cr>
 nnoremap <leader>es :UltiSnipsEdit<cr>
 "为字典添加引号, 比如从浏览器复制的数据转换为字典
-vnoremap <leader>aq :s/\n/",\r"/g <cr>:'<,'>s/: /": "/g<cr>jx'<i"<esc>:Format<cr>:noh<cr>
+vnoremap <leader>aq :s/\t/": "/g<cr>:'<,'>s/\n/",\r"/g<cr>x'<i"<esc>:noh<cr>
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 " nnoremap <Leader>jf :%!python -m json.tool<cr>
 " Quick get rid of old habit
