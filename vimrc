@@ -121,6 +121,9 @@ set lazyredraw          " Don’t update screen during macro and script executio
 " 设置文内智能搜索提示
 set hlsearch            " 高亮search命中的文本
 set incsearch           " 打开增量搜索模式,随着键入即时搜索
+if has('nvim')
+    set inccommand=nosplit
+endif
 set ignorecase          " 搜索时忽略大小写
 set smartcase           " 有一个或以上大写字母时仍大小写敏感
 set wildmenu            " vim 自身命令行模式智能补全
@@ -253,3 +256,8 @@ aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
 aug END
+" augroup vimrc-incsearch-highlight
+"     autocmd!
+"     autocmd CmdlineEnter /,\? :set hlsearch
+"     autocmd CmdlineLeave /,\? :set nohlsearch
+" augroup END
