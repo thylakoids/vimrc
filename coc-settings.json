@@ -10,6 +10,8 @@
     ],
     // 很卡
     // "highlight.document.enable": false,
+    "suggest.echodocSupport": true,
+    "suggest.maxCompleteItemCount": 20,
     "suggest.completionItemKindLabels": {
         "keyword": "\uf1de",
         "variable": "\ue79b",
@@ -38,15 +40,25 @@
         "default": "\uf29c"
     },
     // -----------------diagnostic
-    "diagnostic.displayByAle": true,
+    "diagnostic.displayByAle": false,
     "diagnostic.enable": true,
     "diagnostic.level": "information",
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "◉",
     "diagnostic.hintSign": "◉",
+
     "python.linting.enabled": false,
-    // "python.linting.flake8Enabled": true,
-    // "python.linting.pylintEnabled": false
-    "python.jediEnabled": true
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.jediEnabled": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "json",
+        "javascriptreact",
+        "typescript.tsx",
+        "python"
+    ]
 }

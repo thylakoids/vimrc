@@ -33,7 +33,8 @@ Plug 'suan/vim-instant-markdown'    " npm -g install instant-markdown-d
 Plug 'mzlogin/vim-markdown-toc'
 " 快速注释, 文件浏览
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " 自动补全
 "-------------------
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -41,16 +42,10 @@ Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 " input methods
 Plug 'lyokha/vim-xkbswitch'
-" folding for python???
-" Plug 'tmhedberg/SimpylFold'
-" Plug 'Yggdroot/indentLine'
-" docstring for python
-" Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
 " 语法高亮
 Plug 'dense-analysis/ale'
 Plug 'luochen1990/rainbow'
 " search
-" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
@@ -128,31 +123,6 @@ let g:NERDToggleCheckAllLines = 1
 "indentLine{{{
 " let g:indentLine_concealcursor = ''
 "}}}
-"smartim{{{
-"some people reported that it is slow while editing with vim-multiple-cursors, to fix this, put this in .vimrc:
-" function! Multiple_cursors_before()
-"   let g:smartim_disable = 1
-" endfunction
-" function! Multiple_cursors_after()
-"   unlet g:smartim_disable
-" endfunction
-"}}}
-"SimpylFold{{{
-" let g:SimpylFold_docstring_preview=1
-" let g:SimpylFold_fold_docstring =0
-" let g:SimpylFold_fold_import=0
-"}}}
-" "syntastic'{{{
-" let python_highlight_all=1
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 0
-" let g:syntastic_auto_loc_list = 0
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 1
-" "}}}
 " ale{{{
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
@@ -163,12 +133,13 @@ highlight link ALEErrorSign SpecialChar
 " let g:ale_sign_warning = '⚠'
 let g:ale_sign_error = '!'
 let g:ale_sign_warning = '?'
-"python[  ('\uf1de') =   ]python
 " let g:ale_sign_error = '😡'
 " let g:ale_sign_warning = '😅'
 let g:ale_sign_style_error = '◉'
 let g:ale_sign_style_warning = '◉'
-let g:ale_fix_on_save = 1
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_fix_on_save = 0
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -180,9 +151,8 @@ nmap ]e <plug>(ale_next_wrap)
 " let g:ale_sign_priority=11
 let g:gitgutter_preview_win_floating=1
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': [],
 \   'python': ['flake8'],
-\   'go': ['go', 'golint', 'errcheck']
 \}
 "  [autopep8]: ~/.config/pycodestyle: E501, E702
 "  [flake8]: ~/.config/flake8
@@ -253,19 +223,6 @@ let g:UltiSnipsJumpForwardTrigger      = '<F12>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-F12>'
 let g:UltiSnipsEditSplit="horizontal"
 "}}}
-" "jedi-vim{{{
-" let g:jedi#completions_enabled = 0
-" let g:jedi#goto_command = "<leader>d"
-" let g:jedi#goto_assignments_command = "<leader>g"
-" let g:jedi#goto_definitions_command = ""
-" let g:jedi#documentation_command = "K"
-" let g:jedi#usages_command = "<leader>n"
-" let g:jedi#completions_command = "<C-Space>"
-" let g:jedi#rename_command = "<leader>r"
-" let g:jedi#max_doc_height = 15
-" let g:jedi#show_call_signatures = 1
-" let g:jedi#show_call_signatures_delay = 60
-" "}}}
 "togglecursor{{{
 if !has('nvim')
     let g:togglecursor_default = "block"
@@ -273,31 +230,12 @@ if !has('nvim')
     let g:togglecursor_leave = "line"
     let g:togglecursor_disable_tmux = 0
 endif
-    "}}}
+"}}}
 "nerdtree{{{
 noremap <F2> :NERDTreeToggle<CR>
 " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 let g:NERDTreeWinSize = 15
 "}}}
-" "tagbar{{{
-" let g:tagbar_type_javascript = {
-"       \ 'ctagstype': 'javascript',
-"       \ 'kinds': [
-"       \ 'A:arrays',
-"       \ 'P:properties',
-"       \ 'T:tags',
-"       \ 'O:objects',
-"       \ 'G:generator functions',
-"       \ 'F:functions',
-"       \ 'C:constructors/classes',
-"       \ 'M:methods',
-"       \ 'V:variables',
-"       \ 'I:imports',
-"       \ 'E:exports',
-"       \ 'S:styled components'
-"       \ ]}
-" noremap <F3> :TagbarToggle<CR>
-" "}}}
 "rainbow{{{
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
