@@ -52,13 +52,13 @@
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": true,
     "python.jediEnabled": true,
-//    "coc.preferences.formatOnSaveFiletypes": [
-//        "javascript",
-//        "typescript",
-//        "typescriptreact",
-//        "json",
-//        "javascriptreact",
-//        "typescript.tsx",
-//        "python"
-//    ]
+    "coc.preferences.formatOnSaveFiletypes": [
+    //    "javascript",
+    //    "typescript",
+    //    "typescriptreact",
+    //    "json",
+    //    "javascriptreact",
+    //    "typescript.tsx",
+    //    "python"
+    ]
 }

@@ -18,7 +18,7 @@ def parser():
 	if not sys.argv[1:]:
 		parser.print_help()
 		parser.exit(1)
-	return args
+	return vars(args)
 
 
 $0
