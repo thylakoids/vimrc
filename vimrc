@@ -200,7 +200,11 @@ map <leader>m <esc>:tabnext<CR>
 vnoremap > >gv
 vnoremap < <gv
 "Put breakpoint before current line
-map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
+aug addbreakpoint
+    autocmd!
+    autocmd FileType python noremap <silent> <buffer> <leader>b :<c-u>normal! Oimport ipdb; ipdb.set_trace()<cr>
+    autocmd FileType javascript noremap <silent> <buffer> <leader>b :<c-u>normal! Odebugger<cr>
+aug END
 "markdown heading u1, u2, u3
 aug mdheading
     autocmd!
@@ -246,9 +250,9 @@ autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2
 aug highligth_keyword
     " Highlight TODO, FIXME, NOTE, etc.
     au!
-    autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|todo\)')
-    autocmd Syntax * call matchadd('Debug', '\W\zs\(DEBUG\|INFO\|debug\|issue\)')
-    autocmd Syntax * call matchadd('SpecialComment', '\W\zs\(deprecated\|DEPRECATED\)')
+    autocmd Syntax * call matchadd('Todo',  '\<\(TODO\|todo\)\>')
+    autocmd Syntax * call matchadd('Debug', '\<\(DEBUG\|INFO\|debug\|issue\)\>')
+    autocmd Syntax * call matchadd('SpecialComment', '\<\(deprecated\|DEPRECATED\)\>')
 aug END
 "==========================
 "Autocmd 智能的自动命令
@@ -263,4 +267,4 @@ aug END
 "     autocmd CmdlineEnter /,\? :set hlsearch
 "     autocmd CmdlineLeave /,\? :set nohlsearch
 " augroup END
-autocmd BufWinEnter * if getfsize(expand(@%))> 1024*200 | syntax clear | endif
+autocmd Bufread * if getfsize(expand(@%))> 1024*200 | syntax clear | endif
