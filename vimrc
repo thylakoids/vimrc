@@ -187,6 +187,8 @@ highlight GitGutterChangeDelete ctermfg=LightGreen
 "Quick <esc>
 inoremap jk <esc>
 nnoremap J <nul>
+noremap j gj
+noremap k gk
 "Quick saving
 " noremap <leader>s :update<CR>
 " vnoremap <leader>s <C-O>:update<CR>

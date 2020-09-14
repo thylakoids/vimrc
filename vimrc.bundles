@@ -41,10 +41,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 " input methods
-Plug 'lyokha/vim-xkbswitch'
+" Plug 'lyokha/vim-xkbswitch'
 " 语法高亮
 Plug 'dense-analysis/ale'
-Plug 'luochen1990/rainbow'
+" Plug 'luochen1990/rainbow'
 " search
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 " quickrun
@@ -211,10 +211,10 @@ let g:vimtex_compiler_latexmk = {
         \ ],
         \}
 let g:vimtex_complete_bib_simple = 1
-  if !exists('g:ycm_semantic_triggers')
-    let g:ycm_semantic_triggers = {}
-  endif
-  let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+  " if !exists('g:ycm_semantic_triggers')
+  "   let g:ycm_semantic_triggers = {}
+  " endif
+  " let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 "}}}
 "ultisnips{{{
 let g:UltiSnipsExpandTrigger = '<s-tab>'
@@ -277,7 +277,11 @@ let g:Lf_ShortcutF='<C-P>'
 let g:Lf_HideHelp=0
 " let g:LF_UseCache=0
 " let g:LF_UseMemoryCache=0
-noremap <F3> :LeaderfFunction!<cr>
+" see also coc.vim, coclist provide same function.
+noremap <space>b :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <space>m :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <space>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <space>f :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
 " let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
 "}}}
 "lyokha/vim-xkbswitch{{{
