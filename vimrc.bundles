@@ -311,6 +311,7 @@ let g:floaterm_keymap_toggle = '<F8>'
 "  coc.nvim  "
 """"""""""""""
 "coc.nvim{{{
+"commenting out BufWritePre
 if filereadable(expand("~/.vim/coc.vim"))
     source ~/.vim/coc.vim
 endif
