@@ -5,26 +5,25 @@ $0
 endsnippet
 
 snippet readfile "readfile: read filename(/dev/stdin) as code" b
-var filename;
-const argv = process.argv;
-if (argv.indexOf("-h")!==-1) {
-  console.log(`${argv[1]} [filename_to_be_processed]
-    if no filename is given expects input from stdin.
-    Eg.
-  echo "var a=1;var b=a;"|./cli.js
-    `);
-  process.exit(1);
-}
+var code = function () {
+    var filename;
+    const argv = process.argv;
+    if (argv.indexOf("-h") !== -1) {
+        console.log();
+        process.exit(1);
+    }
 
-if (!argv[2])
-  filename = "/dev/stdin";
-else
-  filename = argv[2];
-try {
-  var code = fs.readFileSync(filename);
-} catch (exc) {
-  console.error(exc);
-  process.exit(1);
-}
+    if (!argv[2])
+        filename = "/dev/stdin";
+    else
+        filename = argv[2];
+    try {
+        var code = fs.readFileSync(filename);
+        return code
+    } catch (exc) {
+        console.error(exc);
+        process.exit(1);
+    }
+}()
 $0
 endsnippet
