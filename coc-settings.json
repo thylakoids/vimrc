@@ -9,7 +9,7 @@
         ".DS_Store"
     ],
     // 很卡
-    // "highlight.document.enable": false,
+    "highlight.document.enable": false,
     "suggest.echodocSupport": true,
     "suggest.maxCompleteItemCount": 20,
     "suggest.completionItemKindLabels": {
