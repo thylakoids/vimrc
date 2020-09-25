@@ -4,7 +4,6 @@
 " Email: maze@sjtu.edu.cn
 " referrences:
 "   https://github.com/wklken/k-vim/blob/master/vimrc
-"   https://github.com/wklken/k-vim/blob/master/vimrc
 " Sections:
 "   ->Initial Plugin 加载插件
 "   ->General settings 基础设置
@@ -189,6 +188,12 @@ inoremap jk <esc>
 nnoremap J <nul>
 noremap k gk
 noremap j gj
+"Keep search pattern at the center of the screen."
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
 "Quick saving
 " noremap <leader>s :update<CR>
 " vnoremap <leader>s <C-O>:update<CR>
@@ -268,3 +273,4 @@ aug END
 "     autocmd CmdlineLeave /,\? :set nohlsearch
 " augroup END
 autocmd Bufread * if getfsize(expand(@%))> 1024*200 | syntax clear | endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"zz" | endif
