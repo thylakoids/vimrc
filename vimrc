@@ -171,7 +171,8 @@ endif
 "==========================
 "Themes setting 主题设置
 "==========================
-colorscheme solarized8
+function! g:Colorschemeplus()
+colorscheme gruvbox
 set background=dark
 highlight clear LineNr
 highlight clear SignColumn
@@ -179,6 +180,8 @@ highlight GitGutterAdd ctermfg=white
 highlight GitGutterChange ctermfg=LightGreen
 highlight GitGutterDelete ctermfg=red
 highlight GitGutterChangeDelete ctermfg=LightGreen
+endfunction
+call g:Colorschemeplus() 
 
 "==========================
 "ShortCuts settings 快捷键设置
