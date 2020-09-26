@@ -2,7 +2,7 @@
 " Author: Clay
 " Version: 1.0
 " Email: maze@sjtu.edu.cn
-" referrences:
+" Referrences:
 "   https://github.com/wklken/k-vim/blob/master/vimrc
 " Sections:
 "   ->Initial Plugin 加载插件
@@ -74,7 +74,7 @@ set mouse=a                                     " 允许鼠标（点击）， a 
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
 set backspace=eol,start,indent                  " Configure backspace so it acts as it should act
-" set conceallevel=2                            " 隐藏markdown 中的[]** 等, debug:notworking
+set conceallevel=2                            " 隐藏markdown 中的[]** 等, debug:notworking
 set listchars=eol:¬,tab:▸·,trail:.,extends:>,precedes:<           "效果		   	end
 set list
 
@@ -171,7 +171,7 @@ endif
 "==========================
 "Themes setting 主题设置
 "==========================
-colorscheme monokai
+colorscheme solarized8
 set background=dark
 highlight clear LineNr
 highlight clear SignColumn
@@ -215,7 +215,7 @@ aug mdheading
     autocmd!
     autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! yypVr=i<esc><CR>
     autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! yypVr-i<esc><CR>
-    autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l
+    autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l<CR>
 aug END
 "Quick quoting
 " todo: how to make this to an operator

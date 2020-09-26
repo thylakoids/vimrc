@@ -143,7 +143,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "  custom  "
 """"""""""""
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json',
-            \ 'coc-markdownlint',
             \ 'coc-python',
             \ 'coc-snippets',
             \ 'coc-vimtex',
