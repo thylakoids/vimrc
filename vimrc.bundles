@@ -51,7 +51,7 @@ Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 
 " 语法高亮
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 " Plug 'luochen1990/rainbow'
 " search
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
@@ -182,15 +182,15 @@ let g:NERDToggleCheckAllLines = 1
 " let g:indentLine_concealcursor = ''
 "}}}
 " ale{{{
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-highlight link ALEWarningSign Todo
-highlight link ALEErrorSign SpecialChar
+highlight link ALEWarningSign GitGutterChangeDefault
+highlight link ALEStyleWarningSign GitGutterChangeDefault
+highlight link ALEErrorSign GitGutterDeleteDefault
+highlight link ALEStyleErrorSign GitGutterDeleteDefault
 
-" let g:ale_sign_error = '✘'
-" let g:ale_sign_warning = '⚠'
-let g:ale_sign_error = '!'
-let g:ale_sign_warning = '?'
+let g:ale_sign_error = '✘' " ●,◉,▶︎,.,∆,⚠
+let g:ale_sign_warning = '⚠'
+" let g:ale_sign_error = '!'
+" let g:ale_sign_warning = '!'
 " let g:ale_sign_error = '😡'
 " let g:ale_sign_warning = '😅'
 let g:ale_sign_style_error = '◉'

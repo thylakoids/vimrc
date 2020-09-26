@@ -172,14 +172,16 @@ endif
 "Themes setting 主题设置
 "==========================
 function! g:Colorschemeplus()
-colorscheme gruvbox
-set background=dark
-highlight clear LineNr
-highlight clear SignColumn
-highlight GitGutterAdd ctermfg=white
-highlight GitGutterChange ctermfg=LightGreen
-highlight GitGutterDelete ctermfg=red
-highlight GitGutterChangeDelete ctermfg=LightGreen
+    colorscheme Gruvbox
+    set background=dark
+    " " highlight clear LineNr
+    " highlight clear SignColumn
+    " highlight! link LineNr SignColumn
+    highlight! link SignColumn LineNr
+    highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
+    highlight GruvboxredSign ctermbg=NONE guibg=NONE
+    highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
+    highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
 endfunction
 call g:Colorschemeplus() 
 
@@ -238,7 +240,7 @@ vnoremap <leader>` <esc>`>a`<esc>bi`<esc>lel
 "          |
 "          The "event" to watch for.
 " Quick open .vimrc
-nnoremap <leader>ev :sp $MYVIMRC<cr>/Quick open .vimrc<cr>:noh<cr>
+nnoremap <leader>ev :sp $MYVIMRC<cr>
 nnoremap <leader>es :UltiSnipsEdit<cr>
 "为字典添加引号, 比如从浏览器复制的数据转换为字典
 vnoremap <leader>aq :s/: /": "/g<cr>:'<,'>s/\n/",\r"/g<cr>x'<i"<esc>:noh<cr>
