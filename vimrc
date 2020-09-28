@@ -172,17 +172,22 @@ endif
 "Themes setting 主题设置
 "==========================
 function! g:Colorschemeplus()
-    colorscheme gruvbox
-    set background=dark
-    " " highlight clear LineNr
-    " highlight clear SignColumn
-    " highlight! link LineNr SignColumn
-    highlight! link SignColumn LineNr
-    highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
-    highlight GruvboxredSign ctermbg=NONE guibg=NONE
-    highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
-    highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
-    highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
+    let os = substitute(system('uname'), "\n", "", "")
+    if os=='Linux'
+        colorscheme solarized8
+        highlight clear LineNr
+        highlight clear SignColumn
+    elseif os=='Darwin'
+        colorscheme gruvbox
+        set background=dark
+
+        highlight! link SignColumn LineNr
+        highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
+        highlight GruvboxredSign ctermbg=NONE guibg=NONE
+        highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
+        highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
+        highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
+    endif
 endfunction
 call g:Colorschemeplus() 
 
