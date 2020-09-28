@@ -96,7 +96,7 @@ endif
 syntax on               " 开启语法高亮
 set number              " 显示行号
 set ruler               " 显示当前行号列号
-set relativenumber
+" set relativenumber
 " set cursorcolumn      " 突出显示当前列
 " set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
 set showmode            " 左下角显示当前vim模式
@@ -172,7 +172,7 @@ endif
 "Themes setting 主题设置
 "==========================
 function! g:Colorschemeplus()
-    colorscheme Gruvbox
+    colorscheme gruvbox
     set background=dark
     " " highlight clear LineNr
     " highlight clear SignColumn
