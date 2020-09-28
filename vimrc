@@ -182,6 +182,7 @@ function! g:Colorschemeplus()
     highlight GruvboxredSign ctermbg=NONE guibg=NONE
     highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
     highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
+    highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
 endfunction
 call g:Colorschemeplus() 
 
