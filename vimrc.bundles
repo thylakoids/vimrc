@@ -206,7 +206,7 @@ nmap ]e <plug>(ale_next_wrap)
 let g:gitgutter_preview_win_floating=1
 let g:ale_linters = {
 \   'javascript': [],
-\   'python': ['flake8'],
+\   'python': ['flake8', 'pylint'],
 \}
 "  [autopep8]: ~/.config/pycodestyle: E501, E702
 "  [flake8]: ~/.config/flake8

@@ -40,7 +40,7 @@
         "default": "\uf29c"
     },
     // -----------------diagnostic
-    "diagnostic.displayByAle": false,
+    "diagnostic.displayByAle": true,
     "diagnostic.enable": true,
     "diagnostic.level": "information",
     "diagnostic.errorSign": "✘",
