@@ -172,11 +172,11 @@ endif
 "Themes setting 主题设置
 "==========================
 function! g:Colorschemeplus()
+    let g:gruvbox_italic=1
     colorscheme gruvbox
     set background=dark
-    " " highlight clear LineNr
+    " highlight clear LineNr
     " highlight clear SignColumn
-    " highlight! link LineNr SignColumn
     highlight! link SignColumn LineNr
     highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
     highlight GruvboxredSign ctermbg=NONE guibg=NONE
