@@ -96,7 +96,7 @@ endif
 syntax on               " 开启语法高亮
 set number              " 显示行号
 set ruler               " 显示当前行号列号
-" set relativenumber
+set relativenumber
 " set cursorcolumn      " 突出显示当前列
 " set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
 set showmode            " 左下角显示当前vim模式
@@ -172,18 +172,24 @@ endif
 "Themes setting 主题设置
 "==========================
 function! g:Colorschemeplus()
-    let g:gruvbox_italic=1
-    colorscheme gruvbox
-    set background=dark
-    " highlight clear LineNr
-    " highlight clear SignColumn
-    highlight! link SignColumn LineNr
-    highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
-    highlight GruvboxredSign ctermbg=NONE guibg=NONE
-    highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
-    highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
-    highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
-    highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
+    let os = substitute(system('uname'), "\n", "", "")
+    let os = 'Darwin'
+    if os=='Linux'
+        colorscheme solarized8
+        highlight clear LineNr
+        highlight clear SignColumn
+    elseif os=='Darwin'
+        let g:gruvbox_italic=1
+        colorscheme gruvbox
+        set background=dark
+        highlight! link SignColumn LineNr
+        highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
+        highlight GruvboxredSign ctermbg=NONE guibg=NONE
+        highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
+        highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
+        highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
+        highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
+    endif
 endfunction
 call g:Colorschemeplus() 
 

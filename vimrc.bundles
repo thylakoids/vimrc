@@ -182,11 +182,6 @@ let g:NERDToggleCheckAllLines = 1
 " let g:indentLine_concealcursor = ''
 "}}}
 " ale{{{
-" highlight link ALEWarningSign GitGutterChangeDefault
-" highlight link ALEStyleWarningSign GitGutterChangeDefault
-" highlight link ALEErrorSign GitGutterDeleteDefault
-" highlight link ALEStyleErrorSign GitGutterDeleteDefault
-
 let g:ale_sign_error = '✘' " ●,◉,▶︎,.,∆,⚠,!,😡,😅
 let g:ale_sign_warning = '∆'
 let g:ale_sign_style_error = '◉'
