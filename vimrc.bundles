@@ -33,6 +33,7 @@ Plug 'ryanoasis/vim-devicons'
 
 " git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " markdown
 Plug 'godlygeek/tabular'
@@ -41,7 +42,6 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " 快速注释, 文件浏览
-Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " 自动补全
@@ -74,6 +74,8 @@ endif
 " Teach Vim about titlecase, with support for motions and text objects. Using `gt`, `gT` will apply to a line.
 Plug 'christoomey/vim-titlecase'      "gt gT
 Plug 'christoomey/vim-system-copy'    "cp cP cv cV
+Plug 'tpope/vim-commentary'           "gc gcc
+Plug 'tpope/vim-surround'             "ds, cs, ys, S
 "System Integration
 " -------------------
 Plug 'christoomey/vim-tmux-navigator'    " Seamless navigation between tmux panes and vim splits
