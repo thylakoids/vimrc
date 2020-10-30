@@ -74,7 +74,7 @@ set mouse=a                                     " 允许鼠标（点击）， a 
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
 set backspace=eol,start,indent                  " Configure backspace so it acts as it should act
-set conceallevel=2                            " 隐藏markdown 中的[]** 等, debug:notworking
+set conceallevel=0                            " 隐藏markdown 中的[]** 等, debug:notworking
 set listchars=eol:¬,tab:▸·,trail:.,extends:>,precedes:<           "效果		   	end
 set list
 
