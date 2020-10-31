@@ -82,13 +82,11 @@ var y = [1, 2, 3]['len' + 'gth'];
     function update() {
       try {
         var xhr = new XMLHttpRequest();
-        var form = new FormData()
-        form.append('data', input.getValue())
         xhr.onreadystatechange = function () {
-          output.setValue(xhr.responseText)
+          output.setValue(JSON.parse(xhr.responseText).value)
         }
         xhr.open('POST', 'test', true);
-        xhr.send(form);
+        xhr.send(JSON.stringify({'value':input.getValue()}));
       } catch (e) {
         output.setValue((e.stack || e) + '');
       }
