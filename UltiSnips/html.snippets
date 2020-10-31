@@ -40,11 +40,7 @@ snippet demo "simple demo html" b
   <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
   <script src="node_modules/codemirror/lib/codemirror.js"></script>
   <script src="node_modules/codemirror/mode/javascript/javascript.js"></script>
-  <script src="node_modules/escodegen/escodegen.browser.js"></script>
-  <script src="node_modules/estraverse/estraverse.js"></script>
-  <script src="node_modules/esprima/esprima.js"></script>
-  <script src="esscope.js"></script>
-  <script src="esoptimize.js"></script>
+  <script src="node_modules/codemirror/mode/python/python.js"></script>
 </head>
 
 <body>
@@ -80,14 +76,19 @@ var y = [1, 2, 3]['len' + 'gth'];
       lineWrapping: true,
       lineNumbers: true,
       readOnly: true,
-      mode: 'javascript'
+      mode: 'python'
     });
 
     function update() {
       try {
-        var node = esprima.parse(input.getValue());
-        node = esoptimize.optimize(node);
-        output.setValue(escodegen.generate(node, {format: {indent: {style: '  '}}}) + '\n');
+        var xhr = new XMLHttpRequest();
+        var form = new FormData()
+        form.append('data', input.getValue())
+        xhr.onreadystatechange = function () {
+          output.setValue(xhr.responseText)
+        }
+        xhr.open('POST', 'test', true);
+        xhr.send(form);
       } catch (e) {
         output.setValue((e.stack || e) + '');
       }
@@ -99,5 +100,4 @@ var y = [1, 2, 3]['len' + 'gth'];
 </body>
 
 </html>
-
 endsnippet
