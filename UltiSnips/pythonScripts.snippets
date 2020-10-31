@@ -1,14 +1,15 @@
 snippet flask "flask demo" b
-from flask import Flask, request
+from flask import Flask, request, render_template, jsonify
 import argparse
 import sys
-app = Flask(__name__)
+import json
+app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='')
 
 
-@app.route('/test', methods=['GET', 'POST'])
+@app.route('/testapi', methods=['GET', 'POST'])
 def hello_world():
     if request.method == 'POST':
-        return do_something(request.form)
+        return do_something(json.loads(request.get_data()))
     if request.method == 'GET':
         return 'this is test page(get)'
 
@@ -16,7 +17,12 @@ def hello_world():
 def do_something(form):
     for k, v in form.items():
         print(f'\033[1;32m{k}:{v}\033[0m')
-    return form
+    return jsonify(form)
+
+
+@app.route('/repl')
+def test2():
+    return render_template('test.html')
 
 
 def parser():
