@@ -27,3 +27,45 @@ var code = function () {
 }()
 $0
 endsnippet
+
+snippet express "express demo" b
+const express = require('express')
+const app = express()
+const taobao = require('./mtaobao_x5sec_puppeteer')
+const e14 = require('./collina/recast/collina_node')
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.post('/taobao', async (req, res) => {
+    let result = req.body;
+    console.log(result)
+    let fname = result.fname
+    result = await taobao[fname]({url: result.url, cname: result.cname, data: result.data})
+    console.log(result)
+    res.send(result)
+
+})
+
+app.post('/e14', async (req, res) => {
+    let result = req.body
+    console.log(result)
+    result = await e14.e14(result.userAgent, result.platform, result.token)
+    console.log(result)
+    res.send(result)
+})
+
+app.get('/test', async (req, res) => {
+    var result = 'this is test page(get)'
+    console.log(result)
+    res.send(result)
+})
+
+var p = Number(process.argv[2])
+app.listen(p, () => {
+    console.log('开启服务, 端口' + p)
+})
+$0
+endsnippet
