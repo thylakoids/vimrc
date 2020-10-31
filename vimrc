@@ -251,7 +251,7 @@ vnoremap <leader>` <esc>`>a`<esc>bi`<esc>lel
 nnoremap <leader>ev :sp $MYVIMRC<cr>
 nnoremap <leader>es :UltiSnipsEdit<cr>
 "为字典添加引号, 比如从浏览器复制的数据转换为字典
-vnoremap <leader>aq :s/: /": "/g<cr>:'<,'>s/\n/",\r"/g<cr>x'<i"<esc>:noh<cr>
+vnoremap <leader>aq :s/\t/": "/g<cr>:'<,'>s/\n/",\r"/g<cr>x'<i"<esc>:noh<cr>
 "查找visual高亮
 vnoremap <space><space> y/<c-r>"<cr>
 
