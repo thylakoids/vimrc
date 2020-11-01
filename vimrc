@@ -74,7 +74,7 @@ set mouse=a                                     " 允许鼠标（点击）， a 
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
 set backspace=eol,start,indent                  " Configure backspace so it acts as it should act
-set conceallevel=2                            " 隐藏markdown 中的[]** 等, debug:notworking
+set conceallevel=0                            " 隐藏markdown 中的[]** 等, debug:notworking
 set listchars=eol:¬,tab:▸·,trail:.,extends:>,precedes:<           "效果		   	end
 set list
 
@@ -290,3 +290,11 @@ aug END
 " augroup END
 autocmd Bufread * if getfsize(expand(@%))> 1024*200 | syntax clear | endif
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"zz" | endif
+function! HappyPython()
+    call setline(1, '#! /usr/bin/env python3')
+endfun
+autocmd bufnewfile *.py call HappyPython()
+function! HappyJS()
+    call setline(1, '#!/usr/bin/env node')
+endfun
+autocmd bufnewfile *.js call HappyJS()

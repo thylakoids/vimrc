@@ -5,6 +5,7 @@ $0
 endsnippet
 
 snippet readfile "readfile: read filename(/dev/stdin) as code" b
+const fs = require('fs')
 var code = function () {
     var filename;
     const argv = process.argv;
@@ -19,7 +20,7 @@ var code = function () {
         filename = argv[2];
     try {
         var code = fs.readFileSync(filename);
-        return code
+        return code + ''
     } catch (exc) {
         console.error(exc);
         process.exit(1);
