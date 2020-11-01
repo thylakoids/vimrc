@@ -30,6 +30,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 Plug 'ryanoasis/vim-devicons'
+Plug 'kristijanhusak/vim-carbon-now-sh'
 
 " git
 Plug 'airblade/vim-gitgutter'
@@ -288,7 +289,7 @@ endif
 "nerdtree{{{
 noremap <F2> :NERDTreeToggle<CR>
 " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
-let g:NERDTreeWinSize = 15
+let g:NERDTreeWinSize = 35
 "}}}
 "rainbow{{{
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
