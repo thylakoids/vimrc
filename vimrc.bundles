@@ -235,10 +235,15 @@ function! s:compile_and_run()
         exec "AsyncRun! node %"
     elseif &filetype =='tex'
         exec "VimtexCompile"
-    elseif &filetype =='html'
-        exec "AsyncRun! open %"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
+    else
+        let os = substitute(system('uname'), "\n", "", "")
+        if os=='Linux'
+            exec "AsyncRun! xdg-open %"
+        elseif os=='Darwin'
+            exec "AsyncRun! open %"
+        endif
     endif
 endfunction
 
