@@ -144,6 +144,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 """"""""""""
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json',
             \ 'coc-python',
+            \ 'coc-html',
             \ 'coc-snippets',
             \ 'coc-vimtex',
             \ 'coc-highlight', 'coc-pairs', 'coc-lists']

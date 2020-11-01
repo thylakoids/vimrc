@@ -30,9 +30,12 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 Plug 'ryanoasis/vim-devicons'
+Plug 'kristijanhusak/vim-carbon-now-sh'
 
 " git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 " markdown
 Plug 'godlygeek/tabular'
@@ -41,7 +44,6 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " 快速注释, 文件浏览
-Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " 自动补全
@@ -74,6 +76,8 @@ endif
 " Teach Vim about titlecase, with support for motions and text objects. Using `gt`, `gT` will apply to a line.
 Plug 'christoomey/vim-titlecase'      "gt gT
 Plug 'christoomey/vim-system-copy'    "cp cP cv cV
+Plug 'tpope/vim-commentary'           "gc gcc
+Plug 'tpope/vim-surround'             "ds, cs, ys, S
 "System Integration
 " -------------------
 Plug 'christoomey/vim-tmux-navigator'    " Seamless navigation between tmux panes and vim splits
@@ -232,7 +236,7 @@ function! s:compile_and_run()
     elseif &filetype =='tex'
         exec "VimtexCompile"
     elseif &filetype =='html'
-        exec "AsyncRun! xdg-open %"
+        exec "AsyncRun! open %"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     endif
@@ -285,7 +289,7 @@ endif
 "nerdtree{{{
 noremap <F2> :NERDTreeToggle<CR>
 " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
-let g:NERDTreeWinSize = 15
+let g:NERDTreeWinSize = 35
 "}}}
 "rainbow{{{
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle

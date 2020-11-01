@@ -1,0 +1,42 @@
+snippet flask "flask demo" b
+from flask import Flask, request, render_template, jsonify
+import argparse
+import sys
+import json
+app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='')
+
+
+@app.route('/testapi', methods=['GET', 'POST'])
+def hello_world():
+    if request.method == 'POST':
+        return do_something(json.loads(request.get_data()))
+    if request.method == 'GET':
+        return 'this is test page(get)'
+
+
+def do_something(form):
+    for k, v in form.items():
+        print(f'\033[1;32m{k}:{v}\033[0m')
+    return jsonify(form)
+
+
+@app.route('/repl')
+def test2():
+    return render_template('test.html')
+
+
+def parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('port', type=int, default=5000)
+    args = parser.parse_args()
+    if not sys.argv[1:]:
+        parser.print_help()
+        parser.exit(1)
+    return vars(args)
+
+
+if __name__ == '__main__':
+    args = parser()
+    app.run(port=args['port'], debug=True)
+$0
+endsnippet
