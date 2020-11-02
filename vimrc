@@ -157,15 +157,13 @@ nnoremap <C-W>l <C-W>>
 " set foldlevel=99
 set foldmethod=manual
 " 光标形状 cursor shape
-" For iterm2 on Mac
-" Also, see jszakmeister/vim-togglecursor
-" let &t_SI = "\<Esc>]50;CursorShape=1\x7"    "SI = INSERT mode (vertical bar)
-" let &t_SR = "\<Esc>]50;CursorShape=2\x7"    "SR = REPLACE mode (under line)
-" let &t_EI = "\<Esc>]50;CursorShape=0\x7"    "EI = NORMAL mode (ELSE) (block)
-" autocmd VimLeave * let &t_me="\<Esc>]50;CursorShape=1\x7"
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
         \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
         \,sm:block-blinkwait175-blinkoff150-blinkon175
+augroup RestoreCursorShapeOnExit
+    autocmd!
+    autocmd VimLeave * set guicursor=a:ver25-blinkon0
+augroup END
 
 " statusline and tabline:lightweight and sexy status bar in vim
 if filereadable(expand("~/.vim/statusline.vim"))
