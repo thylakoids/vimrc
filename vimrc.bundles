@@ -16,7 +16,7 @@ if os=='Linux'
     let g:python3_host_prog = '/usr/bin/python'
 elseif os=='Darwin'
     let g:python2_host_prog = '/Users/dracarys/miniconda2/bin/python2'
-    let g:python3_host_prog = '/usr/local/opt/python/libexec/bin/python'
+    let g:python3_host_prog = '/usr/local/bin/python3'
 endif
 
 " 美观
@@ -165,7 +165,7 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 
 " vim-markdown-toc{{{
-    let g:vmt_list_item_char='1.'
+    let g:vmt_list_item_char='*'
 " }}}
 
 " markdown-preview{{{
@@ -233,7 +233,7 @@ function! s:compile_and_run()
     elseif &filetype == 'sh'
        exec "AsyncRun! time bash %"
     elseif &filetype == 'python'
-       exec "AsyncRun! python %"
+       exec "AsyncRun! python3 %"
     elseif &filetype =='javascript'
         exec "AsyncRun! node %"
     elseif &filetype =='tex'
