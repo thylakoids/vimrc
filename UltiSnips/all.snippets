@@ -86,7 +86,17 @@ priority 100
 snippet 'python\[\s*(.*?)\s*=.*?\]python' "evaluate python" Ar
 python[  ${1:`!p snip.rv=match.group(1)`} = `!p snip.rv = runexpression(t[1])`  ]python
 endsnippet
+##################
+#  Greek letter  #
+##################
 
 snippet phi "Greek letter:phi" Aw
 φ
+endsnippet
+
+#############
+#  Sources  #
+#############
+snippet pypialiyun "阿里云 pip 源" b
+https://mirrors.aliyun.com/pypi/simple
 endsnippet
