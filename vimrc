@@ -163,8 +163,11 @@ set foldmethod=manual
 " let &t_SR = "\<Esc>]50;CursorShape=2\x7"    "SR = REPLACE mode (under line)
 " let &t_EI = "\<Esc>]50;CursorShape=0\x7"    "EI = NORMAL mode (ELSE) (block)
 " autocmd VimLeave * let &t_me="\<Esc>]50;CursorShape=1\x7"
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+        \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-" statusline:lightweight and sexy status bar in vim
+" statusline and tabline:lightweight and sexy status bar in vim
 if filereadable(expand("~/.vim/statusline.vim"))
     source ~/.vim/statusline.vim
 endif
