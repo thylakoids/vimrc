@@ -34,6 +34,7 @@ Plug 'junegunn/limelight.vim'
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 Plug 'ryanoasis/vim-devicons'
 Plug 'kristijanhusak/vim-carbon-now-sh'
+Plug 'liuchengxu/eleline.vim'
 
 " git
 Plug 'airblade/vim-gitgutter'
@@ -102,6 +103,11 @@ call plug#end()
 "     let g:solarized_contrast="normal"
 "     let g:solarized_visibility="normal"
 " " }}}
+" ############### statusline ###############
+"eleline{{{
+let g:eleline_powerline_fonts = 1
+let g:eleline_slim = 1
+"}}}
 
 " ################### git ###################
 " let g:gitgutter_map_keys = 0
@@ -178,12 +184,12 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "}}}
 " ############## Programming ###############
 "nerdcommenter{{{
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims=1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Enable NERDCommenterToggle to check all selected lines is commented or not
-let g:NERDToggleCheckAllLines = 1
+" " Add spaces after comment delimiters by default
+" let g:NERDSpaceDelims=1
+" " Align line-wise comment delimiters flush left instead of following code indentation
+" let g:NERDDefaultAlign = 'left'
+" " Enable NERDCommenterToggle to check all selected lines is commented or not
+" let g:NERDToggleCheckAllLines = 1
 "}}}
 "indentLine{{{
 " let g:indentLine_concealcursor = ''
