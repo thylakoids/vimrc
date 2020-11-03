@@ -173,24 +173,20 @@ endif
 "Themes setting 主题设置
 "==========================
 function! g:Colorschemeplus()
-    let os = substitute(system('uname'), "\n", "", "")
-    let os = 'Darwin'
-    if os=='Linux'
-        colorscheme solarized8
-        highlight clear LineNr
-        highlight clear SignColumn
-    elseif os=='Darwin'
-        let g:gruvbox_italic=1
-        colorscheme gruvbox
-        set background=dark
-        highlight! link SignColumn LineNr
-        highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
-        highlight GruvboxredSign ctermbg=NONE guibg=NONE
-        highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
-        highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
-        highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
-        highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
-    endif
+    " colorscheme solarized8
+    " highlight clear LineNr
+    " highlight clear SignColumn
+
+    let g:gruvbox_italic=1
+    colorscheme gruvbox
+    set background=dark
+    highlight! link SignColumn LineNr
+    highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
+    highlight GruvboxredSign ctermbg=NONE guibg=NONE
+    highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
+    highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
+    highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
+    highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
 endfunction
 call g:Colorschemeplus() 
 
@@ -227,8 +223,8 @@ aug END
 "markdown heading u1, u2, u3
 aug mdheading
     autocmd!
-    autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! mmI# <esc>`m2l<CR>
-    autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI## <esc>`m3l<CR>
+    autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! mmyypVr=`m<CR>
+    autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! mmyypVr-`m<CR>
     autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l<CR>
 aug END
 "Quick quoting
@@ -254,7 +250,7 @@ nnoremap <leader>es :UltiSnipsEdit<cr>
 "为字典添加引号, 比如从浏览器复制的数据转换为字典
 vnoremap <leader>aq :s/\t/": "/g<cr>:'<,'>s/\n/",\r"/g<cr>x'<i"<esc>:noh<cr>
 "查找visual高亮
-nnoremap <space><space> yiw/<c-r>"<cr>
+nnoremap <space><space> yiw/\<<c-r>"\><cr>
 vnoremap <space><space> y/<c-r>"<cr>
 
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False

@@ -1,5 +1,4 @@
-Vim 安装
-------
+## Vim 安装
 
 1. 安装vim/neovim（注意版本支持）
 
@@ -38,12 +37,10 @@ call plug#end()
 
 
 
-Vim 配置
-------
+## Vim 配置
 
 
-Vim 学习
-------
+## Vim 学习
 
 ### 快捷键和一些常用命令
 
@@ -72,8 +69,7 @@ Vim 学习
 
 
 
-Vim 优化
-------
+## Vim 优化
 
 * `vim -u NONE` 可以不加载vim配置和插件打开vim
 * `vim --startuptime vim.log` 可以生成vim启动的log
@@ -123,8 +119,7 @@ bash <(curl -sSL https://raw.githubusercontent.com/hyiltiz/vim-plugins-profile/m
 
 
 
-Vim and Tmux
-------------
+## Vim and Tmux
 
 1. Vim Tmux Navigator
 
@@ -132,5 +127,4 @@ Vim and Tmux
 
 
 
-[Ultisnips](Https://Vimzijun.Net/2016/10/30/Ultisnip/)
-------------------------------------------------------
+## [Ultisnips](Https://Vimzijun.Net/2016/10/30/Ultisnip/)

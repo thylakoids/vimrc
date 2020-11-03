@@ -11,10 +11,10 @@
 call plug#begin('~/.vim/bundle')
 
 " 移动光标到插件名上, 使用'#'快速跳转到每个插件的配置处
-let os = substitute(system('uname'), "\n", "", "")
-if os=='Linux'
+let g:os = substitute(system('uname'), "\n", "", "")
+if g:os=='Linux'
     let g:python3_host_prog = '/usr/bin/python'
-elseif os=='Darwin'
+elseif g:os=='Darwin'
     let g:python2_host_prog = '/Users/dracarys/miniconda2/bin/python2'
     let g:python3_host_prog = '/usr/local/bin/python3'
 endif
@@ -29,7 +29,7 @@ Plug 'junegunn/limelight.vim', { 'on' : 'Limelight' }
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 Plug 'ryanoasis/vim-devicons'
 " statusline
-Plug 'liuchengxu/eleline.vim'
+Plug 'rbong/vim-crystalline'
 
 " git
 Plug 'airblade/vim-gitgutter'
@@ -102,7 +102,7 @@ call plug#end()
 " " }}}
 " ############### statusline ###############
 "eleline{{{
-let g:eleline_powerline_fonts = 1
+" let g:eleline_powerline_fonts = 1
 " let g:eleline_slim = 1
 "}}}
 
@@ -244,10 +244,9 @@ function! s:compile_and_run()
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     else
-        let os = substitute(system('uname'), "\n", "", "")
-        if os=='Linux'
+        if g:os=='Linux'
             exec "AsyncRun! xdg-open %"
-        elseif os=='Darwin'
+        elseif g:os=='Darwin'
             exec "AsyncRun! open %"
         endif
     endif
@@ -258,9 +257,9 @@ let g:asyncrun_open = 6
 " }}}
 "vimtex{{{
 let g:tex_flavor='latex'       "set filetype to tex instead plaintex
-if os=='Linux'
+if g:os=='Linux'
     let g:vimtex_view_method='general'       "need xdotool
-elseif os=='Darwin'
+elseif g:os=='Darwin'
     let g:vimtex_view_method='skim'
 endif
 " let g:vimtex_view_automatic = 1

@@ -26,3 +26,6 @@ blockquote
 #noremap
 plugin
 plugins
+tmux
+tmux
+vim
