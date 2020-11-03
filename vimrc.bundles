@@ -346,8 +346,8 @@ let g:Lf_HideHelp=0
 " see also coc.vim, coclist provide same function.
 noremap <space>b :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
 noremap <space>m :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <space>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-noremap <space>f :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+" noremap <space>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+" noremap <space>f :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
 " let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
 "}}}
 "lyokha/vim-xkbswitch{{{
