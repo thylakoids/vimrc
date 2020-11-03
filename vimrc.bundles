@@ -23,28 +23,25 @@ endif
 "-------------------
 " colorscheme
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
-Plug 'crusoexia/vim-monokai'
-Plug 'danilo-augusto/vim-afterglow'
-Plug 'w0ng/vim-hybrid'
-Plug 'dracula/vim'
 Plug 'lifepillar/vim-solarized8'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' }
+Plug 'junegunn/limelight.vim', { 'on' : 'Limelight' }
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 Plug 'ryanoasis/vim-devicons'
-Plug 'kristijanhusak/vim-carbon-now-sh'
+" statusline
 Plug 'liuchengxu/eleline.vim'
 
 " git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+":Gbrowse from fugitive.vim to open GitHub URLs.
 Plug 'tpope/vim-rhubarb'
+Plug 'kristijanhusak/vim-carbon-now-sh', {'on':'CarbonNowSh'}
 
 " markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'mzlogin/vim-markdown-toc'
+Plug 'godlygeek/tabular', { 'on' : 'Tabularize' }
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " 快速注释, 文件浏览
@@ -106,7 +103,7 @@ call plug#end()
 " ############### statusline ###############
 "eleline{{{
 let g:eleline_powerline_fonts = 1
-let g:eleline_slim = 1
+" let g:eleline_slim = 1
 "}}}
 
 " ################### git ###################
