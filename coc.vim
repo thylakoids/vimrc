@@ -162,7 +162,8 @@ augroup END
 "}}}
 "coc-lists{{{
 " nnoremap <silent> <space>f :<C-u>CocList files<cr>
-" nnoremap <silent> <space>b :<C-u>CocList --normal buffers<cr>
+nnoremap <silent> <space>l :<C-u>CocList --normal<cr>
 nnoremap <silent> <space>a :<C-u>CocList --normal diagnostics<cr>
 " nnoremap <silent> <space>m :<C-u>CocList --normal mru<cr>
+" nnoremap <silent> <space>b :<C-u>CocList --normal buffers<cr>
 "}}}
