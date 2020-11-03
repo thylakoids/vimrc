@@ -227,8 +227,8 @@ aug END
 "markdown heading u1, u2, u3
 aug mdheading
     autocmd!
-    autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! yypVr=i<esc><CR>
-    autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! yypVr-i<esc><CR>
+    autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! mmI# <esc>`m2l<CR>
+    autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI## <esc>`m3l<CR>
     autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l<CR>
 aug END
 "Quick quoting
