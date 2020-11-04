@@ -236,10 +236,18 @@ aug END
 "todo: ""
 function! GoogleSearch()
      let searchterm = getreg("g")
-     exec "!open \"http://google.com/search?q=" . searchterm . "\" &"
+     if g:os == 'Darwin'
+        silent! exec "!open \"http://google.com/search?q=" . searchterm . "\" &"
+     elseif g:os == 'Linux'
+        silent! exec "!xdg-open \"http://google.com/search?q=" . searchterm . "\" &"
+     endif
 endfunction
-nnoremap <leader>s mmviw"gy`m<Esc>:call GoogleSearch()<CR>
-vnoremap <leader>s "gy<Esc>:call GoogleSearch()<CR>
+if g:os == 'Darwin'
+    nnoremap <leader>g :!open "https://google.com/search?q=
+elseif g:os == 'Linux'
+    nnoremap <leader>g :!xdg-open "https://google.com/search?q=
+endif
+vnoremap <leader>g "gy<Esc>:call GoogleSearch()<CR>
 "}}}
 "Quick quoting
 " todo: how to make this to an operator
