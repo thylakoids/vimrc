@@ -33,6 +33,7 @@ autocmd! bufwritepost $HOME/.vim/vimrc source $MYVIMRC         " Automatic reloa
 autocmd! bufwritepost $HOME/.vimrc.bundles source $MYVIMRC     " Automatic reloading of .vimrc
 autocmd! bufwritepost $HOME/.vim/vimrc.bundles source $MYVIMRC " Automatic reloading of .vimrc
 set encoding=utf-8
+
 fun! Setspellnospell()
     " Don't set spell on these filetypes
     let blacklist = ['markdown', 'txt', 'plaintex', 'latex']
@@ -44,6 +45,7 @@ fun! Setspellnospell()
     endif
 endfun
 autocmd FileType * call Setspellnospell()
+
 set spelllang=en,cjk
 " set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
 set complete=.
@@ -74,7 +76,7 @@ set mouse=a                                     " 允许鼠标（点击）， a 
 set nocompatible                                " 关闭兼容模式
 set updatetime=100                              " gitgutter 刷新更快(default=400)
 set backspace=eol,start,indent                  " Configure backspace so it acts as it should act
-set conceallevel=0                            " 隐藏markdown 中的[]** 等, debug:notworking
+set conceallevel=0                              " 隐藏markdown 中的[]** 等, debug:notworking
 set listchars=eol:¬,tab:▸·,trail:.,extends:>,precedes:<           "效果		   	end
 set list
 
@@ -95,14 +97,23 @@ endif
 
 syntax on               " 开启语法高亮
 set number              " 显示行号
-set ruler               " 显示当前行号列号
+" set ruler               " 显示当前行号列号
+
+" function! g:ColorcolumnPlus() abort
+"     if winwidth(winnr()) > 100
+"         set colorcolumn=80
+"     else
+"         set colorcolumn=
+"     endif
+" endfunction
+" autocmd WinEnter,BufWinEnter,VimResized * call ColorcolumnPlus()
+" autocmd WinLeave * set colorcolumn=
+" call g:ColorcolumnPlus()
+
 set relativenumber
-" set cursorcolumn      " 突出显示当前列
-" set cursorline        " 突出显示当前行,注意突出显示,会让vim重新绘制,影响流畅性
-set showmode            " 左下角显示当前vim模式
 set nowrap              " 取消换行
 set showcmd             " 显示现有命令（在右下角）
-set scrolloff=1      " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set scrolloff=1         " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set sidescrolloff=2
 set laststatus=2        " always show status line
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
@@ -111,7 +122,6 @@ let g:matchparen_timeout = 20 "Highlighting matching parens, if file is too larg
 let g:matchparen_insert_timeout = 2
 set tw=79
 set fo-=t               " don't automatically wrap text when typing
-set colorcolumn=80
 
 " performance
 set lazyredraw          " Don’t update screen during macro and script execution.
@@ -142,20 +152,15 @@ set autoindent
 " 窗口布局，窗口切换
 set splitbelow
 set splitright
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
-nnoremap <C-W>j <C-W>-
-nnoremap <C-W>k <C-W>+
-nnoremap <C-W>h <C-W><
-nnoremap <C-W>l <C-W>>
--
+nnoremap <up> <C-W>-
+nnoremap <down> <C-W>+
+nnoremap <right> <C-W><
+nnoremap <left> <C-W>>
+
 " 代码折叠
-" autocmd FileType python setlocal foldmethod=indent
-" autocmd FileType vim setlocal foldmethod=marker
-" set foldlevel=99
+autocmd FileType vim setlocal foldmethod=marker
 set foldmethod=manual
+
 " 光标形状 cursor shape
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
         \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
@@ -255,7 +260,8 @@ vnoremap <space><space> y/<c-r>"<cr>
 
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 " nnoremap <Leader>jf :%!python -m json.tool<cr>
-" Quick get rid of old habit
+
+" ========================================
 " FileType Settings  文件类型设置
 "==========================================
 autocmd FileType python,javascript set tabstop=4 shiftwidth=4 expandtab ai
@@ -264,7 +270,9 @@ autocmd FileType ruby,html,css,xml set tabstop=2 shiftwidth=2 softtabstop=2 expa
 autocmd BufRead,BufNewFile *.part set filetype=html
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 
+" =====================
 " 设置可以高亮的关键字
+"======================
 " :h group-name, 显示可用的group
 aug highligth_keyword
     " Highlight TODO, FIXME, NOTE, etc.
@@ -273,21 +281,47 @@ aug highligth_keyword
     autocmd Syntax * call matchadd('Debug', '\<\(DEBUG\|INFO\|debug\|issue\)\>')
     autocmd Syntax * call matchadd('SpecialComment', '\<\(deprecated\|DEPRECATED\)\>')
 aug END
+
 "==========================
 "Autocmd 智能的自动命令
 "==========================
+
 " close vim, if quickfix is the last window
 aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
 aug END
+
 " augroup vimrc-incsearch-highlight
 "     autocmd!
 "     autocmd CmdlineEnter /,\? :set hlsearch
 "     autocmd CmdlineLeave /,\? :set nohlsearch
 " augroup END
+
+" From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
+function! ResizeSplits()
+    if &ft == 'nerdtree' || &ft == 'qf' || &ft == 'help'
+        return
+    else
+        set winwidth=100
+        setlocal relativenumber
+    endif
+endfunction
+function! ResizeSplitsUnfocus()
+    setlocal norelativenumber
+endfunction
+augroup ReduceNoise
+    autocmd!
+    " Automatically resize active split to 100 width
+    autocmd WinEnter * :call ResizeSplits()
+    autocmd WinLeave * :call ResizeSplitsUnfocus()
+augroup END
+
 autocmd Bufread * if getfsize(expand(@%))> 1024*200 | syntax clear | endif
+
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"zz" | endif
+
+" firstline
 function! HappyPython()
     call setline(1, '#! /usr/bin/env python3')
 endfun

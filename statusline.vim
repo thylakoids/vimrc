@@ -1,10 +1,13 @@
+" Inspired by:
+" eleline
+" spacevim
 autocmd! bufwritepost ~/.vim/statusline.vim source $MYVIMRC
 
 function! ElelineBufnrWinnr() abort
   let l:bufnr = bufnr('%')
    " transform to circled num: nr2char(9311 + l:bufnr)
    let l:bufnr = l:bufnr > 20 ? l:bufnr : nr2char(9311 + l:bufnr).' '
-  return l:bufnr.' ❖ '.winnr().' '
+  return l:bufnr.' ❖ '.winnr()
 endfunction
 
 function! ElelineFsize(f) abort
@@ -25,32 +28,34 @@ function! ElelineFsize(f) abort
 endfunction
 
 function! StatusLine(current, width)
+
   let l:s = ''
 
   if a:current
     let l:bufnr_winnr = '%{ElelineBufnrWinnr()}'
     let l:s .= crystalline#mode() . l:bufnr_winnr . crystalline#right_mode_sep('')
+    let l:fsize = '%#ElelineFsize#%{ElelineFsize(@%)}%*'
+    let l:s .= l:fsize
   else
     let l:s .= '%#CrystallineInactive#'
   endif
-  let l:fsize = '%#ElelineFsize#%{ElelineFsize(@%)}%*'
-  let l:s .= l:fsize . ' %f%h%w%m%r '
+
+  let l:s .= ' %f%h%w%m%r '
+
   if a:current
     " git
     let l:s .= crystalline#right_sep('', 'Fill') . ' %{fugitive#head()}' . " \ue0a0 " 
   endif
+
   " coc status
   let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
 
   let l:s .= '%='
-  if a:current
-    let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
-    let l:s .= crystalline#left_mode_sep('')
-  endif
-  if a:width > 80
-    let l:s .= ' %{&ft} %3l:%-2v %3P '
-  else
-    let l:s .= ' '
+
+  if a:current && a:width > 80
+    let l:s .= &spell ? ' SPELL' : ''
+    let l:s .= crystalline#left_sep('', 'Fill')
+    let l:s .= ' %{&ft} ' . crystalline#left_mode_sep('') . ' %3l:%-2v %3P '
   endif
 
   return l:s
@@ -66,4 +71,3 @@ let g:crystalline_tabline_fn = 'TabLine'
 let g:crystalline_theme = 'gruvbox'
 
 set showtabline=2
-set laststatus=2
