@@ -309,7 +309,7 @@ aug END
 
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 function! ResizeSplits()
-    if &ft == 'nerdtree' || &ft == 'qf' || &ft == 'help'
+    if &ft == 'nerdtree' || &ft == 'qf' || &ft == 'help'|| &ft == 'floaterm'
         return
     else
         set winwidth=100
