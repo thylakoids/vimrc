@@ -88,6 +88,7 @@ if !has('nvim')
     Plug 'liuchengxu/vim-which-key'
 endif
 Plug 'voldikss/vim-floaterm'
+Plug 'lambdalisue/suda.vim'
 call plug#end()
 
 
