@@ -1,0 +1,119 @@
+{
+  "inbounds": [
+    {
+      "port": 22235,
+      "protocol": "vmess",    // 入站协议为 VMess
+      "settings": {
+        "clients": [
+          {
+            "id": "a3133b9b-fcb5-47f6-8f79-3322fbae1346", // UUID
+            "level": 0,       // 用户等级
+            "alterId": 32     // 额外ID
+          }
+          // 在这里添加更多用户，注意UUID不能重复
+        ]
+      }
+    },
+
+    {
+        "port":22236,
+        "protocol": "shadowsocks",
+        "settings": {
+            "method": "chacha20-ietf",
+            "ota": true,
+            "password": "0212"
+        }
+    },
+    {
+    "port": 1087,
+    "protocol": "http",
+    "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+    }
+    },
+    {
+      "port": 1086, // 监听端口
+      "protocol": "socks", // 入口协议为 SOCKS 5
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth", //socks的认证设置，noauth 代表不认证，由于 socks 通常在客户端使用，所以这里不认证
+        "udp": true
+      }
+    }
+  ],
+  // ========== BEGIN STEP 1 ==========
+  // 国内中转服务器当作国外服务器的“客户端”
+  // 国际流量发往国外服务器上
+  "outbounds": [
+    {
+      "protocol": "vmess",        // 出口协议
+      "settings": {
+        "vnext": [
+          {
+            "address": "45.77.157.191", // 国外服务器地址
+            "port": 42388,        // 国外服务器端口
+            "users": [
+                {
+                  "id": "cd40f554-6953-412d-939b-ed74459750a6", // 用户 ID，须与国外服务器端配置相同
+                  "alterId": 0 // 此处的值也应当与服务器相同
+                }
+            ]
+          }
+        ]
+      },
+      "streamSettings":{
+          "network":"kcp",
+          "kcpSettings":{
+              "header":{
+                  "type":"wechat-video"
+              }
+          }
+      }
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "block"
+    },
+    // 增加 freedom 传出绕路，国内流量直接放行
+    {
+      "protocol": "freedom",
+      "tag": "direct",
+      "settings": {}
+    }
+  ],
+  // ========== END STEP 1 ==========
+  "routing": { // 路由设置
+   "domainStrategy": "IPOnDemand",
+    "strategy": "rules",
+    "rules": [
+      {
+        "type": "field",      // 不允许客户端访问服务端的局域网地址，以提升安全性
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "block"
+      },
+      {
+        "type": "field",      // 不允许客户端访问服务端的局域网地址，以提升安全性
+        "domain": [
+          "tanx.com",
+          "googeadsserving.cn"
+        ],
+        "outboundTag": "block"
+      },
+      // 配置国内网站和IP直连规则
+      {
+        "type": "field", // 对于所有国内的 IP，都采用直连模式
+        "ip": [
+          "geoip:cn"
+        ],
+        "outboundTag": "direct"
+      }
+    ]
+  }
+}
