@@ -232,6 +232,15 @@ aug mdheading
     autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! mmyypVr-`m<CR>
     autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l<CR>
 aug END
+"GoogleSearch{{{
+"todo: ""
+function! GoogleSearch()
+     let searchterm = getreg("g")
+     exec "!open \"http://google.com/search?q=" . searchterm . "\" &"
+endfunction
+nnoremap <leader>s mmviw"gy`m<Esc>:call GoogleSearch()<CR>
+vnoremap <leader>s "gy<Esc>:call GoogleSearch()<CR>
+"}}}
 "Quick quoting
 " todo: how to make this to an operator
 nnoremap <leader>' viw<esc>`>a'<esc>bi'<esc>lel
@@ -330,3 +339,4 @@ function! HappyJS()
     call setline(1, '#!/usr/bin/env node')
 endfun
 autocmd bufnewfile *.js call HappyJS()
+
