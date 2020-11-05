@@ -1,6 +1,19 @@
 Set Up Linux Environment
 ========================
 
+<!-- vim-markdown-toc GFM -->
+
+* [Proxy](#proxy)
+* [Change Apt Source(optional)](#change-apt-sourceoptional)
+* [Install Python3](#install-python3)
+* [Install Git](#install-git)
+* [Install Zsh/Oh-My-Zsh](#install-zshoh-my-zsh)
+* [Install Nvm Npm Node](#install-nvm-npm-node)
+* [Install Neovim](#install-neovim)
+* [Install Tmux](#install-tmux)
+
+<!-- vim-markdown-toc -->
+
 Proxy
 -----
 
@@ -172,3 +185,18 @@ Install Neovim
 Install Tmux
 ------------
 
+1. Installing Tmux on Ubuntu
+
+    ```sh
+    sudo apt install tmux
+    ```
+
+2. Install `oh-my-tmux`
+
+3. `export EDITOR=vim`
+
+2. Install `tmp`
+
+    ```ls
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    ```
