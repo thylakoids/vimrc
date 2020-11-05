@@ -76,7 +76,7 @@ endif
 " -------------------------------
 " Teach Vim about titlecase, with support for motions and text objects. Using `gt`, `gT` will apply to a line.
 Plug 'christoomey/vim-titlecase'      "gt gT
-Plug 'christoomey/vim-system-copy'    "cp cP cv cV
+Plug 'christoomey/vim-system-copy' , {'do': 'sudo apt install xsel'} "cp cP cv cV
 Plug 'tpope/vim-commentary'           "gc gcc
 Plug 'tpope/vim-surround'             "ds, cs, ys, S
 "System Integration

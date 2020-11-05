@@ -191,12 +191,52 @@ Install Tmux
     sudo apt install tmux
     ```
 
-2. Install `oh-my-tmux`
+2. Install `[oh-my-tmux](https://github.com/gpakosz/.tmux)`
 
-3. `export EDITOR=vim`
+    ```sh
+    cd
+    git clone https://github.com/gpakosz/.tmux.git
+    ln -s -f .tmux/.tmux.conf
+    cp .tmux/.tmux.conf.local .
+    ```
 
-2. Install `tmp`
+    Then proceed to customize your ~/.tmux.conf.local copy.
 
-    ```ls
+3.  Add `export EDITOR=vim` to `~/.zshrc` to active vim mode.
+
+2. Install `tmp`, and plugins.
+
+    ```sh
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ```
+    
+    Appendent following code to `~/.tmux.conf.local`
+
+    ```conf
+    #####################
+    #  List of plugins  #
+    #####################
+
+    set -g @tpm_plugins '          \
+      tmux-plugins/tpm             \
+      tmux-plugins/tmux-sensible   \
+      tmux-plugins/tmux-resurrect  \
+      tmux-plugins/tmux-continuum  \
+      christoomey/vim-tmux-navigator \
+      tmux-plugins/tmux-yank       \
+    '
+    ########################
+    #  Config for plugins  #
+    ########################
+    # tmux-continuum {{{
+        set -g @continuum-restore 'on'
+        set -g @continuum-save-interval '15'
+    # }}}
+
+    # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+    run '~/.tmux/plugins/tpm/tpm'
+    ```
+
+    Then press `<prefix> + I` to install plugins, and `<prefix> + r` to sources
+    tmux config.
+
