@@ -78,6 +78,15 @@ Install Python3
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     ```
 
+2. `pip.conf`
+
+    ```config
+    [global]
+    index-url = https://mirrors.aliyun.com/pypi/simple
+    /* index-url = https://pypi.tuna.tsinghua.edu.cn/simple */
+    ```
+
+
 Install Git
 -----------
 1. install
@@ -146,19 +155,29 @@ Install Zsh/Oh-My-Zsh
 Install Nvm Npm Node
 --------------------
 
-1. Install
+1. Install nvm
 
     ```sh
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
     ```
 
-2. zshrc 
+2. zshrc
 
     ```sh
     export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
     ```
 
 3. `nvm install node`
+
+2. After install `npm` and `node`
+
+    ```sh
+    npm config edit
+    ```
+
+    Add the following line.
+
+   `registry=http://registry.npm.taobao.org/`
 
 
 Install Neovim
@@ -209,7 +228,7 @@ Install Tmux
     ```sh
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ```
-    
+
     Appendent following code to `~/.tmux.conf.local`
 
     ```conf
@@ -239,4 +258,3 @@ Install Tmux
 
     Then press `<prefix> + I` to install plugins, and `<prefix> + r` to sources
     tmux config.
-

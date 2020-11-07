@@ -42,10 +42,16 @@ function! StatusLine(current, width)
 
   let l:s .= ' %f%h%w%m%r '
 
+  " git
   if a:current
-    " git
-    let l:s .= crystalline#right_sep('', 'Fill') . ' %{fugitive#head()}' . " \ue0a0 " 
+    let l:gbranch = fugitive#head()
+    if l:gbranch == ""
+        let l:s .= crystalline#right_sep('', 'Fill')
+    else
+        let l:s .= crystalline#right_sep('', 'Fill') . ' %{fugitive#head()}' . " \ue0a0 " 
+    endif
   endif
+
 
   " coc status
   let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
