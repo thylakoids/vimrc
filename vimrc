@@ -315,11 +315,12 @@ aug END
 "     autocmd CmdlineLeave /,\? :set nohlsearch
 " augroup END
 
+" autoresize{{{
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 function! ResizeSplits()
     let blacklist = ['nerdtree', 'qf', 'help', 'floaterm', 'leaderf']
     if index(blacklist, &ft) < 0
-        set winwidth=100
+        " set winwidth=100
         setlocal relativenumber
     endif
 endfunction
@@ -332,6 +333,7 @@ augroup ReduceNoise
     autocmd WinEnter * :call ResizeSplits()
     autocmd WinLeave * :call ResizeSplitsUnfocus()
 augroup END
+" }}}
 
 autocmd Bufread * if getfsize(expand(@%))> 1024*200 | syntax clear | endif
 

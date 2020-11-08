@@ -5,7 +5,8 @@
 "    - everything between %{…} will be evaluated
 "    - you can set colours with %#your_colour_name#
 "    - everything you need to know is in :help statusline
-autocmd! bufwritepost ~/.vim/statusline.vim source $MYVIMRC
+" autocmd! bufwritepost ~/.vim/statusline.vim source $MYVIMRC
+autocmd! bufwritepost ~/.vim/statusline.vim source %
 " hi mystatusline guibg='None' guifg='NONE' cterm=NONE ctermfg=grey ctermbg=blue
 
 " set statusline=
@@ -106,7 +107,7 @@ function! MyTabLine()
                     let modified = '*'
                     break
                 endif
-            endfor
+           endfor
             let hl = (i == t ? '%#WinNumSel#' : '%#WinNum#')
             let nohl = (i == t ? '%#TabLineSel#' : '%#TabLine#')
             let s .= ' ' . modified . '(' . hl . winnr . nohl . '/' . nwins . ')'

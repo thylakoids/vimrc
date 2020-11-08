@@ -1,7 +1,7 @@
 " Inspired by:
 " eleline
 " spacevim
-autocmd! bufwritepost ~/.vim/statusline.vim source $MYVIMRC
+autocmd! bufwritepost ~/.vim/statusline.vim source %
 
 function! ElelineBufnrWinnr() abort
   let l:bufnr = bufnr('%')
@@ -48,7 +48,7 @@ function! StatusLine(current, width)
     if l:gbranch == ""
         let l:s .= crystalline#right_sep('', 'Fill')
     else
-        let l:s .= crystalline#right_sep('', 'Fill') . ' %{fugitive#head()}' . " \ue0a0 " 
+        let l:s .= crystalline#right_sep('', 'Fill') . ' %{fugitive#head()}' . " \ue0a0 "
     endif
   endif
 
@@ -58,17 +58,89 @@ function! StatusLine(current, width)
 
   let l:s .= '%='
 
-  if a:current && a:width > 80
+  if a:current && a:width > 85
     let l:s .= &spell ? ' SPELL' : ''
     let l:s .= crystalline#left_sep('', 'Fill')
-    let l:s .= ' %{&ft} ' . crystalline#left_mode_sep('') . ' %3l:%-2v %3P '
+    let l:s .= ' %{&ft} ' .  crystalline#left_mode_sep('') .WebDevIconsGetFileFormatSymbol() . ' %3l:%-2v %3P '
   endif
 
   return l:s
 endfunction
 
 function! TabLine()
-  return crystalline#bufferline(0, 0, 1)
+    let l:s = ''
+    let t = tabpagenr()
+    let tabn = tabpagenr('$')
+    let i = 1
+    while i <= tabn
+        let buflist = tabpagebuflist(i)
+        let winnr = tabpagewinnr(i)
+        let l:s .= '%' . i . 'T'
+
+        " tabpagenr
+        let s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
+        let l:s .= ' ' . i
+
+        " filename
+        let bufnr = buflist[winnr - 1]
+        let buftype = getbufvar(bufnr, '&ft')
+        echo buftype
+        let file = bufname(bufnr)
+        if buftype == 'help'
+            let file = 'help:' . fnamemodify(file, ':t:r')
+        elseif buftype == 'qf'
+            let file = 'quickfix'
+        elseif buftype == 'nerdtree'
+            let file = 'nerdtree'
+        elseif buftype == 'nofile'
+            if file =~ '\/.'
+                let file = substitute(file, '.*\/\ze.', '', '')
+            endif
+        else
+            let file = pathshorten(fnamemodify(file, ':p:t'))
+            if getbufvar(bufnr, '&modified')
+                let file = '+' . file
+            endif
+        endif
+        if file == ''
+            let file = '[No Name]'
+        endif
+        let l:s .= ' ' . file
+
+        " " windows
+        " let nwins = tabpagewinnr(i, '$')
+        " if nwins > 1
+        "     let modified = ''
+        "     for b in buflist
+        "         if getbufvar(b, '&modified') && b != bufnr
+        "             let modified = '*'
+        "             break
+        "         endif
+        "     endfor
+        "     let s .= modified . '(' . winnr . '/' . nwins . ')'
+        " endif
+
+        " icon
+        let s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
+        let l:s .= ' ' . (i == t ? WebDevIconsGetFileTypeSymbol(file) :'')
+
+        " sep
+        if i==t
+            if i == tabn
+                let l:s .= crystalline#right_mode_sep('TabFill')
+            else
+                let l:s .= crystalline#right_mode_sep('Fill')
+            endif
+        elseif i == tabn
+            let l:s .= crystalline#right_sep('Fill','TabFill')
+        endif
+
+        let i = i +1
+    endwhile
+    " X
+    let s .= '%T%#CrystallineTabFill#%='
+    let s .= (tabn > 1 ? '%999XX' : 'X')
+    return l:s
 endfunction
 
 let g:crystalline_enable_sep = 1
