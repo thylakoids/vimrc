@@ -3,6 +3,7 @@
 #############
 snippet snippet "snippet" bA
 snippet ${1:Tab_trigger} "${2:Description}" ${3:b}
-$0
+`!p snip.rv='${1:${VISUAL:Text}}'`
+`!p snip.rv='$0'`$0
 `!p snip.rv='endsnippet'`
 endsnippet
