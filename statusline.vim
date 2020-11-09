@@ -77,8 +77,21 @@ function! TabLine()
         let winnr = tabpagewinnr(i)
         let l:s .= '%' . i . 'T'
 
+        " left sep
+        if i == t && i > 1
+            if mode() == 'n'
+                let l:s .= crystalline#right_sep('Fill', 'NormalMode')
+            elseif mode() == 'i'
+                let l:s .= crystalline#right_sep('Fill', 'InsertMode')
+            elseif mode() == 'v'
+                let l:s .= crystalline#right_sep('Fill', 'VisualMode')
+            elseif mode() == 'r'
+                let l:s .= crystalline#right_sep('Fill', 'ReplaceMode')
+            endif
+        endif
+
         " tabpagenr
-        let s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
+        let l:s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
         let l:s .= ' ' . i
 
         " filename
@@ -124,7 +137,7 @@ function! TabLine()
         let s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
         let l:s .= ' ' . (i == t ? WebDevIconsGetFileTypeSymbol(file) :'')
 
-        " sep
+        " right sep
         if i==t
             if i == tabn
                 let l:s .= crystalline#right_mode_sep('TabFill')
@@ -147,5 +160,3 @@ let g:crystalline_enable_sep = 1
 let g:crystalline_statusline_fn = 'StatusLine'
 let g:crystalline_tabline_fn = 'TabLine'
 let g:crystalline_theme = 'gruvbox'
-
-set showtabline=2
