@@ -204,7 +204,7 @@ Install Neovim
 Install Tmux
 ------------
 
-1. Installing Tmux on Ubuntu
+1. Installing Tmux(>2.6) on Ubuntu
 
     ```sh
     sudo apt install tmux
@@ -232,6 +232,7 @@ Install Tmux
     Appendent following code to `~/.tmux.conf.local`
 
     ```conf
+    set -g mouse on
     #####################
     #  List of plugins  #
     #####################
@@ -256,5 +257,5 @@ Install Tmux
     run '~/.tmux/plugins/tpm/tpm'
     ```
 
-    Then press `<prefix> + I` to install plugins, and `<prefix> + r` to sources
-    tmux config.
+    Then `<prefix> + r` to source tmux config, and press `<prefix> + I` to install plugins.
+    
