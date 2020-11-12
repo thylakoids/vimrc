@@ -29,4 +29,7 @@ plugins
 tmux
 tmux
 vim
+dicom
 config
+orthanc
+app

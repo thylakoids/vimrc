@@ -43,7 +43,7 @@ snippet beamer "beamer" b
 endsnippet
 
 
-snippet begin "begin{} / end{}" bA
+snippet \begin "begin{} / end{}" bA
 \begin{$1}
     $0
 \end{$1}
@@ -51,10 +51,27 @@ endsnippet
 #########################
 #  section & paragraph  #
 #########################
-snippet 'section' "section" Ab
-\section{${1:title}}
+snippet \section "section" Ab
+\section{${1:${VISUAL:title}}}
+$0
 endsnippet
 
-snippet '\subsection' "subsection" Ab
-\subsection{${1:title}}
+snippet \subsection "subsection" Ab
+\subsection{${1:${VISUAL:title}}}
+endsnippet
+
+snippet \paragraph "paragraph" Ab
+\paragraph{${1:${VISUAL:title}}}
+endsnippet
+
+snippet \textit "italics" A
+\textit{${1:${VISUAL:text}}}
+endsnippet
+
+snippet \textbf "bold" A
+\textbf{${1:${VISUAL:text}}}
+endsnippet
+
+snippet \underline "underline" A
+\underline{${1:${VISUAL:text}}}
 endsnippet

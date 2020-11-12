@@ -20,3 +20,11 @@ endsnippet
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
+
+snippet \hat "hat" iA
+\hat{${1:${VISUAL:Text}}}$0
+endsnippet
+
+snippet \sum "sum" iA
+\sum_{${1:lower bound}}^{${2:upper bound}}${0:expression}
+endsnippet
