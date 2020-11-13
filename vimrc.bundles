@@ -45,6 +45,7 @@ Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " 快速注释, 文件浏览
+" todo: nerdtree is low, try to replace it with other plug.
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " 自动补全
