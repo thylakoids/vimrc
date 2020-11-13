@@ -11,6 +11,7 @@ Set Up Linux Environment
 * [Install Nvm Npm Node](#install-nvm-npm-node)
 * [Install Neovim](#install-neovim)
 * [Install Tmux](#install-tmux)
+* [Other Useful Tools](#other-useful-tools)
 
 <!-- vim-markdown-toc -->
 
@@ -258,4 +259,10 @@ Install Tmux
     ```
 
     Then `<prefix> + r` to source tmux config, and press `<prefix> + I` to install plugins.
-    
+
+Other Useful Tools
+------------------
+
+* linuxbrew
+* fzf
+* tldr

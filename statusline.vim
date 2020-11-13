@@ -99,6 +99,11 @@ function! TabLine()
         let buftype = getbufvar(bufnr, '&ft')
         echo buftype
         let file = bufname(bufnr)
+
+        " icon
+        let s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
+        let l:s .= ' ' . (i == t ? WebDevIconsGetFileTypeSymbol(file) :'')
+
         if buftype == 'help'
             let file = 'help:' . fnamemodify(file, ':t:r')
         elseif buftype == 'qf'
@@ -133,9 +138,6 @@ function! TabLine()
         "     let s .= modified . '(' . winnr . '/' . nwins . ')'
         " endif
 
-        " icon
-        let s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
-        let l:s .= ' ' . (i == t ? WebDevIconsGetFileTypeSymbol(file) :'')
 
         " right sep
         if i==t
