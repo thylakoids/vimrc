@@ -50,7 +50,7 @@ set spelllang=en,cjk
 " set complete-=i                                 " Limit the files searched for auto-completes. [tex:\cite{]todo
 set complete=.
 set complete+=kspell                            " match dictionary words
-set autochdir
+" set autochdir
 filetype on                                     " 检测文件类型
 filetype indent on                              " 针对不同的文件类型采用不同的缩进格式
 filetype plugin on                              " 允许插件
