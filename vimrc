@@ -359,4 +359,4 @@ autocmd bufnewfile *.js call HappyJS()
 """""""""""""""""
 
 " Call figlet
-noremap tx :r !figlet 
+noremap tf :r !figlet 
