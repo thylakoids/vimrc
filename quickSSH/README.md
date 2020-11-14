@@ -97,8 +97,8 @@ Install Git
 2. Config
     ```config
     [user]
-        email = liyulongsjtu@hotmail.com
-        name = thylakoids
+        email = xx@xx.com
+        name = yourname
     [push]
         default = simple
     [alias]
