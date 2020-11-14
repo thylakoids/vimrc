@@ -194,6 +194,12 @@ function! g:Colorschemeplus()
 endfunction
 call g:Colorschemeplus() 
 
+" press f10 to show hlgroup
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+map <F10> :call SynGroup()<CR>
 "==========================
 "ShortCuts settings 快捷键设置
 "==========================
@@ -348,3 +354,9 @@ function! HappyJS()
 endfun
 autocmd bufnewfile *.js call HappyJS()
 
+"""""""""""""""""
+"  wired stuff  "
+"""""""""""""""""
+
+" Call figlet
+noremap tx :r !figlet 
