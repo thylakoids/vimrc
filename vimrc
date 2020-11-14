@@ -318,7 +318,7 @@ aug END
 " autoresize{{{
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 function! ResizeSplits()
-    let blacklist = ['nerdtree', 'qf', 'help', 'floaterm', 'leaderf']
+    let blacklist = ['nerdtree', 'qf', 'help', 'floaterm', 'leaderf', 'coc-explorer']
     if index(blacklist, &ft) < 0
         " set winwidth=100
         setlocal relativenumber

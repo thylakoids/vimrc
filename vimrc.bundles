@@ -46,7 +46,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " 快速注释, 文件浏览
 " todo: nerdtree is low, try to replace it with other plug.
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " 自动补全
 "-------------------
@@ -301,9 +301,9 @@ if !has('nvim')
 endif
 "}}}
 "nerdtree{{{
-noremap <F2> :NERDTreeToggle<CR>
-" autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
-let g:NERDTreeWinSize = 35
+" noremap <F2> :NERDTreeToggle<CR>
+" " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+" let g:NERDTreeWinSize = 35
 "}}}
 "rainbow{{{
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle

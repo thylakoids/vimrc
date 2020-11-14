@@ -147,6 +147,7 @@ let g:coc_global_extensions = ['coc-tsserver', 'coc-json',
             \ 'coc-html',
             \ 'coc-snippets',
             \ 'coc-vimtex',
+            \ 'coc-explorer',
             \ 'coc-highlight', 'coc-pairs', 'coc-lists']
 
 
@@ -166,4 +167,7 @@ nnoremap <silent> <space>l :<C-u>CocList --normal<cr>
 nnoremap <silent> <space>a :<C-u>CocList --normal diagnostics<cr>
 " nnoremap <silent> <space>m :<C-u>CocList --normal mru<cr>
 " nnoremap <silent> <space>b :<C-u>CocList --normal buffers<cr>
+"}}}
+"coc-explorer{{{
+noremap <F2> :CocCommand explorer<CR>
 "}}}

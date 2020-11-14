@@ -84,5 +84,6 @@
                 }
             }
         }
-    }
+    },
+    "explorer.icon.enableNerdfont":true
 }
