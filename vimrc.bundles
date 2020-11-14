@@ -22,7 +22,7 @@ endif
 " 美观
 "-------------------
 " colorscheme
-Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'lifepillar/vim-solarized8'
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on' : 'Limelight' }
@@ -43,10 +43,6 @@ Plug 'godlygeek/tabular', { 'on' : 'Tabularize' }
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-
-" 快速注释, 文件浏览
-" todo: nerdtree is low, try to replace it with other plug.
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " 自动补全
 "-------------------
@@ -299,11 +295,6 @@ if !has('nvim')
     let g:togglecursor_leave = "line"
     let g:togglecursor_disable_tmux = 0
 endif
-"}}}
-"nerdtree{{{
-" noremap <F2> :NERDTreeToggle<CR>
-" " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
-" let g:NERDTreeWinSize = 35
 "}}}
 "rainbow{{{
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle

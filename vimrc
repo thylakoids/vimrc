@@ -182,8 +182,7 @@ function! g:Colorschemeplus()
     " highlight clear LineNr
     " highlight clear SignColumn
 
-    let g:gruvbox_italic=1
-    colorscheme gruvbox
+    colorscheme gruvbox8
     set background=dark
     highlight! link SignColumn LineNr
     highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
