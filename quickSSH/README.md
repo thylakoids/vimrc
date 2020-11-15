@@ -234,6 +234,7 @@ Install Tmux
 
     ```conf
     set -g mouse on
+    tmux_conf_copy_to_os_clipboard=true
     #####################
     #  List of plugins  #
     #####################
@@ -244,7 +245,6 @@ Install Tmux
       tmux-plugins/tmux-resurrect  \
       tmux-plugins/tmux-continuum  \
       christoomey/vim-tmux-navigator \
-      tmux-plugins/tmux-yank       \
     '
     ########################
     #  Config for plugins  #

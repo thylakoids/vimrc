@@ -30,6 +30,7 @@ Plug 'junegunn/limelight.vim', { 'on' : 'Limelight' }
 Plug 'ryanoasis/vim-devicons'
 " statusline
 Plug 'rbong/vim-crystalline'
+Plug 'mhinz/vim-startify'
 
 " git
 Plug 'airblade/vim-gitgutter'
