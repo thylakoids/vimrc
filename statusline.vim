@@ -56,6 +56,7 @@ function! StatusLine(current, width)
   " coc status
   let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
 
+  let l:s .= ' %F '
   let l:s .= '%='
 
   if a:current && a:width > 85

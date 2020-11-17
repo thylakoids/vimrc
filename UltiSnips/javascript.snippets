@@ -1,3 +1,5 @@
+extends javascript.react
+
 snippet adddebug "require('util').debuglog" b
 var DEBUGNAME = __filename.slice(__dirname.length + 1, -3);
 var debug = require('util').debuglog(DEBUGNAME);
