@@ -53,10 +53,13 @@ function! StatusLine(current, width)
   endif
 
 
-  " coc status
-  let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
+  if a:current && a:width > 85
+    " coc status
+    let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
+    " full path
+    let l:s .= ' %F '
+  endif
 
-  let l:s .= ' %F '
   let l:s .= '%='
 
   if a:current && a:width > 85
