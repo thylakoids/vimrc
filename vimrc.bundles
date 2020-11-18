@@ -53,6 +53,9 @@ Plug 'SirVer/ultisnips'
 
 " 语法高亮
 Plug 'dense-analysis/ale'
+" Plug 'pangloss/vim-javascript'
+Plug 'yuezk/vim-js', {'for': 'javascript'}
+Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
 " Plug 'luochen1990/rainbow'
 " search
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
@@ -362,6 +365,9 @@ let g:floaterm_keymap_new    = '<F6>'
 let g:floaterm_keymap_prev   = '<F7>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F8>'
+"}}}
+"vim-jsx-pretty{{{
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
 "}}}
 """"""""""""""
 "  coc.nvim  "

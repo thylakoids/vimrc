@@ -159,6 +159,8 @@ nnoremap <left> <C-W>>
 
 " 代码折叠
 autocmd FileType vim setlocal foldmethod=marker
+autocmd FileType python setlocal foldmethod=indent
+autocmd FileType javascript setlocal foldmethod=syntax
 set foldmethod=manual
 
 " 光标形状 cursor shape
