@@ -65,7 +65,8 @@ function! StatusLine(current, width)
   if a:current && a:width > 85
     let l:s .= &spell ? ' SPELL' : ''
     let l:s .= crystalline#left_sep('', 'Fill')
-    let l:s .= ' %{&ft} ' .  crystalline#left_mode_sep('') .WebDevIconsGetFileFormatSymbol() . ' %3l:%-2v %3P '
+    let l:ft = &ft == '' ? ' unknown ' : ' %{&ft} '
+    let l:s .= l:ft .  crystalline#left_mode_sep('') .WebDevIconsGetFileFormatSymbol() . ' %3l:%-2v %3P '
   endif
 
   return l:s
