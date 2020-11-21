@@ -53,7 +53,7 @@ function! StatusLine(current, width)
   endif
 
 
-  if a:current && a:width > 85
+  if a:current && a:width > 100
     " coc status
     let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
     " full path
@@ -62,7 +62,7 @@ function! StatusLine(current, width)
 
   let l:s .= '%='
 
-  if a:current && a:width > 85
+  if a:current && a:width > 100
     let l:s .= &spell ? ' SPELL' : ''
     let l:s .= crystalline#left_sep('', 'Fill')
     let l:ft = &ft == '' ? ' unknown ' : ' %{&ft} '
