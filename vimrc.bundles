@@ -64,6 +64,7 @@ Plug 'skywind3000/asyncrun.vim'
 " multiple cursors
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'zirrostig/vim-schlepp'
+Plug 'takac/vim-hardtime'
 " Latex
 Plug 'lervag/vimtex' , {'for':['tex']}
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
@@ -376,6 +377,9 @@ vmap J <Plug>SchleppDown
 let g:Schlepp#allowSquishingLines = 1
 let g:Schlepp#allowSquishingBlock = 1
 let g:Schlepp#trimWS = 0
+"}}}
+"vim-hardtime{{{
+let g:hardtime_default_on = 1
 "}}}
 """"""""""""""
 "  coc.nvim  "
