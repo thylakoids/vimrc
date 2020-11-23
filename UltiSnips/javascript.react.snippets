@@ -11,3 +11,14 @@ snippet dt "display html tag" A
 	${3:text}
 </$1>
 endsnippet
+
+snippet middleware "example for middleware" b
+function forbiddenWordsMiddleware({ dispatch }) {
+  return function(next){
+    return function(action){
+      // do your stuff
+      return next(action);
+    }
+  }
+}
+endsnippet

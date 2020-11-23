@@ -162,6 +162,7 @@ autocmd FileType vim setlocal foldmethod=marker
 autocmd FileType python setlocal foldmethod=indent
 autocmd FileType javascript setlocal foldmethod=syntax
 set foldmethod=manual
+set foldlevelstart=20
 
 " 光标形状 cursor shape
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -207,7 +208,12 @@ map <F10> :call SynGroup()<CR>
 "==========================
 "Quick <esc>
 inoremap jk <esc>
+
 nnoremap J <nul>
+nnoremap K <nul>
+nnoremap H <nul>
+nnoremap L <nul>
+
 noremap k gk
 noremap j gj
 "Keep search pattern at the center of the screen."
@@ -224,8 +230,8 @@ nnoremap <silent> g* g*zz
 map <leader>n <esc>:tabprevious<CR>
 map <leader>m <esc>:tabnext<CR>
 "Easier moving code blocks
-vnoremap > >gv
-vnoremap < <gv
+vnoremap L >gv
+vnoremap H <gv
 "Put breakpoint before current line
 aug addbreakpoint
     autocmd!
