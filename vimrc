@@ -99,16 +99,18 @@ syntax on               " 开启语法高亮
 set number              " 显示行号
 " set ruler               " 显示当前行号列号
 
-function! g:ColorcolumnPlus() abort
-    if winwidth(winnr()) > 100
-        set colorcolumn=80
-    else
-        set colorcolumn=
-    endif
-endfunction
-autocmd WinEnter,BufWinEnter,VimResized * call ColorcolumnPlus()
-autocmd WinLeave * set colorcolumn=
-call g:ColorcolumnPlus()
+" function! g:ColorcolumnPlus() abort
+"     if winwidth(winnr()) > 100
+"         set colorcolumn=80
+"     else
+"         set colorcolumn=
+"     endif
+" endfunction
+" autocmd WinEnter,BufWinEnter,VimResized * call ColorcolumnPlus()
+" autocmd WinLeave * set colorcolumn=
+" call g:ColorcolumnPlus()
+" match Colorcolumn /\%81v/
+call matchadd('Colorcolumn', '\%80v', 100)
 
 set relativenumber
 set nowrap              " 取消换行
