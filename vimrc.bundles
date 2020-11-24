@@ -82,6 +82,9 @@ Plug 'christoomey/vim-titlecase'      "gt gT
 Plug 'christoomey/vim-system-copy' , {'do': 'sudo apt install xsel'} "cp cP cv cV
 Plug 'tpope/vim-commentary'           "gc gcc
 Plug 'tpope/vim-surround'             "ds, cs, ys, S
+" Text object
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
 "System Integration
 " -------------------
 Plug 'christoomey/vim-tmux-navigator'    " Seamless navigation between tmux panes and vim splits
