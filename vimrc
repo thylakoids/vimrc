@@ -334,7 +334,7 @@ aug END
 function! ResizeSplits()
     let blacklist = ['nerdtree', 'qf', 'help', 'floaterm', 'leaderf', 'coc-explorer']
     if index(blacklist, &ft) < 0
-        " set winwidth=100
+        set winwidth=100
         setlocal relativenumber
     endif
 endfunction
@@ -347,6 +347,7 @@ augroup ReduceNoise
     autocmd WinEnter * :call ResizeSplits()
     autocmd WinLeave * :call ResizeSplitsUnfocus()
 augroup END
+set wmw=10
 " }}}
 
 autocmd Bufread * if getfsize(expand(@%))> 1024*200 | syntax clear | endif
