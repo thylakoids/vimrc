@@ -190,7 +190,7 @@ function! g:Colorschemeplus()
 
     colorscheme gruvbox8
     set background=dark
-    highlight Normal ctermbg=NONE guibg=black
+    highlight Normal ctermbg=NONE guibg=NONE
     highlight! link SignColumn LineNr
     highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
     highlight GruvboxredSign ctermbg=NONE guibg=NONE
