@@ -233,6 +233,13 @@ Install Tmux
     Appendent following code to `~/.tmux.conf.local`
 
     ```conf
+    # replace C-b by C-a instead of using both prefixes
+    set -gu prefix2
+    unbind C-a
+    unbind C-b
+    set -g prefix C-a
+    bind C-a send-prefix
+
     set -g mouse on
     tmux_conf_copy_to_os_clipboard=true
     #####################
