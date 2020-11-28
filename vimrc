@@ -343,6 +343,7 @@ endfunction
 augroup ReduceNoise
     autocmd!
     " Automatically resize active split to 100 width
+    autocmd BufWinEnter * :call ResizeSplits()
     autocmd WinEnter * :call ResizeSplits()
     autocmd WinLeave * :call ResizeSplitsUnfocus()
 augroup END
