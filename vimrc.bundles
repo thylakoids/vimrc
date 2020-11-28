@@ -382,7 +382,7 @@ let g:Schlepp#allowSquishingBlock = 1
 let g:Schlepp#trimWS = 0
 "}}}
 "vim-hardtime{{{
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 "}}}
 """"""""""""""
 "  coc.nvim  "

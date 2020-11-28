@@ -371,3 +371,6 @@ autocmd bufnewfile *.js call HappyJS()
 
 " Call figlet
 noremap tf :r !figlet 
+
+" run shell command in current line
+noremap Q !!$SHELL<CR>
