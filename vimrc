@@ -164,7 +164,6 @@ autocmd FileType vim setlocal foldmethod=marker
 autocmd FileType python setlocal foldmethod=indent
 autocmd FileType javascript setlocal foldmethod=syntax
 set foldmethod=manual
-set foldlevelstart=0
 set foldlevel=20
 
 " 光标形状 cursor shape
