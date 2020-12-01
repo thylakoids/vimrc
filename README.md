@@ -1,3 +1,20 @@
+<!-- vim-markdown-toc GFM -->
+
+* [Vim 安装](#vim-安装)
+    * [其他相关环境的安装](#其他相关环境的安装)
+* [Vim 配置](#vim-配置)
+* [Vim 学习](#vim-学习)
+    * [VimL](#viml)
+    * [快捷键和一些常用命令](#快捷键和一些常用命令)
+    * [不为人知的小技巧](#不为人知的小技巧)
+* [Vim 优化](#vim-优化)
+    * [Improving Startup Time](#improving-startup-time)
+    * [Improving Syntax Rendering](#improving-syntax-rendering)
+* [Vim and Tmux](#vim-and-tmux)
+* [Ultisnips](#ultisnips)
+
+<!-- vim-markdown-toc -->
+
 Vim 安装
 ------
 
@@ -36,8 +53,7 @@ Plug '~/my-prototype-plugin'
 call plug#end()
 ```
 
-[其他相关环境的安装](./quickSSH/README.md)
-----------------------
+### [其他相关环境的安装](./Quickssh/README.Md)
 
 
 Vim 配置
@@ -90,8 +106,7 @@ Vim 优化
 * 设置`foldmethod=syntax`会导致vim插入模式下卡顿
 
 
-Improving Startup Time
-----------------------
+### Improving Startup Time
 为了优化vim启动，首先可以做的一点是将插件懒加载，即用到哪个插件再加载哪个插件，通过vim-plug插件管理工具可以非常方便的做到，配置方式如下：
 
 ```vim
@@ -135,7 +150,8 @@ bash <(curl -sSL https://raw.githubusercontent.com/hyiltiz/vim-plugins-profile/m
 
 
 
-## Vim and Tmux
+Vim and Tmux
+------------
 
 1. Vim Tmux Navigator
 
@@ -143,4 +159,5 @@ bash <(curl -sSL https://raw.githubusercontent.com/hyiltiz/vim-plugins-profile/m
 
 
 
-## [Ultisnips](Https://Vimzijun.Net/2016/10/30/Ultisnip/)
+[Ultisnips](Https://Vimzijun.Net/2016/10/30/Ultisnip/)
+---------------------
