@@ -53,7 +53,7 @@ Plug '~/my-prototype-plugin'
 call plug#end()
 ```
 
-### [其他相关环境的安装](./Quickssh/README.md)
+### [其他相关环境的安装](./quickSSH/README.md)
 
 
 Vim 配置
