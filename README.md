@@ -41,6 +41,7 @@ call plug#end()
 
 
 ## Vim 学习
+[viml](./viml.md)
 
 ### 快捷键和一些常用命令
 
@@ -66,6 +67,10 @@ call plug#end()
     - `qq`: recording, `q` stop. `@q` to repeat.
     - In insert mode, `<ctrl-r> q` to paste the register "q.
 
+1. convert to html
+    ```vim
+    :TOhtml
+    ```
 
 
 
