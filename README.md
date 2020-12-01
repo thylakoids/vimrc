@@ -1,4 +1,5 @@
-## Vim 安装
+Vim 安装
+------
 
 1. 安装vim/neovim（注意版本支持）
 
@@ -35,13 +36,18 @@ Plug '~/my-prototype-plugin'
 call plug#end()
 ```
 
+[其他相关环境的安装](./quickSSH/README.md)
+----------------------
 
 
-## Vim 配置
+Vim 配置
+------
 
 
-## Vim 学习
-[viml](./viml.md)
+Vim 学习
+------
+
+### [VimL](./Viml.Md)
 
 ### 快捷键和一些常用命令
 
@@ -67,14 +73,16 @@ call plug#end()
     - `qq`: recording, `q` stop. `@q` to repeat.
     - In insert mode, `<ctrl-r> q` to paste the register "q.
 
-1. convert to html
+### 不为人知的小技巧
+1. Convert to html
     ```vim
     :TOhtml
     ```
 
 
 
-## Vim 优化
+Vim 优化
+------
 
 * `vim -u NONE` 可以不加载vim配置和插件打开vim
 * `vim --startuptime vim.log` 可以生成vim启动的log
@@ -82,7 +90,8 @@ call plug#end()
 * 设置`foldmethod=syntax`会导致vim插入模式下卡顿
 
 
-### Improving Startup Time
+Improving Startup Time
+----------------------
 为了优化vim启动，首先可以做的一点是将插件懒加载，即用到哪个插件再加载哪个插件，通过vim-plug插件管理工具可以非常方便的做到，配置方式如下：
 
 ```vim
@@ -116,11 +125,13 @@ bash <(curl -sSL https://raw.githubusercontent.com/hyiltiz/vim-plugins-profile/m
 ```
 
 ### Improving Syntax Rendering
+1. Profiling syntax rendering
 
-```sh
-:syntime on
-:syntime report
-```
+    ```sh
+    :syntime on
+    # move around
+    :syntime report
+    ```
 
 
 
