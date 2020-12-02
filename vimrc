@@ -163,7 +163,6 @@ nnoremap <left> <C-W>>
 autocmd FileType vim setlocal foldmethod=marker
 " autocmd FileType python setlocal foldmethod=indent
 " autocmd FileType javascript setlocal foldmethod=syntax
-" set foldlevelstart=0
 " set foldlevel=20
 set foldmethod=manual
 
@@ -190,7 +189,7 @@ function! g:Colorschemeplus()
 
     colorscheme gruvbox8
     set background=dark
-    highlight Normal ctermbg=NONE guibg=NONE
+    " highlight Normal ctermbg=NONE guibg=NONE
     highlight! link SignColumn LineNr
     highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
     highlight GruvboxredSign ctermbg=NONE guibg=NONE
@@ -344,6 +343,7 @@ endfunction
 augroup ReduceNoise
     autocmd!
     " Automatically resize active split to 100 width
+    autocmd BufWinEnter * :call ResizeSplits()
     autocmd WinEnter * :call ResizeSplits()
     autocmd WinLeave * :call ResizeSplitsUnfocus()
 augroup END
@@ -371,3 +371,6 @@ autocmd bufnewfile *.js call HappyJS()
 
 " Call figlet
 noremap tf :r !figlet 
+
+" run shell command in current line
+noremap Q !!$SHELL<CR>

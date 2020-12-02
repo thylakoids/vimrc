@@ -28,7 +28,7 @@ plugin
 plugins
 tmux
 tmux
-vim
+#im
 dicom
 config
 orthanc
@@ -36,3 +36,4 @@ app
 webpack
 Lerna
 npm
+vim

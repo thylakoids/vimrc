@@ -1,4 +1,22 @@
-## Vim 安装
+<!-- vim-markdown-toc GFM -->
+
+* [Vim 安装](#vim-安装)
+    * [其他相关环境的安装](#其他相关环境的安装)
+* [Vim 配置](#vim-配置)
+* [Vim 学习](#vim-学习)
+    * [VimL](#viml)
+    * [快捷键和一些常用命令](#快捷键和一些常用命令)
+    * [不为人知的小技巧](#不为人知的小技巧)
+* [Vim 优化](#vim-优化)
+    * [Improving Startup Time](#improving-startup-time)
+    * [Improving Syntax Rendering](#improving-syntax-rendering)
+* [Vim and Tmux](#vim-and-tmux)
+* [Ultisnips](#ultisnips)
+
+<!-- vim-markdown-toc -->
+
+Vim 安装
+------
 
 1. 安装vim/neovim（注意版本支持）
 
@@ -35,12 +53,17 @@ Plug '~/my-prototype-plugin'
 call plug#end()
 ```
 
+### [其他相关环境的安装](./quickSSH/README.md)
 
 
-## Vim 配置
+Vim 配置
+------
 
 
-## Vim 学习
+Vim 学习
+------
+
+### [VimL](./Viml.Md)
 
 ### 快捷键和一些常用命令
 
@@ -66,10 +89,16 @@ call plug#end()
     - `qq`: recording, `q` stop. `@q` to repeat.
     - In insert mode, `<ctrl-r> q` to paste the register "q.
 
+### 不为人知的小技巧
+1. Convert to html
+    ```vim
+    :TOhtml
+    ```
 
 
 
-## Vim 优化
+Vim 优化
+------
 
 * `vim -u NONE` 可以不加载vim配置和插件打开vim
 * `vim --startuptime vim.log` 可以生成vim启动的log
@@ -111,15 +140,18 @@ bash <(curl -sSL https://raw.githubusercontent.com/hyiltiz/vim-plugins-profile/m
 ```
 
 ### Improving Syntax Rendering
+1. Profiling syntax rendering
 
-```sh
-:syntime on
-:syntime report
-```
+    ```sh
+    :syntime on
+    # move around
+    :syntime report
+    ```
 
 
 
-## Vim and Tmux
+Vim and Tmux
+------------
 
 1. Vim Tmux Navigator
 
@@ -127,4 +159,5 @@ bash <(curl -sSL https://raw.githubusercontent.com/hyiltiz/vim-plugins-profile/m
 
 
 
-## [Ultisnips](Https://Vimzijun.Net/2016/10/30/Ultisnip/)
+[Ultisnips](Https://Vimzijun.Net/2016/10/30/Ultisnip/)
+---------------------
