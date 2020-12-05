@@ -175,9 +175,9 @@ augroup RestoreCursorShapeOnExit
 augroup END
 
 " statusline and tabline:lightweight and sexy status bar in vim
-if filereadable(expand("~/.vim/statusline.vim"))
-    source ~/.vim/statusline.vim
-endif
+" if filereadable(expand("~/.vim/statusline.vim"))
+"     source ~/.vim/statusline.vim
+" endif
 "==========================
 "Themes setting 主题设置
 "==========================
