@@ -11,6 +11,7 @@ configs
 myconfig.sh
 init.vim
 .netrwhist
+vim-snippets/
 
 # osx
 .DS_Store
