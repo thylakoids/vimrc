@@ -75,7 +75,10 @@ endsnippet
 snippet st "Status" b
 status $1`!p snip.rv=complete(t[1], ['start', 'stop', 'restart'])`
 endsnippet
-################
+
+snippet gt "Conventional commits" Ab
+$1`!p snip.rv=complete(t[1], ['feat', 'fix', 'docs', 'style', 'refactor', 'pref', 'test', 'chore', 'BREAKING CHANGE'])`(${2:scope}): $3
+endsnippet
 #  python exp  #
 ################
 snippet python "python block" Ab

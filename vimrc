@@ -291,6 +291,9 @@ vnoremap <space><space> y/<c-r>"<cr>''
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 " nnoremap <Leader>jf :%!python -m json.tool<cr>
 
+" jump out of parentheses
+inoremap <F12> <C-o>A
+
 " ========================================
 " FileType Settings  文件类型设置
 "==========================================
