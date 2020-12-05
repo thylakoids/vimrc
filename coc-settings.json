@@ -85,5 +85,6 @@
             }
         }
     },
-    "explorer.icon.enableNerdfont":true
+    "explorer.icon.enableNerdfont":true,
+    "explorer.openAction.strategy":"vsplit:intelligent"
 }
