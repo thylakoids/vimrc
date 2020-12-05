@@ -37,6 +37,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 ":Gbrowse from fugitive.vim to open GitHub URLs.
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sleuth'
 Plug 'kristijanhusak/vim-carbon-now-sh', {'on':'CarbonNowSh'}
 
 " markdown
@@ -389,6 +390,9 @@ let g:Schlepp#trimWS = 0
 "vim-hardtime{{{
 let g:hardtime_default_on = 0
 "}}}
+"vim-sleuth{{{
+" remove all indenting related configuration from your vimrc
+"""}}}
 """"""""""""""
 "  coc.nvim  "
 """"""""""""""
