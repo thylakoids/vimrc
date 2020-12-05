@@ -59,6 +59,7 @@ Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
 " Plug 'luochen1990/rainbow'
 " search
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'mileszs/ack.vim'
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
 " multiple cursors
@@ -352,6 +353,9 @@ noremap <space>m :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 " noremap <space>f :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
 " let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
 "}}}
+"Ack{{{
+noremap <F4> :Ack -i 
+"}}}
 "lyokha/vim-xkbswitch{{{
 let g:XkbSwitchEnabled = 1
 "}}}
@@ -372,7 +376,8 @@ let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F8>'
 "}}}
 "vim-jsx-pretty{{{
-let g:vim_jsx_pretty_colorful_config = 1 " default 0
+let g:vim_jsx_pretty_colorful_config = 1
+let g:vim_jsx_pretty_highlight_close_tag = 1
 "}}}
 "vim-schlepp{{{
 vmap K <Plug>SchleppUp
