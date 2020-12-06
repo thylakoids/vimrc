@@ -154,7 +154,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 function! s:check_forward_space() abort
   "Check if next character is close tag
   let col = col('.') - 1
-  return !col || getline('.')[col]  =~# '\(''\|"\|)\|}\|>\|`\)'
+  return !col || getline('.')[col]  =~# '\(''\|"\|)\|}\|]\|>\|`\)'
 endfunction
 
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json',
