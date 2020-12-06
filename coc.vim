@@ -30,6 +30,7 @@ endif
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_forward_space() ? "<esc>ea" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -150,6 +151,12 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 """"""""""""
 "  custom  "
 """"""""""""
+function! s:check_forward_space() abort
+  "Check if next character is close tag
+  let col = col('.') - 1
+  return !col || getline('.')[col]  =~# '\(''\|"\|)\|}\|>\|`\)'
+endfunction
+
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json',
             \ 'coc-python',
             \ 'coc-html',

@@ -10,7 +10,6 @@
     ],
     // 很卡
     "highlight.document.enable": false,
-    "coc.preferences.formatOnType": false,
     "suggest.autoTrigger":"trigger",
     "suggest.echodocSupport": true,
     "suggest.maxCompleteItemCount": 20,
