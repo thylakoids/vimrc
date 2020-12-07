@@ -10,6 +10,7 @@
     ],
     // 很卡
     "highlight.document.enable": true,
+    "suggest.enablePreselect": true,
     "suggest.noselect":false,
     "suggest.autoTrigger":"trigger",
     "suggest.echodocSupport": true,
