@@ -87,12 +87,12 @@ set list
 
 "what bug?(https://lotabout.me/2018/true-color-for-tmux-and-vim/)
 if has("termguicolors")
-    " fix bug for vim
-    set t_8f=[38;2;%lu;%lu;%lum
-    set t_8b=[48;2;%lu;%lu;%lum
+  " fix bug for vim
+  set t_8f=[38;2;%lu;%lu;%lum
+  set t_8b=[48;2;%lu;%lu;%lum
 
-    " enable true color
-    set termguicolors
+  " enable true color
+  set termguicolors
 endif
 
 syntax on               " 开启语法高亮
@@ -133,7 +133,7 @@ set lazyredraw          " Don’t update screen during macro and script executio
 set hlsearch            " 高亮search命中的文本
 set incsearch           " 打开增量搜索模式,随着键入即时搜索
 if has('nvim')
-    set inccommand=nosplit
+  set inccommand=nosplit
 endif
 set ignorecase          " 搜索时忽略大小写
 set smartcase           " 有一个或以上大写字母时仍大小写敏感
@@ -167,11 +167,11 @@ set foldmethod=manual
 
 " 光标形状 cursor shape
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-        \,sm:block-blinkwait175-blinkoff150-blinkon175
+      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+      \,sm:block-blinkwait175-blinkoff150-blinkon175
 augroup RestoreCursorShapeOnExit
-    autocmd!
-    autocmd VimLeave * set guicursor=a:ver25-blinkon0
+  autocmd!
+  autocmd VimLeave * set guicursor=a:ver25-blinkon0
 augroup END
 
 " statusline and tabline:lightweight and sexy status bar in vim
@@ -182,27 +182,27 @@ augroup END
 "Themes setting 主题设置
 "==========================
 function! g:Colorschemeplus()
-    " colorscheme solarized8
-    " highlight clear LineNr
-    " highlight clear SignColumn
+  " colorscheme solarized8
+  " highlight clear LineNr
+  " highlight clear SignColumn
 
-    colorscheme gruvbox8
-    set background=dark
-    " highlight Normal ctermbg=NONE guibg=NONE
-    highlight! link SignColumn LineNr
-    highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
-    highlight GruvboxredSign ctermbg=NONE guibg=NONE
-    highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
-    highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
-    highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
-    highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
+  colorscheme gruvbox8
+  set background=dark
+  " highlight Normal ctermbg=NONE guibg=NONE
+  highlight! link SignColumn LineNr
+  highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
+  highlight GruvboxredSign ctermbg=NONE guibg=NONE
+  highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
+  highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
+  highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
+  highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
 endfunction
 call g:Colorschemeplus() 
 
 " press f10 to show hlgroup
 function! SynGroup()
-    let l:s = synID(line('.'), col('.'), 1)
-    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+  let l:s = synID(line('.'), col('.'), 1)
+  echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 map <F10> :call SynGroup()<CR>
 "==========================
@@ -233,31 +233,31 @@ vnoremap L >gv
 vnoremap H <gv
 "Put breakpoint before current line
 aug addbreakpoint
-    autocmd!
-    autocmd FileType python noremap <silent> <buffer> <leader>b :<c-u>normal! Oimport ipdb; ipdb.set_trace()<cr>
-    autocmd FileType javascript noremap <silent> <buffer> <leader>b :<c-u>normal! Odebugger<cr>
+  autocmd!
+  autocmd FileType python noremap <silent> <buffer> <leader>b :<c-u>normal! Oimport ipdb; ipdb.set_trace()<cr>
+  autocmd FileType javascript noremap <silent> <buffer> <leader>b :<c-u>normal! Odebugger<cr>
 aug END
 "markdown heading u1, u2, u3
 aug mdheading
-    autocmd!
-    autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! mmyypVr=`m<CR>
-    autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! mmyypVr-`m<CR>
-    autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l<CR>
+  autocmd!
+  autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! mmyypVr=`m<CR>
+  autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! mmyypVr-`m<CR>
+  autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l<CR>
 aug END
 "GoogleSearch{{{
 "todo: ""
 function! GoogleSearch()
-     let searchterm = getreg("g")
-     if g:os == 'Darwin'
-        silent! exec "!open \"http://google.com/search?q=" . searchterm . "\" &"
-     elseif g:os == 'Linux'
-        silent! exec "!xdg-open \"http://google.com/search?q=" . searchterm . "\" &"
-     endif
+   let searchterm = getreg("g")
+   if g:os == 'Darwin'
+      silent! exec "!open \"http://google.com/search?q=" . searchterm . "\" &"
+   elseif g:os == 'Linux'
+      silent! exec "!xdg-open \"http://google.com/search?q=" . searchterm . "\" &"
+   endif
 endfunction
 if g:os == 'Darwin'
-    nnoremap <leader>g :!open "https://google.com/search?q=
+  nnoremap <leader>g :!open "https://google.com/search?q=
 elseif g:os == 'Linux'
-    nnoremap <leader>g :!xdg-open "https://google.com/search?q=
+  nnoremap <leader>g :!xdg-open "https://google.com/search?q=
 endif
 vnoremap <leader>g "gy<Esc>:call GoogleSearch()<CR>
 "}}}
@@ -284,8 +284,13 @@ nnoremap <leader>es :UltiSnipsEdit<cr>
 "为字典添加引号, 比如从浏览器复制的数据转换为字典
 vnoremap <leader>aq :s/\t/": "/g<cr>:'<,'>s/\n/",\r"/g<cr>x'<i"<esc>:noh<cr>
 "查找visual高亮
-nnoremap <space><space> yiw/\<<c-r>"\><cr>''
-vnoremap <space><space> y/<c-r>"<cr>''
+nnoremap <space><space> :keepjumps normal! mi*`i<CR>
+vnoremap <space><space> miy/<c-r>"<cr>`i
+nnoremap <leader><space> :noh<CR>
+" ctrl+s to save file
+noremap <s-space>          :update<CR>
+vnoremap <s-space>         <C-C>:update<CR>gv
+inoremap <s-space>         <C-O>:update<CR>
 
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 " nnoremap <Leader>jf :%!python -m json.tool<cr>
