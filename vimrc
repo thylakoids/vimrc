@@ -36,7 +36,7 @@ set encoding=utf-8
 
 fun! Setspellnospell()
     " Don't set spell on these filetypes
-    let blacklist = ['markdown', 'txt', 'plaintex', 'latex']
+    let blacklist = ['markdown', 'txt', 'plaintex', 'latex', 'gitcommit']
     if index(blacklist, &ft) < 0
         set nospell
         return
@@ -242,7 +242,7 @@ aug mdheading
   autocmd!
   autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! mmyypVr=`m<CR>
   autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! mmyypVr-`m<CR>
-  autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l<CR>
+  autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l
 aug END
 "GoogleSearch{{{
 "todo: ""
