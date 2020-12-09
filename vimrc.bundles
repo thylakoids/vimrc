@@ -45,6 +45,7 @@ Plug 'godlygeek/tabular', { 'on' : 'Tabularize' }
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'vimwiki/vimwiki'
 
 " 自动补全
 "-------------------
@@ -154,6 +155,10 @@ nnoremap <silent> gs :GitGutterStageHunk<CR>
 " markdown-preview{{{
 let g:mkdp_auto_close = 0
 " }}}
+" vimwiki{{{
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" }}}
 """""""""""""""""
 "  Programming  "
 """""""""""""""""
@@ -253,6 +258,8 @@ function! s:compile_and_run()
     elseif &filetype =='tex'
         exec "VimtexCompile"
     elseif &filetype == 'markdown'
+        exec "MarkdownPreview"
+    elseif &filetype == 'vimwiki'
         exec "MarkdownPreview"
     else
         if g:os=='Linux'
@@ -355,7 +362,12 @@ noremap <space>m :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 " let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
 "}}}
 "Ack{{{
-noremap <F4> :Ack -i 
+noremap <F4> :Ag 
+function! Find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+command! -nargs=1 Ag execute "Ack! <args> " . Find_git_root()
 "}}}
 "lyokha/vim-xkbswitch{{{
 let g:XkbSwitchEnabled = 1
