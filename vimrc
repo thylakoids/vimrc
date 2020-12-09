@@ -288,12 +288,13 @@ nnoremap <space><space> :keepjumps normal! mi*`i<CR>
 vnoremap <space><space> miy/<c-r>"<cr>`i
 nnoremap <leader><space> :noh<CR>
 " ctrl+s to save file
-noremap <s-space>          :update<CR>
-vnoremap <s-space>         <C-C>:update<CR>gv
-inoremap <s-space>         <C-O>:update<CR>
+nnoremap F :update<CR>
 
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 " nnoremap <Leader>jf :%!python -m json.tool<cr>
+
+noremap [b <C-^>
+
 
 " ========================================
 " FileType Settings  文件类型设置
