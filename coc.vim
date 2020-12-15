@@ -39,7 +39,10 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <s-space>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<space>" :
+      \ coc#refresh()
 " if has('nvim')
 "   inoremap <silent><expr> <c-space> coc#refresh()
 " else

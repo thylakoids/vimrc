@@ -156,7 +156,7 @@ nnoremap <silent> gs :GitGutterStageHunk<CR>
 let g:mkdp_auto_close = 0
 " }}}
 " vimwiki{{{
-let g:vimwiki_list = [{'path': '~/vimwiki/',
+let g:vimwiki_list = [{'path': '~/.vim/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 " }}}
 """""""""""""""""

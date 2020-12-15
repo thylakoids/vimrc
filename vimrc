@@ -229,8 +229,8 @@ noremap j gj
 map <leader>n <esc>:tabprevious<CR>
 map <leader>m <esc>:tabnext<CR>
 "Easier moving code blocks
-vnoremap L >gv
-vnoremap H <gv
+vnoremap > >gv
+vnoremap < <gv
 "Put breakpoint before current line
 aug addbreakpoint
   autocmd!
@@ -293,17 +293,9 @@ nnoremap F :update<CR>
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 " nnoremap <Leader>jf :%!python -m json.tool<cr>
 
-noremap [b <C-^>
+noremap [<space> <C-^>
 
 
-" ========================================
-" FileType Settings  文件类型设置
-"==========================================
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
-autocmd FileType ruby,html,css,xml,javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
-" autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
-" autocmd BufRead,BufNewFile *.part set filetype=html
-" autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 
 " =====================
 " 设置可以高亮的关键字
@@ -320,6 +312,14 @@ aug END
 "==========================
 "Autocmd 智能的自动命令
 "==========================
+" autosave file when lose focus
+autocmd BufLeave,FocusLost * call  WriteFile()
+function WriteFile()
+      let blacklist = [ '', 'terminal', 'nerdtree', 'qf', 'help', 'floaterm', 'leaderf', 'coc-explorer']
+      if index(blacklist, &ft) < 0 && (expand("%:r") > "") && (&readonly==0)
+         update
+      endif
+endfunction
 
 " close vim, if quickfix is the last window
 aug QFClose
@@ -379,3 +379,14 @@ noremap tf :r !figlet
 
 " run shell command in current line
 noremap Q !!$SHELL<CR>
+
+" ========================================
+" FileType Settings  文件类型设置
+"==========================================
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType ruby,html,css,xml,javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
+autocmd BufRead,BufNewFile .gitignore set filetype=config
+" autocmd BufRead,BufNewFile * autocmd FileType vimwiki set filetype=markdown.mkd
+" autocmd BufRead,BufNewFile *.part set filetype=html
+" autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
