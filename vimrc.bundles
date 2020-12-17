@@ -52,6 +52,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
+" Plug 'jiangmiao/auto-pairs'
 
 " 语法高亮
 Plug 'dense-analysis/ale'

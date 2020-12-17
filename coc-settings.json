@@ -3,6 +3,7 @@
   "list.source.files.excludePatterns": ["**/.git/**", "/tmp", ".DS_Store"],
   // 很卡
   "highlight.document.enable": true,
+  "coc.preferences.formatOnType": true,
   "suggest.enablePreselect": true,
   "suggest.noselect": false,
   "suggest.autoTrigger": "trigger",

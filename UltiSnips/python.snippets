@@ -42,7 +42,7 @@ $0
 endsnippet
 
 context "noexitdocstring(snip)"
-snippet "(^\s*)def (\w*?)\((.*?)\)\s*(->\s*(\w*?))?\s*:" "doc string" br
+snippet "(^\s*)def (\w*?)\((.*?)\)\s*(->\s*(.*?))?\s*:" "doc string" br
 `!p
 define = match.group(0)
 indent =  "\n" + match.group(1) + "    "
