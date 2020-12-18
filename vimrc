@@ -35,8 +35,8 @@ autocmd! bufwritepost $HOME/.vim/vimrc.bundles source $MYVIMRC " Automatic reloa
 set encoding=utf-8
 
 fun! Setspellnospell()
-    " Don't set spell on these filetypes
-    let blacklist = ['markdown', 'txt', 'plaintex', 'latex', 'gitcommit']
+    " set spell on these filetypes
+    let blacklist = ['markdown', 'txt', 'plaintex', 'latex', 'gitcommit', 'vimwiki']
     if index(blacklist, &ft) < 0
         set nospell
         return
