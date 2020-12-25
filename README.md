@@ -89,6 +89,17 @@ Vim 学习
     - `qq`: recording, `q` stop. `@q` to repeat.
     - In insert mode, `<ctrl-r> q` to paste the register "q.
 
+1. Format lines
+
+    `gq{motion}`, `gw{motion}`
+
+1. `:g` `:global` `:v` `:g!`
+    - `:g/pattern/d`: delete lines that match the pattern globally.
+    - `:1,10g/pattern/d`: delete lines range from 1 to 10 which match the pattern.
+    - `:v/pattern/d`: delete lines dose NOT match the pattern globally.
+
+
+
 ### 不为人知的小技巧
 1. Convert to html
     ```vim
