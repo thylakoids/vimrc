@@ -1,8 +1,25 @@
 extends pythonColorPrint
 extends pythonScripts
 global !p
-from vimsnippets import noexitdocstring
+from vimsnippets import noexitdocstring, complete
 endglobal
+
+snippet #! "shebang" Ab
+#! /usr/bin/env python3
+endsnippet
+
+snippet fileheader "header comment for python file" Ab
+'''
+@author: liyulong@zyheal.com
+Created on `!v strftime("%Y-%m-%d %H:%M")`
+
+Describe the file:
+
+Usage and examples:
+'''
+$0
+endsnippet
+
 
 snippet if__name "if __name__=='__main__':" b
 if __name__ == '__main__':
@@ -26,6 +43,7 @@ $0
 endsnippet
 
 snippet logging.basicConfig "logging.basicConfig" b
+import logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(filename)s[line:%(lineno)d](%(funcName)s) -%(name)s: %(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 $0
@@ -68,4 +86,8 @@ snippet "new Enum" "define enum" Ab
 from enum import Enum
 # 创建一个枚举类
 ${1:Color} = Enum('${2:Color}', ($3{'red', 'green', 'blue'}))
+endsnippet
+
+snippet except "choose an appropriate Exception" b
+except $1`!p snip.rv=complete(t[1], ['Exception', 'AssertionError', 'FileNotFoundError', 'AttributeError', 'NameError', 'IndexError', 'ValueError', 'TypeError', 'KeyboardInterrupt'])`:
 endsnippet
