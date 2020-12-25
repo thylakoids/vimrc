@@ -62,6 +62,7 @@ endsnippet
 snippet datetime "YYYY-MM-DD hh:mm" w
 `!v strftime("%Y-%m-%d %H:%M")`
 endsnippet
+
 #################
 #  parentheses  #
 #################
@@ -76,9 +77,14 @@ snippet st "Status" b
 status $1`!p snip.rv=complete(t[1], ['start', 'stop', 'restart'])`
 endsnippet
 
+snippet color "color names" w
+$1`!p snip.rv=complete(t[1], ['blue', 'orange', 'green', 'red', 'purple', 'brown', 'pink', 'olive', 'cyan', 'magenta'])`
+endsnippet
+
 snippet gt "Conventional commits" Ab
 $1`!p snip.rv=complete(t[1], ['feat', 'fix', 'docs', 'style', 'refactor', 'pref', 'test', 'chore', 'BREAKING CHANGE'])`(${2:scope}): $3
 endsnippet
+
 #  python exp  #
 ################
 snippet python "python block" Ab
@@ -89,10 +95,10 @@ priority 100
 snippet 'python\[\s*(.*?)\s*=.*?\]python' "evaluate python" Ar
 python[  ${1:`!p snip.rv=match.group(1)`} = `!p snip.rv = runexpression(t[1])`  ]python
 endsnippet
+
 ##################
 #  Greek letter  #
 ##################
-
 snippet phi "Greek letter:phi" Aw
 φ
 endsnippet
