@@ -160,6 +160,7 @@ let g:mkdp_auto_close = 0
 let g:vimwiki_list = [{'path': '~/.vim/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_key_mappings = { 'table_mappings': 0 }
+let g:vimwiki_markdown_link_ext = 1
 " }}}
 """""""""""""""""
 "  Programming  "
