@@ -243,7 +243,7 @@ aug markdown
   autocmd!
   autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! miyypVr=`i<CR>
   autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! miyypVr-`i<CR>
-  autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>:normal! miI### <esc>`i4l
+  autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! miI### <esc>`i4l
   autocmd FileType markdown vnoremap <buffer> <leader>b "is****<esc>2h"ip
   autocmd FileType markdown nnoremap <buffer> <leader>b viw"is****<esc>2h"ip
 aug END
