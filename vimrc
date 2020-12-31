@@ -79,6 +79,7 @@ set backspace=eol,start,indent                  " Configure backspace so it acts
 set conceallevel=0                              " 隐藏markdown 中的[]** 等, debug:notworking
 set listchars=eol:¬,tab:▸·,trail:.,extends:>,precedes:<           "效果		   	end
 set list
+set shortmess-=S                                " show search count message when searching, e.g."[1/5]"
 
 "==========================
 "Display settings 界面设置
@@ -238,11 +239,13 @@ aug addbreakpoint
   autocmd FileType javascript noremap <silent> <buffer> <leader>b :<c-u>normal! Odebugger<cr>
 aug END
 "markdown heading u1, u2, u3
-aug mdheading
+aug markdown
   autocmd!
-  autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! mmyypVr=`m<CR>
-  autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! mmyypVr-`m<CR>
-  autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>TitlecaseLine:normal! mmI### <esc>`m4l
+  autocmd FileType markdown nmap <buffer> <leader>u1 <Plug>TitlecaseLine:normal! miyypVr=`i<CR>
+  autocmd FileType markdown nmap <buffer> <leader>u2 <Plug>TitlecaseLine:normal! miyypVr-`i<CR>
+  autocmd FileType markdown nmap <buffer> <leader>u3 <Plug>:normal! miI### <esc>`i4l
+  autocmd FileType markdown vnoremap <buffer> <leader>b "is****<esc>2h"ip
+  autocmd FileType markdown nnoremap <buffer> <leader>b viw"is****<esc>2h"ip
 aug END
 "GoogleSearch{{{
 "todo: ""
@@ -287,14 +290,14 @@ vnoremap <leader>aq :s/\t/": "/g<cr>:'<,'>s/\n/",\r"/g<cr>x'<i"<esc>:noh<cr>
 nnoremap <space><space> :keepjumps normal! mi*`i<CR>
 vnoremap <space><space> miy/<c-r>"<cr>`i
 nnoremap <leader><space> :noh<CR>
-" ctrl+s to save file
 nnoremap F :update<CR>
 
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 " nnoremap <Leader>jf :%!python -m json.tool<cr>
-
+" generate json schema using genson
+autocmd FileType json nnoremap <Leader>jg :%!genson <cr> :update<cr>
+" switch between buffers
 noremap [<space> <C-^>
-
 
 
 " =====================
