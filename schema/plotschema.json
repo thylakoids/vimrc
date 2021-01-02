@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "minItems": 1,
+  "uniqueItems": true,
+  "additionalItems": false,
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "plotfun": {
+        "description": "function used to plot this figure",
+        "oneOf": [
+          { "const": "pie", "description": "draw pie" },
+          { "const": "range_graph", "description": "draw range_graph" }
+        ],
+        "type": "string"
+      },
+      "datakey": {
+        "description": "Key used to get plot data from parameters.json",
+        "default": "couinaudMorphorlogyAnalysis.liverVolume",
+        "type": "string"
+      },
+      "labelkey": {
+        "description": "Key used to get label from labels.json",
+        "default": "liver.couinaud",
+        "type": "string"
+      },
+      "colormapkey": {
+        "description": "Key used to get colormap from colormaps.json",
+        "default": "couinaudLabel",
+        "type": "string"
+      },
+      "filenames": {
+        "description": "Filename to save the output figure, should have the same length as `opts`",
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "pattern": "^[\\w]+-[\\w]+-[\\w\\*]+(-[\\w]+)?\\.svg",
+          "type": "string"
+        }
+      },
+      "opts": {
+        "description": "options to control the details of the figure. E.g. figsize, fontsize. Each item is corresponding to a figure or group of figure specified in filenames or keys",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "scale": {
+              "type": "number",
+              "description": "value showed in figure = value in parameters.json * scale"
+            },
+            "title": { "type": "string", "description": "figure title" },
+            "labeldistances": {
+              "type": "array",
+              "description": "distance between wadge label and pie center",
+              "items": { "type": "number", "exclusiveMinimum": 0 }
+            },
+            "figsizemm": {
+              "type": "array",
+              "description": "Specify (width, height) for figure in millimeter",
+              "default": [52.5, 52.5],
+              "items": { "type": "number" }
+            },
+            "figsizepx": {
+              "type": "array",
+              "description": "Specify (width, height) for figure in pixel. If figsizemm is given this value will be overwritten. Default figsize=(198px, 198px)",
+              "default": [198, 198],
+              "items": { "type": "integer" }
+            },
+            "fontsize": {
+              "type": "integer",
+              "description": "Font size used in the plotted figure. Default fontsize=8",
+              "default": 8
+            },
+            "bgcolor": {
+              "type": "string",
+              "description": "Background color for the figure"
+            },
+            "outsidelabels": {
+              "type": "array",
+              "description": "Index of wadges whose label will be put outside the pie(labeldistance=1.1)",
+              "items": { "type": "integer" }
+            },
+            "xlim": {
+              "type": "array",
+              "description": "xaxis range. (xmin, xmax)",
+              "items": { "type": "number" }
+            },
+            "xticks": {
+              "type": "array",
+              "description": "xaxis tick location",
+              "items": { "type": "integer" }
+            }
+          },
+          "required": ["fontsize", "title"]
+        }
+      },
+      "normalrange": {
+        "description": "Range for normal value",
+        "default": [0, 5],
+        "minItems": 2,
+        "maxItems": 2,
+        "type": "array",
+        "items": { "type": "number" }
+      },
+      "meankey": {
+        "description": "Key used to get the mean value in `parameters.json`",
+        "default": "dADCAnalysis.meanADC",
+        "type": "string"
+      },
+      "cikey": {
+        "description": "Key used to get the confidence interval in `parameters.json`",
+        "default": "dADCAnalysis.ADCConfidence",
+        "type": "string"
+      },
+      "keys": {
+        "description": "specify the items(key) to plot in the given dataset, each item will be plotted to a single figure. `*` will be translated to `.*?` for regular expression.",
+        "default": ["global", "couinaud*"],
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "required": ["filenames", "opts", "plotfun"]
+  }
+}

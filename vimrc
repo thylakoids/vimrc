@@ -266,12 +266,14 @@ vnoremap <leader>g "gy<Esc>:call GoogleSearch()<CR>
 "}}}
 "Quick quoting
 " todo: how to make this to an operator
-nnoremap <leader>' viw<esc>`>a'<esc>bi'<esc>lel
-nnoremap <leader>" viw<esc>`>a"<esc>bi"<esc>lel
-nnoremap <leader>` viw<esc>`>a`<esc>bi`<esc>lel
-vnoremap <leader>' <esc>`>a'<esc>bi'<esc>lel
-vnoremap <leader>" <esc>`>a"<esc>bi"<esc>lel
-vnoremap <leader>` <esc>`>a`<esc>bi`<esc>lel
+nnoremap <leader>' viw"is''<esc>h"ip
+nnoremap <leader>" viw"is""<esc>h"ip
+nnoremap <leader>` viw"is``<esc>h"ip
+vnoremap <leader>' "is''<esc>h"ip
+vnoremap <leader>" "is""<esc>h"ip
+vnoremap <leader>` "is``<esc>h"ip
+" fix last spelling error
+nnoremap <leader>fs mi[s1z=`i
 " todo: how to do this:
 " :autocmd BufNewFile * :write
 "          ^          ^ ^
@@ -294,7 +296,7 @@ nnoremap F :update<CR>
 
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 " nnoremap <Leader>jf :%!python -m json.tool<cr>
-" generate json schema using genson
+" generate json schema using genson, :%!genson -s {schema.json}<cr> :update<cr>
 autocmd FileType json nnoremap <Leader>jg :%!genson <cr> :update<cr>
 " switch between buffers
 noremap [<space> <C-^>

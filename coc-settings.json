@@ -59,24 +59,12 @@
     "typescript.tsx",
     "python"
   ],
-  "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        }
-      }
-    }
-  },
   "explorer.icon.enableNerdfont": true,
-  "explorer.openAction.strategy": "vsplit:intelligent"
+  "explorer.openAction.strategy": "select",
+  "json.schemas": [
+    {
+      "fileMatch": ["plot.json"],
+      "url": "file:Users/liyulong/.vim/schema/plotschema.json"
+    }
+  ]
 }

@@ -49,7 +49,7 @@ Plug 'vimwiki/vimwiki'
 
 " 自动补全
 "-------------------
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do':'pip3 install genson && brew install figlet && brew install fzf'}
 " Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
@@ -62,7 +62,7 @@ Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
 " Plug 'luochen1990/rainbow'
 " search
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-Plug 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim', {'do': 'brew install ack'}
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
 " multiple cursors
@@ -158,7 +158,8 @@ let g:mkdp_auto_close = 0
 " }}}
 " vimwiki{{{
 let g:vimwiki_list = [{'path': '~/.vim/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+                      \ 'syntax': 'markdown', 'ext': '.md', 
+                      \ 'links_space_char': '-'}]
 let g:vimwiki_key_mappings = { 'table_mappings': 0 }
 let g:vimwiki_markdown_link_ext = 1
 " }}}
