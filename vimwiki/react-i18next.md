@@ -1,4 +1,4 @@
-Using Hocs
+Using Hooks
 ----------
 In most cases we used [High Order Components](High Order Components) to share the t function among OHIF's components.
 

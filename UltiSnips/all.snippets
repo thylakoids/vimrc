@@ -102,3 +102,27 @@ endsnippet
 snippet phi "Greek letter:phi" Aw
 φ
 endsnippet
+
+##########
+#  ccls  #
+##########
+snippet ccls "template for .ccls" b
+$0-I
+../include
+-I
+../vendor/include
+-std=c++14
+-stdlib=libc++
+-fPIC
+
+-isystem
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1
+-isystem
+/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include
+-isystem
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+-isystem
+/Library/Developer/CommandLineTools/usr/include
+-isystem
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+endsnippet

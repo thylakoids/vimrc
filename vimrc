@@ -100,17 +100,6 @@ syntax on               " 开启语法高亮
 set number              " 显示行号
 " set ruler               " 显示当前行号列号
 
-" function! g:ColorcolumnPlus() abort
-"     if winwidth(winnr()) > 100
-"         set colorcolumn=80
-"     else
-"         set colorcolumn=
-"     endif
-" endfunction
-" autocmd WinEnter,BufWinEnter,VimResized * call ColorcolumnPlus()
-" autocmd WinLeave * set colorcolumn=
-" call g:ColorcolumnPlus()
-" match Colorcolumn /\%81v/
 call matchadd('Colorcolumn', '\%80v', 100)
 
 set relativenumber
@@ -211,21 +200,14 @@ map <F10> :call SynGroup()<CR>
 "==========================
 "Quick <esc>
 inoremap jk <esc>
-
+"Quick saving
+nnoremap F :update<CR>
+" switch between buffers
+noremap [<space> <C-^>
 nnoremap J <nul>
 
 noremap k gk
 noremap j gj
-"Keep search pattern at the center of the screen."
-" nnoremap <silent> n nzz
-" nnoremap <silent> N Nzz
-" nnoremap <silent> * *zz
-" nnoremap <silent> # #zz
-" nnoremap <silent> g* g*zz
-"Quick saving
-" noremap <leader>s :update<CR>
-" vnoremap <leader>s <C-O>:update<CR>
-" inoremap <leader>s <C-O>:update<CR><Esc>
 "Easier moving between tabs
 map <leader>n <esc>:tabprevious<CR>
 map <leader>m <esc>:tabnext<CR>
@@ -292,14 +274,13 @@ vnoremap <leader>aq :s/\t/": "/g<cr>:'<,'>s/\n/",\r"/g<cr>x'<i"<esc>:noh<cr>
 nnoremap <space><space> :keepjumps normal! mi*`i<CR>
 vnoremap <space><space> miy/<c-r>"<cr>`i
 nnoremap <leader><space> :noh<CR>
-nnoremap F :update<CR>
 
+"json{{{
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
 " nnoremap <Leader>jf :%!python -m json.tool<cr>
 " generate json schema using genson, :%!genson -s {schema.json}<cr> :update<cr>
 autocmd FileType json nnoremap <Leader>jg :%!genson <cr> :update<cr>
-" switch between buffers
-noremap [<space> <C-^>
+"}}}
 
 
 " =====================
@@ -388,7 +369,7 @@ autocmd bufnewfile *.js call HappyJS()
 noremap tf :r !figlet 
 
 " run shell command in current line
-noremap Q !!$SHELL<CR>
+noremap <leader>Q !!$SHELL<CR>
 
 " ========================================
 " FileType Settings  文件类型设置

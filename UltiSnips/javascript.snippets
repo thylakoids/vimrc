@@ -12,7 +12,7 @@ var code = function () {
     var filename;
     const argv = process.argv;
     if (argv.indexOf("-h") !== -1) {
-        console.log();
+        console.log("Usage:...");
         process.exit(1);
     }
 
@@ -78,4 +78,17 @@ endsnippet
 ##############
 snippet af "arrow function" w
 ($1) => {$2}
+endsnippet
+
+#############
+#  comment  #
+#############
+snippet /** "comment" Ab
+/**
+ * method description
+ *
+ * @method name
+ * @param {type} paramName paramDescription
+ * @return {type} description
+ */
 endsnippet

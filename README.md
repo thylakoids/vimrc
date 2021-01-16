@@ -63,7 +63,9 @@ Vim 配置
 Vim 学习
 ------
 
-### [VimL](./Viml.Md)
+### VimL
+* [Learn Vimscript the Hard Way](./vimLwiki/vimL.md)
+* [VimL 语言编程指北路](./vimLwiki/vimL-advance.md)
 
 ### 快捷键和一些常用命令
 

@@ -1,4 +1,4 @@
-Learn Vimscript The Hard Way
+[Learn Vimscript The Hard Way](https://learnvimscriptthehardway.stevelosh.com/chapters/12.html)
 ============================
 
 <!-- vim-markdown-toc GFM -->
