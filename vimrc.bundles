@@ -233,6 +233,7 @@ nmap ]e <plug>(ale_next_wrap)
 " let g:ale_sign_priority=11
 let g:gitgutter_preview_win_floating=1
 let g:ale_linters = {
+\   'cpp': [],
 \   'javascript': [],
 \   'python': ['flake8'],
 \}
