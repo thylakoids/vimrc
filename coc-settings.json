@@ -82,6 +82,7 @@
   "python.linting.pylintEnabled": true,
   "python.jediEnabled": true,
   "coc.preferences.formatOnSaveFiletypes": [
+    "cpp",
     "javascript",
     "typescript",
     "typescriptreact",

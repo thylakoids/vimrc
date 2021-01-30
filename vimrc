@@ -100,17 +100,15 @@ syntax on               " 开启语法高亮
 set number              " 显示行号
 " set ruler               " 显示当前行号列号
 
-call matchadd('Colorcolumn', '\%80v', 100)
-
-set relativenumber
 set nowrap              " 取消换行
+set colorcolumn=80
 set showcmd             " 显示现有命令（在右下角）
 set scrolloff=1         " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set sidescrolloff=2
 set laststatus=2        " always show status line
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
 set matchtime=1         " How many tenths of a second to blink when matching brackets
-let g:matchparen_timeout = 20 "Highlighting matching parens, if file is too large, matchparen would make vim slow
+let g:matchparen_timeout = 2 "Highlighting matching parens, if file is too large, matchparen would make vim slow
 let g:matchparen_insert_timeout = 2
 set tw=79
 set fo-=t               " don't automatically wrap text when typing
@@ -339,14 +337,47 @@ endfunction
 augroup ReduceNoise
     autocmd!
     " Automatically resize active split to 100 width
-    autocmd BufWinEnter * :call ResizeSplits()
     autocmd WinEnter * :call ResizeSplits()
     autocmd WinLeave * :call ResizeSplitsUnfocus()
 augroup END
 set wmw=10
 " }}}
 
-autocmd Bufread * if getfsize(expand(@%))> 1024*200 | syntax clear | endif
+""Event logger{{{
+augroup EventLoggin
+  autocmd!
+  autocmd BufNewFile * call s:Log('BufNewFile')
+  autocmd BufReadPre * call s:Log('BufReadPre')
+  autocmd BufRead * call s:Log('BufRead')
+  autocmd BufWritePre * call s:Log('BufWritePre')
+  autocmd BufWrite * call s:Log('BufWrite')
+  autocmd BufWinEnter * call s:Log('BufWinEnter')
+  autocmd WinEnter * call s:Log('WinEnter')
+  autocmd BufEnter * call s:Log('BufEnter')
+  autocmd BufLeave * call s:Log('BufLeave')
+  autocmd WinLeave * call s:Log('WinLeave')
+  autocmd BufWinLeave * call s:Log('BufWinLeave')
+augroup END
+
+function! s:Log(eventName) abort
+  silent execute '!echo '.a:eventName.' >> ~/.vimlog'
+endfunction
+""}}}
+
+" EditLargefile{{{
+function! EditLargefile() abort
+    if getfsize(expand(@%))> 1024*200 
+        syntax clear  
+        exe "NoMatchParen" 
+    else
+        exe "DoMatchParen" 
+    endif
+endfunction
+augroup Largefile
+    autocmd WinEnter  * :call EditLargefile()
+    autocmd BufWinEnter  * :call EditLargefile()
+augroup END 
+" }}}
 
 " resume
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"zz" | endif
