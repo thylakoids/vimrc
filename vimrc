@@ -337,6 +337,7 @@ endfunction
 augroup ReduceNoise
     autocmd!
     " Automatically resize active split to 100 width
+    autocmd BufWinEnter * :call ResizeSplits()
     autocmd WinEnter * :call ResizeSplits()
     autocmd WinLeave * :call ResizeSplitsUnfocus()
 augroup END
@@ -366,14 +367,21 @@ endfunction
 
 " EditLargefile{{{
 function! EditLargefile() abort
-    if getfsize(expand(@%))> 1024*200 
-        syntax clear  
-        exe "NoMatchParen" 
-    else
-        exe "DoMatchParen" 
+    let popwindow = ['floaterm']
+    let ft = &ft
+    if len(ft) && index(popwindow, ft) < 0
+        if getfsize(expand(@%))> 1024*200
+            syntax clear
+            exe "NoMatchParen" 
+            setlocal ei=BufWrite,BufWritePre,BufWriteCmd,BufWritePost
+        else
+            exe "DoMatchParen" 
+            setlocal ei=""
+        endif
     endif
 endfunction
 augroup Largefile
+    autocmd!
     autocmd WinEnter  * :call EditLargefile()
     autocmd BufWinEnter  * :call EditLargefile()
 augroup END 

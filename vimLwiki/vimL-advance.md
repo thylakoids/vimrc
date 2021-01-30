@@ -1,4 +1,4 @@
-[VimL 语言编程指北路](Https://Github.Com/Lymslive/Vimllearn/Blob/Master/Content.Md)
+[VimL 语言编程指北路](https://github.com/lymslive/vimllearn/blob/master/content.md)
 ============================================================================
 
 第二章 VimL 语言基本语法
