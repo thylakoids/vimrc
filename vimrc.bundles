@@ -11,7 +11,6 @@
 call plug#begin('~/.vim/bundle')
 
 " 移动光标到插件名上, 使用'#'快速跳转到每个插件的配置处
-let g:os = substitute(system('uname'), "\n", "", "")
 if g:os=='Linux'
     let g:python3_host_prog = '/usr/bin/python3'
 elseif g:os=='Darwin'

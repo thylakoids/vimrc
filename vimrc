@@ -5,6 +5,7 @@
 " Referrences:
 "   https://github.com/wklken/k-vim/blob/master/vimrc
 " Sections:
+"   ->Global variables
 "   ->Initial Plugin 加载插件
 "   ->General settings 基础设置
 "   ->Display settings 界面设置
@@ -16,6 +17,9 @@
 " Note: Don't put anything in your .vimrc you don't understand!
 "==========================
 
+"Global variables{{{
+let g:os = substitute(system('uname'), "\n", "", "")
+"}}}
 
 "==========================
 "Initial Plugin 加载插件
@@ -96,7 +100,6 @@ if has("termguicolors")
   set termguicolors
 endif
 
-syntax on               " 开启语法高亮
 set number              " 显示行号
 " set ruler               " 显示当前行号列号
 
@@ -358,6 +361,7 @@ augroup EventLoggin
   autocmd BufLeave * call s:Log('BufLeave')
   autocmd WinLeave * call s:Log('WinLeave')
   autocmd BufWinLeave * call s:Log('BufWinLeave')
+  autocmd Syntax * call s:Log('Syntax')
 augroup END
 
 function! s:Log(eventName) abort
@@ -372,6 +376,7 @@ function! EditLargefile() abort
     if len(ft) && index(popwindow, ft) < 0
         if getfsize(expand(@%))> 1024*200
             syntax clear
+            setlocal norelativenumber
             exe "NoMatchParen" 
             setlocal ei=BufWrite,BufWritePre,BufWriteCmd,BufWritePost
         else

@@ -35,6 +35,7 @@ OHIF
 
 * [Toolbar](Toolbar.md)
 * [Icons](Icons.md)
+* [MeasurementApi](MeasurementApi.md)
 
 
 Python
@@ -42,9 +43,13 @@ Python
 
 * [Python io – BytesIO StringIO](Python-io-–-BytesIO-StringIO.md)
 * concurrent
+* [redis](redis.md)
+* [celery](celery.md)
 
 nan2tetris2
 ------------
+
+* [VM translator](VM-translator.md)
 
 Programming Tools
 -----------------
