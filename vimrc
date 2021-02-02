@@ -322,19 +322,19 @@ aug END
 
 " autoresize{{{
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
-function! ResizeSplits()
+function! ResizeSplits() abort
     let blacklist = ['nerdtree', 'qf', 'help', 'floaterm', 'leaderf']
     let sideWindow = ['coc-explorer']
     if index(blacklist, &ft) < 0
       if index(sideWindow, &ft) >= 0
         set winwidth=40
       else
-        set winwidth=100
+        set winwidth=80
         setlocal relativenumber
       endif
     endif
 endfunction
-function! ResizeSplitsUnfocus()
+function! ResizeSplitsUnfocus() abort
     setlocal norelativenumber
 endfunction
 augroup ReduceNoise
@@ -348,21 +348,21 @@ set wmw=10
 " }}}
 
 ""Event logger{{{
-augroup EventLoggin
-  autocmd!
-  autocmd BufNewFile * call s:Log('BufNewFile')
-  autocmd BufReadPre * call s:Log('BufReadPre')
-  autocmd BufRead * call s:Log('BufRead')
-  autocmd BufWritePre * call s:Log('BufWritePre')
-  autocmd BufWrite * call s:Log('BufWrite')
-  autocmd BufWinEnter * call s:Log('BufWinEnter')
-  autocmd WinEnter * call s:Log('WinEnter')
-  autocmd BufEnter * call s:Log('BufEnter')
-  autocmd BufLeave * call s:Log('BufLeave')
-  autocmd WinLeave * call s:Log('WinLeave')
-  autocmd BufWinLeave * call s:Log('BufWinLeave')
-  autocmd Syntax * call s:Log('Syntax')
-augroup END
+" augroup EventLoggin
+"   autocmd!
+"   autocmd BufNewFile * call s:Log('BufNewFile')
+"   autocmd BufReadPre * call s:Log('BufReadPre')
+"   autocmd BufRead * call s:Log('BufRead')
+"   autocmd BufWritePre * call s:Log('BufWritePre')
+"   autocmd BufWrite * call s:Log('BufWrite')
+"   autocmd BufWinEnter * call s:Log('BufWinEnter')
+"   autocmd WinEnter * call s:Log('WinEnter')
+"   autocmd BufEnter * call s:Log('BufEnter')
+"   autocmd BufLeave * call s:Log('BufLeave')
+"   autocmd WinLeave * call s:Log('WinLeave')
+"   autocmd BufWinLeave * call s:Log('BufWinLeave')
+"   autocmd Syntax * call s:Log('Syntax')
+" augroup END
 
 function! s:Log(eventName) abort
   silent execute '!echo '.a:eventName.' >> ~/.vimlog'
