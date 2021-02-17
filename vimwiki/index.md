@@ -54,3 +54,7 @@ nan2tetris2
 Programming Tools
 -----------------
 * [json schema](json-schema.md)
+
+Algorithms
+----------
+* [Fourier transform](Fourier-transform.md)

@@ -119,10 +119,6 @@ call plug#end()
 """""""""
 " gitgutter{{{
 " let g:gitgutter_map_keys = 0
-" nmap ]c <Plug>(GitGutterNextHunk)
-" nmap [c <Plug>(GitGutterPrevHunk)
-" map <leader>hp <plug>(gitgutterpreviewhunk)
-" nmap <leader>hu <plug>(gitgutterundohunk)
 nnoremap <silent> ]c :GitGutterNextHunk<CR>:GitGutterPreviewHunk<CR>
 nnoremap <silent> [c :GitGutterPrevHunk<CR>:GitGutterPreviewHunk<CR>
 nnoremap <silent> gu :GitGutterUndoHunk<CR>

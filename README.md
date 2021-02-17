@@ -12,6 +12,10 @@
     * [Improving Syntax Rendering](#improving-syntax-rendering)
 * [Vim and Tmux](#vim-and-tmux)
 * [Ultisnips](#ultisnips)
+* [Fugitive](#fugitive)
+* [Other Plugins Issues](#other-plugins-issues)
+    * [Vimwiki](#vimwiki)
+    * [vim-system-copy](#vim-system-copy)
 
 <!-- vim-markdown-toc -->
 
@@ -37,23 +41,20 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-使用vim-plug安装vim插件的方法与另外一个著名的vim插件管理器Vundle非常相似，只需要在vim配置文件 ~/.vimrc 增加以 call plug#begin(PLUGIN_DIRECTORY) 开始，并以 plug#end() 结束的配置段即可。
+使用`vim-plug`安装vim插件的方法与另外一个著名的vim插件管理器`Vundle`非常相似，只需要在vim配置文件
+`~/.vimrc` 增加以 `call plug#begin(PLUGIN_DIRECTORY)` 开始，并以 `plug#end()`
+结束的配置段即可。例如:
 
 ```vim
-call plug#begin('~/.vim/plugged')
-Plug 'junegunn/vim-easy-align'
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug '~/my-prototype-plugin'
+call plug#begin('~/.vim/bundle')
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do':'pip3 install genson && brew install figlet && brew install fzf'}
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'SirVer/ultisnips'
 call plug#end()
 ```
 
-### [其他相关环境的安装](./quickSSH/README.md)
+### [其他相关环境的安装](./quickEnv/README.md)
 
 
 Vim 配置
@@ -172,7 +173,72 @@ Vim and Tmux
 
 
 
-[Ultisnips](Https://Vimzijun.Net/2016/10/30/Ultisnip/)
+[Ultisnips](https://vimzijun.net/2016/10/30/ultisnip/)
 ---------------------
 1. UltiSnip Snippets
+
     https://github.com/honza/vim-snippets.git
+
+
+[Fugitive](https://github.com/tpope/vim-fugitive)
+--------
+``` vim
+Gstatus | Git
+Gwrite
+Gread
+Gdiff
+Gedit
+Glog
+0Glog
+```
+
+
+Other Plugins Issues
+-------------
+### Vimwiki
+[Optionally convert whitespace to non-white in visual mode link creation #773](https://github.com/vimwiki/vimwiki/issues/773)
+
+For those who want to make the links compatible with **markor** but not want to install **dev** branch.
+
+* Open the location where `vimwiki` plugin is installed. If you are using `vim-plug`, the location would be `~/.cache/nvim/plugged/vimwiki/`
+* In the location, open the file `autoload/vimwiki/markdown_base.vim`
+* In the function `s:normalize_link_syntax_v()`, find the line that says
+
+``` vim
+let link = s:safesubstitute(vimwiki#vars#get_syntaxlocal('Weblink1Template'),
+          \ '__LinkUrl__', visual_selection, '')
+```
+
+* Replace the above line with the following 3 lines
+
+``` vim
+" Change ALL characters except alphabets, digits, hyphen, underscore or full stop into '-'
+let url = substitute(visual_selection, '[^A-Za-z0-9_.]', '-', 'g')
+" Change uppercase to lowercase
+let url = substitute(url, '[A-Z]', '\L&', 'g')
+let link = s:safesubstitute(vimwiki#vars#get_syntaxlocal('Weblink1Template'),
+          \ '__LinkUrl__', url, '')  
+```
+
+* Restart `vim/nvim`
+Code stolen from dev branch
+
+### vim-system-copy
+[How does paste work exactly? #37](https://github.com/christoomey/vim-system-copy/issues/37)
+
+``` diff
+// system_copy.vim
+-    silent exe "normal! `[v`]c" . system(command)
++
++    let [sl, sc] = getpos("'[")[1:2]
++    let [el, ec] = getpos("']")[1:2]
++    " :echom sc
++    " :echom ec
++    if sl ==# el && sc-1 ==# ec
++      silent exe "normal! `]a" . system(command)
++    else
++      silent exe "normal! `[v`]c" . system(command)
++    endif
++
+```
+

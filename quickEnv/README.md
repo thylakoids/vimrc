@@ -112,6 +112,8 @@ Install Git
 
     [https]
         proxy = http://192.168.0.102:1087
+    [diff]
+       tool = vimdiff
     ```
 
     or copy your local `.gitconfig`
