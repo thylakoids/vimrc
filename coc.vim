@@ -148,7 +148,7 @@ function! s:check_forward_space() abort
   return getline('.')[col]  =~# '\(''\|"\|)\|}\|]\|>\|`\)'
 endfunction
 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json',
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-css',
             \ 'coc-python',
             \ 'coc-html',
             \ 'coc-snippets',

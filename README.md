@@ -13,6 +13,7 @@
 * [Vim and Tmux](#vim-and-tmux)
 * [Ultisnips](#ultisnips)
 * [Fugitive](#fugitive)
+    * [Issues](#issues)
 * [Other Plugins Issues](#other-plugins-issues)
     * [Vimwiki](#vimwiki)
     * [vim-system-copy](#vim-system-copy)
@@ -191,6 +192,9 @@ Gedit
 Glog
 0Glog
 ```
+
+### Issues
+1. when call `Gdiff` twice: `redrawtime exceeded syntax highlighting disabled`
 
 
 Other Plugins Issues

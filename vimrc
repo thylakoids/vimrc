@@ -382,7 +382,7 @@ function! EditLargefile() abort
             " setlocal ei=BufWrite,BufWritePre,BufWriteCmd,BufWritePost
         else
             exe "DoMatchParen" 
-            setlocal ei=""
+            " setlocal ei=""
         endif
     endif
 endfunction
