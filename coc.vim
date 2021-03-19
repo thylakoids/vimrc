@@ -149,7 +149,7 @@ function! s:check_forward_space() abort
 endfunction
 
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-css',
-            \ 'coc-python',
+            \'coc-pyright',
             \ 'coc-html',
             \ 'coc-snippets',
             \ 'coc-prettier',

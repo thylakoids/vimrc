@@ -80,7 +80,6 @@
   "python.linting.flake8Enabled": true,
   "python.linting.flake8CategorySeverity.E": "Warning",
   "python.linting.pylintEnabled": true,
-  "python.jediEnabled": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "cpp",
     "javascript",
