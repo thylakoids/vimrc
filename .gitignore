@@ -2,6 +2,7 @@
 colors
 # plugin
 bundle
+bundle_local
 *.pyc
 *.bak
 *.bk

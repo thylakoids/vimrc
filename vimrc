@@ -177,16 +177,18 @@ function! g:Colorschemeplus()
   " highlight clear LineNr
   " highlight clear SignColumn
 
-  colorscheme gruvbox8
-  set background=dark
+   colorscheme off
+
+  " colorscheme gruvbox8
+  " set background=dark
   " highlight Normal ctermbg=NONE guibg=NONE
-  highlight! link SignColumn LineNr
-  highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
-  highlight GruvboxredSign ctermbg=NONE guibg=NONE
-  highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
-  highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
-  highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
-  highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
+  " highlight! link SignColumn LineNr
+  " highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
+  " highlight GruvboxredSign ctermbg=NONE guibg=NONE
+  " highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
+  " highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
+  " highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
+  " highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
 endfunction
 call g:Colorschemeplus() 
 
@@ -371,7 +373,7 @@ set wmw=10
 
 " EditLargefile{{{
 function! EditLargefile() abort
-    let popwindow = ['floaterm', 'qf', 'leaderf']
+    let popwindow = ['floaterm', 'qf', 'leaderf', 'startify', 'coc-explorer']
     let ft = &ft
     if len(ft) && index(popwindow, ft) < 0
         if getfsize(expand(@%))> 1024*200
@@ -379,10 +381,8 @@ function! EditLargefile() abort
             setlocal norelativenumber
             exe "NoMatchParen" 
             setlocal ft=largefile
-            " setlocal ei=BufWrite,BufWritePre,BufWriteCmd,BufWritePost
         else
             exe "DoMatchParen" 
-            " setlocal ei=""
         endif
     endif
 endfunction
