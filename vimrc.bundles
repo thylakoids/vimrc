@@ -14,8 +14,8 @@ call plug#begin('~/.vim/bundle')
 if g:os=='Linux'
     let g:python3_host_prog = '/usr/bin/python3'
 elseif g:os=='Darwin'
-    let g:python2_host_prog = '/Users/dracarys/miniconda2/bin/python2'
-    let g:python3_host_prog = '/usr/local/bin/python3'
+    " let g:python2_host_prog = '/Users/dracarys/miniconda2/bin/python2'
+    let g:python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.9/bin/python3'
 endif
 
 " 美观

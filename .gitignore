@@ -13,6 +13,7 @@ myconfig.sh
 init.vim
 .netrwhist
 vim-snippets/
+typings/
 
 # osx
 .DS_Store

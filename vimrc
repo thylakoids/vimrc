@@ -100,6 +100,7 @@ if has("termguicolors")
   set termguicolors
 endif
 
+set signcolumn=yes
 set number              " 显示行号
 " set ruler               " 显示当前行号列号
 
@@ -166,9 +167,9 @@ augroup RestoreCursorShapeOnExit
 augroup END
 
 " statusline and tabline:lightweight and sexy status bar in vim
-" if filereadable(expand("~/.vim/statusline.vim"))
-"     source ~/.vim/statusline.vim
-" endif
+if filereadable(expand("~/.vim/statusline.vim"))
+    source ~/.vim/statusline.vim
+endif
 "==========================
 "Themes setting 主题设置
 "==========================
@@ -178,6 +179,13 @@ function! g:Colorschemeplus()
   " highlight clear SignColumn
 
    colorscheme off
+   highlight Error guibg=NONE guifg=#fb007a
+   highlight Todo guibg=NONE guifg=#5FD7A7
+   highlight link Debug Error
+   highlight link SpecialComment DiffChange
+
+
+
 
   " colorscheme gruvbox8
   " set background=dark
