@@ -27,3 +27,5 @@ spell/en.utf-8.add.spl
 #view
 view
 sessions
+#c++/c
+.ccls-cache

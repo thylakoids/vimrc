@@ -53,6 +53,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do':'pip3 install genson && bre
 " Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
+Plug 'metakirby5/codi.vim'
 
 " 语法高亮
 Plug 'dense-analysis/ale'
@@ -120,6 +121,14 @@ call plug#end()
 """""""""
 " gitgutter{{{
 " let g:gitgutter_map_keys = 0
+let g:gitgutter_sign_priority = 0
+let g:gitgutter_preview_win_floating=1
+" let g:gitgutter_set_sign_backgrounds = 1
+
+" highlight GitGutterAdd    guifg=#009900 ctermfg=2
+" highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+" highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
 nnoremap <silent> ]c :GitGutterNextHunk<CR>:GitGutterPreviewHunk<CR>
 nnoremap <silent> [c :GitGutterPrevHunk<CR>:GitGutterPreviewHunk<CR>
 nnoremap <silent> gu :GitGutterUndoHunk<CR>
@@ -218,6 +227,8 @@ let g:ale_sign_style_warning = '◉'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 1
 let g:ale_fix_on_save = 0
+highlight ALEErrorSign ctermbg=NONE guibg=NONE guifg=#fb007a
+highlight ALEWarningSign ctermbg=NONE guibg=NONE guifg=#F3E430
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -226,8 +237,7 @@ nmap [e <plug>(ale_previous_wrap)
 nmap ]e <plug>(ale_next_wrap)
 " let g:ale_set_balloons=1
 " let g:ale_python_flake8_args="--ignore=E501"
-" let g:ale_sign_priority=11
-let g:gitgutter_preview_win_floating=1
+let g:ale_sign_priority=11
 let g:ale_linters = {
 \   'cpp': [],
 \   'javascript': [],
@@ -248,7 +258,7 @@ nnoremap <F5> :call <SID>compile_and_run()<CR>
 function! s:compile_and_run()
     exec 'w'
     if &filetype == 'c'
-        exec "AsyncRun! gcc % -o %<; time ./%<"
+        exec "AsyncRun! gcc % -o %<.out; time ./%<.out"
     elseif &filetype == 'cpp'
        exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
     elseif &filetype == 'java'

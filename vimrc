@@ -19,6 +19,8 @@
 
 "Global variables{{{
 let g:os = substitute(system('uname'), "\n", "", "")
+let g:colorscheme_gruvbox = 1
+let g:popwindow = ['floaterm', 'qf', 'leaderf', 'startify', 'coc-explorer', 'help', 'nerdtree']
 "}}}
 
 "==========================
@@ -177,26 +179,30 @@ function! g:Colorschemeplus()
   " colorscheme solarized8
   " highlight clear LineNr
   " highlight clear SignColumn
-
-   colorscheme off
-   highlight Error guibg=NONE guifg=#fb007a
-   highlight Todo guibg=NONE guifg=#5FD7A7
-   highlight link Debug Error
-   highlight link SpecialComment DiffChange
-
-
-
-
-  " colorscheme gruvbox8
-  " set background=dark
-  " highlight Normal ctermbg=NONE guibg=NONE
-  " highlight! link SignColumn LineNr
-  " highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
-  " highlight GruvboxredSign ctermbg=NONE guibg=NONE
-  " highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
-  " highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
-  " highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
-  " highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
+  "
+  "
+  " highlight clear SignColumn
+  " highlight ColorColumn guibg=#B2B2B2
+  if exists("g:colorscheme_gruvbox") && g:colorscheme_gruvbox
+    colorscheme gruvbox8
+    set background=dark
+    " highlight Normal ctermbg=NONE guibg=NONE
+    highlight! link SignColumn LineNr
+    highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
+    highlight GruvboxredSign ctermbg=NONE guibg=NONE
+    highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
+    highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
+    highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
+    highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
+    highlight ALEErrorSign ctermbg=NONE guibg=NONE guifg=#fb007a
+    highlight ALEWarningSign ctermbg=NONE guibg=NONE guifg=#F3E430
+  else 
+    colorscheme off
+    highlight Error guibg=NONE guifg=#fb007a
+    highlight Todo guibg=NONE guifg=#5FD7A7
+    highlight link Debug Error
+    highlight link SpecialComment DiffChange
+ endif
 endfunction
 call g:Colorschemeplus() 
 
@@ -333,9 +339,8 @@ aug END
 " autoresize{{{
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 function! ResizeSplits() abort
-    let blacklist = ['nerdtree', 'qf', 'help', 'floaterm', 'leaderf']
     let sideWindow = ['coc-explorer']
-    if index(blacklist, &ft) < 0
+    if index(g:popwindow, &ft) < 0
       if index(sideWindow, &ft) >= 0
         set winwidth=40
       else
@@ -381,9 +386,8 @@ set wmw=10
 
 " EditLargefile{{{
 function! EditLargefile() abort
-    let popwindow = ['floaterm', 'qf', 'leaderf', 'startify', 'coc-explorer']
     let ft = &ft
-    if len(ft) && index(popwindow, ft) < 0
+    if len(ft) && index(g:popwindow, ft) < 0
         if getfsize(expand(@%))> 1024*200
             syntax clear
             setlocal norelativenumber
@@ -404,15 +408,11 @@ augroup END
 " resume
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"zz" | endif
 
-" firstline
-function! HappyPython()
-    call setline(1, '#! /usr/bin/env python3')
-endfun
-autocmd bufnewfile *.py call HappyPython()
-function! HappyJS()
-    call setline(1, '#!/usr/bin/env node')
-endfun
-autocmd bufnewfile *.js call HappyJS()
+" templates{{{
+augroup templates
+  autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c
+augroup END
+"}}}
 
 """""""""""""""""
 "  wired stuff  "

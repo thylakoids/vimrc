@@ -68,7 +68,7 @@
     "default": "\uf29c"
   },
   // -----------------diagnostic
-  "diagnostic.displayByAle": false,
+  "diagnostic.displayByAle": true,
   "diagnostic.enable": true,
   "diagnostic.level": "information",
   "diagnostic.errorSign": "✘",
@@ -79,9 +79,9 @@
   "python.linting.enabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.flake8CategorySeverity.E": "Warning",
-  "python.linting.pylintEnabled": true,
   "python.pythonPath": "python",
   "coc.preferences.formatOnSaveFiletypes": [
+    "c",
     "cpp",
     "javascript",
     "typescript",

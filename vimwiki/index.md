@@ -46,6 +46,10 @@ Python
 * [redis](redis.md)
 * [celery](celery.md)
 
+C++/C
+-----
+[Vim environment](vim-environment.md)
+
 nan2tetris2
 ------------
 

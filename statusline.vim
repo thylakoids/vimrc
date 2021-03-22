@@ -1,5 +1,3 @@
-" Inspired by:
-" eleline
 " spacevim
 autocmd! bufwritepost ~/.vim/statusline.vim source %
 
@@ -30,8 +28,12 @@ endfunction
 function! StatusLine(current, width)
 
   let l:s = ''
+  if index(g:popwindow, &ft) >= 0 || !a:current || a:width <= 100
+    let l:s .= ' %f%h%w%m%r '
+    return l:s
+  endif
 
-  if a:current
+  if a:current && a:width > 100
     let l:bufnr_winnr = '%{ElelineBufnrWinnr()}'
     let l:s .= crystalline#mode() . l:bufnr_winnr . crystalline#right_mode_sep('')
     let l:fsize = '%#ElelineFsize#%{ElelineFsize(@%)}%*'
@@ -40,10 +42,8 @@ function! StatusLine(current, width)
     let l:s .= '%#CrystallineInactive#'
   endif
 
-  let l:s .= ' %f%h%w%m%r '
-
   " git
-  if a:current
+  if a:current && a:width > 100
     let l:gbranch = fugitive#head()
     if l:gbranch == ""
         let l:s .= crystalline#right_sep('', 'Fill')
@@ -57,7 +57,7 @@ function! StatusLine(current, width)
     " coc status
     let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
     " full path
-    let l:s .= ' %F '
+    let l:s .= ' %F%h%w%m%r '
   endif
 
   let l:s .= '%='
