@@ -19,7 +19,7 @@
 
 "Global variables{{{
 let g:os = substitute(system('uname'), "\n", "", "")
-let g:colorscheme_gruvbox = 1
+let g:colorscheme_off = 1
 let g:popwindow = ['floaterm', 'qf', 'leaderf', 'startify', 'coc-explorer', 'help', 'nerdtree']
 "}}}
 
@@ -112,6 +112,7 @@ set showcmd             " 显示现有命令（在右下角）
 set scrolloff=1         " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set sidescrolloff=2
 set laststatus=2        " always show status line
+let loaded_matchparen = 1
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
 set matchtime=1         " How many tenths of a second to blink when matching brackets
 let g:matchparen_timeout = 20 "Highlighting matching parens, if file is too large, matchparen would make vim slow
@@ -168,10 +169,6 @@ augroup RestoreCursorShapeOnExit
   autocmd VimLeave * set guicursor=a:ver25-blinkon0
 augroup END
 
-" statusline and tabline:lightweight and sexy status bar in vim
-if filereadable(expand("~/.vim/statusline.vim"))
-    source ~/.vim/statusline.vim
-endif
 "==========================
 "Themes setting 主题设置
 "==========================
@@ -183,10 +180,11 @@ function! g:Colorschemeplus()
   "
   " highlight clear SignColumn
   " highlight ColorColumn guibg=#B2B2B2
+  " highlight ALEErrorSign ctermbg=NONE guibg=NONE guifg=#fb007a
+  " highlight ALEWarningSign ctermbg=NONE guibg=NONE guifg=#F3E430
   if exists("g:colorscheme_gruvbox") && g:colorscheme_gruvbox
     colorscheme gruvbox8
     set background=dark
-    " highlight Normal ctermbg=NONE guibg=NONE
     highlight! link SignColumn LineNr
     highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
     highlight GruvboxredSign ctermbg=NONE guibg=NONE
@@ -194,15 +192,18 @@ function! g:Colorschemeplus()
     highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
     highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
     highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
-    highlight ALEErrorSign ctermbg=NONE guibg=NONE guifg=#fb007a
-    highlight ALEWarningSign ctermbg=NONE guibg=NONE guifg=#F3E430
-  else 
+  elseif exists("g:colorscheme_off") && g:colorscheme_off 
     colorscheme off
     highlight Error guibg=NONE guifg=#fb007a
     highlight Todo guibg=NONE guifg=#5FD7A7
     highlight link Debug Error
     highlight link SpecialComment DiffChange
+  elseif exists("g:colorscheme_paramount") && g:colorscheme_paramount 
+    colorscheme paramount
  endif
+  highlight link ALEErrorSign DiffDelete
+  highlight link ALEWarningSign DiffChange
+  highlight link ALEInfoSign DiffAdd
 endfunction
 call g:Colorschemeplus() 
 
@@ -212,6 +213,11 @@ function! SynGroup()
   echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 map <F10> :call SynGroup()<CR>
+
+" statusline and tabline:lightweight and sexy status bar in vim
+if filereadable(expand("~/.vim/statusline.vim"))
+    source ~/.vim/statusline.vim
+endif
 "==========================
 "ShortCuts settings 快捷键设置
 "==========================
@@ -344,7 +350,7 @@ function! ResizeSplits() abort
       if index(sideWindow, &ft) >= 0
         set winwidth=40
       else
-        set winwidth=80
+        set winwidth=100
         setlocal relativenumber
       endif
     endif
@@ -391,10 +397,10 @@ function! EditLargefile() abort
         if getfsize(expand(@%))> 1024*200
             syntax clear
             setlocal norelativenumber
-            exe "NoMatchParen" 
+            " exe "NoMatchParen" 
             setlocal ft=largefile
         else
-            exe "DoMatchParen" 
+            " exe "DoMatchParen" 
         endif
     endif
 endfunction

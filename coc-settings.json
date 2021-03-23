@@ -37,7 +37,7 @@
   "coc.preferences.formatOnType": true,
   "suggest.enablePreselect": true,
   "suggest.noselect": false,
-  "suggest.autoTrigger": "trigger",
+  "suggest.autoTrigger": "none",
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "suggest.completionItemKindLabels": {

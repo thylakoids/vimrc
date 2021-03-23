@@ -57,7 +57,11 @@ function! StatusLine(current, width)
     " coc status
     let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
     " full path
-    let l:s .= ' %F%h%w%m%r '
+    let l:filePath = expand('%:p')
+    if len(filePath) > 33
+      let  l:filePath = pathshorten(l:filePath)
+    endif
+    let l:s .= l:filePath . '%h%w%m%r '
   endif
 
   let l:s .= '%='
