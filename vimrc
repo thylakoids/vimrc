@@ -112,7 +112,6 @@ set showcmd             " 显示现有命令（在右下角）
 set scrolloff=1         " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set sidescrolloff=2
 set laststatus=2        " always show status line
-let loaded_matchparen = 1
 set showmatch           " 括号配对情况, 跳转并高亮一下匹配的括号
 set matchtime=1         " How many tenths of a second to blink when matching brackets
 let g:matchparen_timeout = 20 "Highlighting matching parens, if file is too large, matchparen would make vim slow
@@ -344,27 +343,27 @@ aug END
 
 " autoresize{{{
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
-function! ResizeSplits() abort
-    let sideWindow = ['coc-explorer']
-    if index(g:popwindow, &ft) < 0
-      if index(sideWindow, &ft) >= 0
-        set winwidth=40
-      else
-        set winwidth=100
-        setlocal relativenumber
-      endif
-    endif
-endfunction
-function! ResizeSplitsUnfocus() abort
-    setlocal norelativenumber
-endfunction
-augroup ReduceNoise
-    autocmd!
-    " Automatically resize active split to 100 width
-    autocmd BufWinEnter * :call ResizeSplits()
-    autocmd WinEnter * :call ResizeSplits()
-    autocmd WinLeave * :call ResizeSplitsUnfocus()
-augroup END
+" function! ResizeSplits() abort
+"     let sideWindow = ['coc-explorer']
+"     if index(g:popwindow, &ft) < 0
+"       if index(sideWindow, &ft) >= 0
+"         set winwidth=40
+"       else
+"         set winwidth=100
+"         setlocal relativenumber
+"       endif
+"     endif
+" endfunction
+" function! ResizeSplitsUnfocus() abort
+"     setlocal norelativenumber
+" endfunction
+" augroup ReduceNoise
+"     autocmd!
+"     " Automatically resize active split to 100 width
+"     autocmd BufWinEnter * :call ResizeSplits()
+"     autocmd WinEnter * :call ResizeSplits()
+"     autocmd WinLeave * :call ResizeSplitsUnfocus()
+" augroup END
 set wmw=10
 " }}}
 
@@ -397,7 +396,7 @@ function! EditLargefile() abort
         if getfsize(expand(@%))> 1024*200
             syntax clear
             setlocal norelativenumber
-            " exe "NoMatchParen" 
+            exe "NoMatchParen" 
             setlocal ft=largefile
         else
             " exe "DoMatchParen" 

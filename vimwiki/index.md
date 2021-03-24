@@ -49,6 +49,7 @@ Python
 C++/C
 -----
 [Vim environment](vim-environment.md)
+[`printf` format](-printf--format.md)
 
 nan2tetris2
 ------------
