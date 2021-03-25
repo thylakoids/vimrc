@@ -68,7 +68,7 @@
     "default": "\uf29c"
   },
   // -----------------diagnostic
-  "diagnostic.displayByAle": true,
+  "diagnostic.displayByAle": false,
   "diagnostic.enable": true,
   "diagnostic.level": "information",
   "diagnostic.errorSign": "✘",
@@ -76,10 +76,11 @@
   "diagnostic.infoSign": "◉",
   "diagnostic.hintSign": "▶︎",
 
-  "python.linting.enabled": false,
+  "python.pythonPath": "/opt/homebrew/bin/python3",
+  "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8CategorySeverity.E": "Warning",
-  "python.pythonPath": "python",
+  "python.formatting.provider": "black",
+  // "python.linting.flake8CategorySeverity.E": "Warning",
   "coc.preferences.formatOnSaveFiletypes": [
     "c",
     "cpp",

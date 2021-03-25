@@ -343,27 +343,27 @@ aug END
 
 " autoresize{{{
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
-" function! ResizeSplits() abort
-"     let sideWindow = ['coc-explorer']
-"     if index(g:popwindow, &ft) < 0
-"       if index(sideWindow, &ft) >= 0
-"         set winwidth=40
-"       else
-"         set winwidth=100
-"         setlocal relativenumber
-"       endif
-"     endif
-" endfunction
-" function! ResizeSplitsUnfocus() abort
-"     setlocal norelativenumber
-" endfunction
-" augroup ReduceNoise
-"     autocmd!
-"     " Automatically resize active split to 100 width
-"     autocmd BufWinEnter * :call ResizeSplits()
-"     autocmd WinEnter * :call ResizeSplits()
-"     autocmd WinLeave * :call ResizeSplitsUnfocus()
-" augroup END
+function! ResizeSplits() abort
+    let sideWindow = ['coc-explorer']
+    if index(g:popwindow, &ft) < 0
+      if index(sideWindow, &ft) >= 0
+        set winwidth=40
+      else
+        set winwidth=100
+        setlocal relativenumber
+      endif
+    endif
+endfunction
+function! ResizeSplitsUnfocus() abort
+    setlocal norelativenumber
+endfunction
+augroup ReduceNoise
+    autocmd!
+    " Automatically resize active split to 100 width
+    autocmd BufWinEnter * :call ResizeSplits()
+    autocmd WinEnter * :call ResizeSplits()
+    autocmd WinLeave * :call ResizeSplitsUnfocus()
+augroup END
 set wmw=10
 " }}}
 
@@ -409,6 +409,22 @@ augroup Largefile
     autocmd BufWinEnter  * :call EditLargefile()
 augroup END 
 " }}}
+
+"trim_whitespace{{{
+function! RemoveWhiteSpaces()
+  if mode() ==# 'n'
+    silent! keeppatterns keepjumps execute 'undojoin | %s/[ \t]\+$//g' | update
+  endif
+endfunc
+command! RemoveWhiteSpaces call RemoveWhiteSpaces()
+
+function! BufDo(command)
+  let curbuf=bufnr("%")
+  execute 'bufdo ' . a:command
+  execute 'buffer ' . curbuf
+endfunc
+command! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
+"}}}
 
 " resume
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"zz" | endif

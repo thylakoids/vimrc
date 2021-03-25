@@ -56,7 +56,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'metakirby5/codi.vim'
 
 " 语法高亮
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 " Plug 'pangloss/vim-javascript'
 Plug 'yuezk/vim-js', {'for': 'javascript'}
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
@@ -221,36 +221,36 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " let g:indentLine_concealcursor = ''
 "}}}
 " ale{{{
-let g:ale_sign_error = '✘' " ●,◉,▶︎,.,∆,⚠,!,😡,😅
-let g:ale_sign_warning = '∆'
-let g:ale_sign_style_error = '◉'
-let g:ale_sign_style_warning = '◉'
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_text_changed = 1
-let g:ale_fix_on_save = 0
-highlight ALEErrorSign ctermbg=NONE guibg=NONE guifg=#fb007a
-highlight ALEWarningSign ctermbg=NONE guibg=NONE guifg=#F3E430
+" let g:ale_sign_error = '✘' " ●,◉,▶︎,.,∆,⚠,!,😡,😅
+" let g:ale_sign_warning = '∆'
+" let g:ale_sign_style_error = '◉'
+" let g:ale_sign_style_warning = '◉'
+" let g:ale_lint_on_insert_leave = 1
+" let g:ale_lint_on_text_changed = 1
+" let g:ale_fix_on_save = 0
+" highlight ALEErrorSign ctermbg=NONE guibg=NONE guifg=#fb007a
+" highlight ALEWarningSign ctermbg=NONE guibg=NONE guifg=#F3E430
 
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-nmap [e <plug>(ale_previous_wrap)
-nmap ]e <plug>(ale_next_wrap)
-" let g:ale_set_balloons=1
-" let g:ale_python_flake8_args="--ignore=E501"
-let g:ale_sign_priority=11
-let g:ale_linters = {
-\   'cpp': [],
-\   'javascript': [],
-\   'python': ['flake8'],
-\}
-"  [autopep8]: ~/.config/pycodestyle: E501, E702
-"  [flake8]: ~/.config/flake8
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'python' : ['autopep8', 'isort', 'yapf']
-\}
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" nmap [e <plug>(ale_previous_wrap)
+" nmap ]e <plug>(ale_next_wrap)
+" " let g:ale_set_balloons=1
+" " let g:ale_python_flake8_args="--ignore=E501"
+" let g:ale_sign_priority=11
+" let g:ale_linters = {
+" \   'cpp': [],
+" \   'javascript': [],
+" \   'python': [],
+" \}
+" "  [autopep8]: ~/.config/pycodestyle: E501, E702
+" "  [flake8]: ~/.config/flake8
+" let g:ale_fixers = {
+" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+" \   'javascript': ['eslint'],
+" \   'python' : ['autopep8', 'isort', 'yapf']
+" \}
 " }}}
 " quickrun{{{
 " Quick run via <F5>
