@@ -1,3 +1,4 @@
+extends greek
 priority -60
 
 global !p
@@ -82,7 +83,7 @@ $1`!p snip.rv=complete(t[1], ['blue', 'orange', 'green', 'red', 'purple', 'brown
 endsnippet
 
 # snippet gt "Conventional commits" Ab
-# $1`!p snip.rv=complete(t[1], ['feat', 'fix', 'docs', 'style', 'refactor', 'pref', 'test', 'chore', 'BREAKING CHANGE'])`(${2:scope}): $3
+# $1`!p snip.rv=complete(t[1], ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'BREAKING CHANGE'])`(${2:scope}): $3
 # endsnippet
 
 #  python exp  #
@@ -96,16 +97,6 @@ snippet 'python\[\s*(.*?)\s*=.*?\]python' "evaluate python" Ar
 python[  ${1:`!p snip.rv=match.group(1)`} = `!p snip.rv = runexpression(t[1])`  ]python
 endsnippet
 
-##################
-#  Greek letter  #
-##################
-snippet phi "Greek letter:phi φ" Aw
-φ
-endsnippet
-
-snippet theta "Greek letter:theta θ" Aw
-θ
-endsnippet
 
 ##########
 #  ccls  #

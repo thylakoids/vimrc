@@ -1,0 +1,22 @@
+snippet template_canvas "template for canvas" b
+const canvas = document.querySelector("canvas");
+const c = canvas.getContext("2d");
+
+function draw() {
+${0:// draw something here}
+}
+// DRAW LOOP
+window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame;
+var updateCanvas = true;
+function drawLoop() {
+  requestAnimationFrame(drawLoop);
+  if (updateCanvas) {
+    draw();
+    updateCanvas = false;
+  }
+}
+window.onload = function () {
+  console.log('window loading!')
+  drawLoop();
+}
+endsnippet

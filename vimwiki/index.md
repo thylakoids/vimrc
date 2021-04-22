@@ -48,8 +48,8 @@ Python
 
 C++/C
 -----
-[Vim environment](vim-environment.md)
-[`printf` format](-printf--format.md)
+* [Vim environment](vim-environment.md)
+* [`printf` format](-printf--format.md)
 
 nan2tetris2
 ------------
@@ -60,6 +60,7 @@ Programming Tools
 -----------------
 * [json schema](json-schema.md)
 * [git](git.md)
+* [mermaid](mermaid.md)
 
 Algorithms
 ----------
@@ -67,3 +68,10 @@ Algorithms
 Math
 ----
 * [Fourier transform](Fourier-transform.md)
+* [entropy](entropy.md)
+
+Neural Networks From Scratch
+----------------------------
+* [backpropagation algorithm](backpropagation-algorithm.md)
+* [Loss function](loss-function.md)
+* auto encoding

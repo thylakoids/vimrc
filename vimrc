@@ -313,7 +313,7 @@ aug highligth_keyword
     " Highlight TODO, FIXME, NOTE, etc.
     au!
     autocmd Syntax * call matchadd('Todo',  '\<\(TODO\|todo\)\>')
-    autocmd Syntax * call matchadd('Debug', '\<\(DEBUG\|INFO\|debug\|issue\)\>')
+    autocmd Syntax * call matchadd('Debug', '\<\(DEBUG\|INFO\|debug\|info\|issue\)\>')
     autocmd Syntax * call matchadd('SpecialComment', '\<\(deprecated\|DEPRECATED\)\>')
 aug END
 
@@ -343,6 +343,7 @@ aug END
 
 " autoresize{{{
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
+" TODO: take `largefile` into consideration
 function! ResizeSplits() abort
     let sideWindow = ['coc-explorer']
     if index(g:popwindow, &ft) < 0
@@ -364,7 +365,7 @@ augroup ReduceNoise
     autocmd WinEnter * :call ResizeSplits()
     autocmd WinLeave * :call ResizeSplitsUnfocus()
 augroup END
-set wmw=10
+set wmw=20
 " }}}
 
 ""Event logger{{{
@@ -418,12 +419,12 @@ function! RemoveWhiteSpaces()
 endfunc
 command! RemoveWhiteSpaces call RemoveWhiteSpaces()
 
-function! BufDo(command)
-  let curbuf=bufnr("%")
-  execute 'bufdo ' . a:command
-  execute 'buffer ' . curbuf
-endfunc
-command! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
+" function! BufDo(command)
+"   let curbuf=bufnr("%")
+"   execute 'bufdo ' . a:command
+"   execute 'buffer ' . curbuf
+" endfunc
+" command! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
 "}}}
 
 " resume
@@ -432,6 +433,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 " templates{{{
 augroup templates
   autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c
+  autocmd BufNewFile .gitignore 0r ~/.vim/templates/skeleton.gitignore
 augroup END
 "}}}
 

@@ -1,0 +1,47 @@
+global !p
+from vimsnippets import *
+endglobal
+
+snippet \greek "greek letter" Aw
+$1`!p snip.rv=complete(t[1], ['alpha', 'beta', 'gamma', 'delta', 'DELTA',
+				'epsilon', 'theta', 'phi', 'mu', 'lambda', 'omega'])`
+endsnippet
+
+##################
+#  Greek letter  #
+##################
+snippet alpha "Greek letter:alpha α" Aw
+α
+endsnippet
+
+snippet beta "Greek letter:beta β" Aw
+β
+endsnippet
+
+snippet gamma "Greek letter:gamma γ" Aw
+γ
+endsnippet
+
+snippet delta "Greek letter:delta δ" Aw
+δ
+endsnippet
+
+snippet DELTA "Greek letter:DELTA Δ" Aw
+Δ
+endsnippet
+
+snippet epsilon "Greek letter:epsilon ε" Aw
+ε
+endsnippet
+
+snippet theta "Greek letter:theta θ" Aw
+θ
+endsnippet
+
+snippet phi "Greek letter:phi φ" Aw
+φ
+endsnippet
+
+snippet omega "Greek letter:omega ω" Aw
+ω
+endsnippet
