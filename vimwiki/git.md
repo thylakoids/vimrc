@@ -87,7 +87,13 @@ git submodule update
 
 Vim fugitive
 ------------
-### `Gstatus` `Glog` `Gdiff` `Gsplit`
+### `Gstatus` `Glog` `Gdiff` `Gsplit` `0Glog`
+
+* Using `0Glog` to visit the git history of current file, and using `:cp` and
+    `:cn` to navigate between them.
+* `Ggrep`(`git grep`) is useful to search file just like `grep`, bug it will ignore the file listed in `.gitignore`.
+* `Glog -Sxxx`(`git log -Sxxx`)
+
 
 ### `Git`/`Gstatus` window
 
