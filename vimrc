@@ -233,6 +233,11 @@ noremap j gj
 "Easier moving between tabs
 map <leader>n <esc>:tabprevious<CR>
 map <leader>m <esc>:tabnext<CR>
+" Easier moving in quickfix window
+noremap [q <esc>:cp<CR>
+noremap ]q <esc>:cn<CR>
+noremap ]Q <esc>:clast<CR>
+noremap [Q <esc>:cfirst<CR>
 "Easier moving code blocks
 vnoremap > >gv
 vnoremap < <gv
