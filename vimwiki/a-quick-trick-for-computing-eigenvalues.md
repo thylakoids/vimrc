@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" integrity="sha384-r/BYDnh2ViiCwqZt5VJVWuADDic3NnnTIEOv4hOh05nSfB6tjWpKmn1kUHOVkMXc" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.js" integrity="sha384-zDIgORxjImEWftZXZpWLs2l57fMX9B3yWFPN5Ecabe211Hm5ZG/OIz2b07DYPUcH" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 Eigenvalues and Eigenvectors
 ----------------------------
 
@@ -26,3 +25,7 @@ det(
 &= \blue\lambda^2 - 4\blue\lambda -1 = 0
 \end{aligned}
 $$
+
+$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+\\[x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\]
+\\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\)
