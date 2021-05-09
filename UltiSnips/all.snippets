@@ -64,6 +64,14 @@ snippet datetime "YYYY-MM-DD hh:mm" w
 `!v strftime("%Y-%m-%d %H:%M")`
 endsnippet
 
+##########
+#  TODO  #
+##########
+snippet TODO "This is a TODO remainder" Ab
+`!p snip.rv=get_nerdcomment_format()[0]`TODO: ${1:${VISUAL:desc}} (`echo $USER` `!v strftime("%c")`)
+endsnippet
+
+
 #################
 #  parentheses  #
 #################

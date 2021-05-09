@@ -79,7 +79,7 @@
   "python.pythonPath": "/opt/homebrew/bin/python3",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "black",
+  "python.formatting.provider": "yapf",
   // "python.linting.flake8CategorySeverity.E": "Warning",
   "coc.preferences.formatOnSaveFiletypes": [
     "c",

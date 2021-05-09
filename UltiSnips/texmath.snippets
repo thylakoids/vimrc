@@ -1,3 +1,30 @@
+global !p
+def create_matrix(snip):
+	rows = snip.buffer[snip.line].split('*')[0]
+	cols = snip.buffer[snip.line].split('*')[1]
+
+	int_val = lambda string: int(''.join(s for s in string if s.isdigit()))
+
+	rows = int_val(rows)
+	cols = int_val(cols)
+
+	offset = cols + 1
+	old_spacing = snip.buffer[snip.line][:snip.buffer[snip.line].rfind('\t') + 1]
+
+	snip.buffer[snip.line] = ''
+
+	final_str = old_spacing + "\\left[ \\begin{matrix}\n"
+	for i in range(rows):
+		final_str += old_spacing + '\t'
+		# ${1:x_{11}}
+		final_str += " & ".join(['$' + '{' + str(i * cols + j + offset) + ':x_{'+str(i+1) + str(j+1) + '}}' for j in range(cols)])
+		final_str += " \\\\\\\n"
+
+	final_str += old_spacing + "\\end{matrix} \\right]\n$0"
+
+	snip.expand_anon(final_str)
+endglobal
+
 snippet dm "Display Math" wA
 \[
 $1
@@ -28,3 +55,25 @@ endsnippet
 snippet \sum "sum" iA
 \sum_{${1:lower bound}}^{${2:upper bound}}${0:expression}
 endsnippet
+
+
+############
+#  matrix  #
+############
+snippet \array "matrix  with |" A
+\left\\{ \begin{${1:array}}{c|c} a$0 & b \\\\ c & d \end{$1} \right\\}
+endsnippet
+
+pre_expand "create_matrix(snip)"
+snippet "\\matrix(\d+)\*(\d+)" "Generate matrix of *width* by *height*" Ar
+endsnippet
+
+#############
+#  aligned  #
+#############
+snippet \aligned "Description" Ab
+\begin{aligned}
+${1:${VISUAL:&=}}
+\end{aligned}
+endsnippet
+
