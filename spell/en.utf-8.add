@@ -65,3 +65,7 @@ dev
 rebase
 NIFTI
 backpropagation
+vtk
+Adagrad
+hyperparameter
+Nesterov

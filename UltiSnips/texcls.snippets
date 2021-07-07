@@ -1,0 +1,12 @@
+snippet \ProvidesClass "infomation about your package" Ab
+\ProvidesClass{${1:package_name}}[`!v strftime("%Y/%m/%d")` ${2:package description}]
+\LoadClass{article}
+endsnippet
+
+snippet \tf\section "setup section" Ab
+\titleformat{\section}{\Large\scshape\raggedright\bfseries\sffamily}{}{0em}{}[\titlerule]
+endsnippet
+
+snippet \tf\subsection "setup subsection" Ab
+\titleformat{\subsection}{\large\scshape\raggedright}{}{0em}{}
+endsnippet

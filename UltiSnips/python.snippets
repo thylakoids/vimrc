@@ -63,13 +63,15 @@ context "noexitdocstring(snip)"
 snippet "(^\s*)def (\w*?)\((.*?)\)\s*(->\s*(.*?))?\s*:" "doc string" br
 `!p
 define = match.group(0)
-indent =  "\n" + match.group(1) + "    "
-fname = "\"\"\"" + match.group(2)
+indent =  '\n' + match.group(1) + '    '
+fname = '"""' + match.group(2) + '\n'
+args = 'Args:'
 params = [s.strip() for s in match.group(3).split(',')]
-params_str = indent.join([':param {}:'.format(p) for p in params if p not in ["", "self", "cls"]])
+params_str = '    ' + (indent+'    ').join(['{}{}:'.format(p.split(':')[0], f" ({p.split(':')[1].strip()})" if ':' in p else '') for p in params if p not in ["", "self", "cls"]]) + '\n'
 return_typ = match.group(5)
-return_str = f":return {return_typ}:" if return_typ else ":return:"
-snip.rv = ((indent.join([define, fname, params_str, return_str, "\"\"\""])
+returns = 'Returns:'
+return_str = f"    {return_typ}\n" if return_typ else "    None\n"
+snip.rv = ((indent.join([define, fname,args, params_str, returns, return_str, "\"\"\""])
 			if params_str else indent.join([define, fname, return_str, "\"\"\""])
 			) + indent)
 `$0
@@ -90,4 +92,22 @@ endsnippet
 
 snippet except "choose an appropriate Exception" b
 except $1`!p snip.rv=complete(t[1], ['Exception', 'AssertionError', 'FileNotFoundError', 'AttributeError', 'NameError', 'IndexError', 'ValueError', 'TypeError', 'KeyboardInterrupt'])`:
+endsnippet
+
+snippet import.. "access to parent directory" Ab
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+$0
+endsnippet
+
+snippet decorator "define a decorator" Ab
+from functools import wraps
+
+
+def func_name(function):
+    @wraps(function)
+    def _function(*args, **kwargs):
+        result = function(*args, **kwargs)
+    return _function
 endsnippet

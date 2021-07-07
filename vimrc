@@ -439,6 +439,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 augroup templates
   autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c
   autocmd BufNewFile .gitignore 0r ~/.vim/templates/skeleton.gitignore
+  autocmd BufNewFile .ccls 0r ~/.vim/templates/skeleton.ccls
 augroup END
 "}}}
 
