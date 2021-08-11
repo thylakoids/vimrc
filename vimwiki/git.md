@@ -24,7 +24,7 @@ Git Often Used Command
 
 4. Make commit to the wrong branch.
 
-    Suppose you have tow branch, master and dev. You make a commit to master,
+    Suppose you have two branch, master and dev. You make a commit to master,
     while you really mean to make that commit to dev, than `cherry-pic` to the
     rescue.
 

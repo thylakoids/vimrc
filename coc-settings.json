@@ -21,14 +21,14 @@
         "clang": {
           // from clang -v -fsyntax-only -x c++ /dev/null
           "extraArgs": [
-            "-isystem/opt/homebrew/opt/llvm/bin/../include/c++/v1",
+            //"-isystem/opt/homebrew/opt/llvm/bin/../include/c++/v1",
             "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
-            "-isystem/opt/homebrew/Cellar/llvm/11.0.0/lib/clang/11.0.0/include",
+            "-isystem/opt/homebrew/Cellar/llvm/11.1.0/lib/clang/11.1.0/include",
             "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
-            "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)"
-          ],
+            "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+          ]
           //From clang -print-resource-dir
-          "resourceDir": "/opt/homebrew/Cellar/llvm/11.0.0/lib/clang/11.0.0"
+          //"resourceDir": "/opt/homebrew/Cellar/llvm/11.1.0/lib/clang/11.1.0"
         }
       }
     }
@@ -83,8 +83,8 @@
   "python.formatting.provider": "yapf",
   // "python.linting.flake8CategorySeverity.E": "Warning",
   "coc.preferences.formatOnSaveFiletypes": [
-    "c",
-    "cpp",
+    //"c",
+    //"cpp",
     "javascript",
     "typescript",
     "typescriptreact",

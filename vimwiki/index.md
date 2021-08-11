@@ -87,6 +87,7 @@ Math
 * [Fourier transform](Fourier-transform.md)
 * [entropy](entropy.md)
 * [Essence of linear algebra](essence-of-linear-algebra.md)
+* [EM Algorithm](em-algorithm.md)
 
 Neural Networks From Scratch
 ----------------------------

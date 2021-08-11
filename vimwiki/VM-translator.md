@@ -16,6 +16,8 @@ VM Translator
 	* [**Implementing**  pointer](#implementing--pointer)
 
 <!-- vim-markdown-toc -->
+registers:
+![registers](./image/registers.png "registers")
 hack code:
 ![hack code](./image/hack-code.png "hack-code")
 
@@ -50,6 +52,7 @@ Stack machine, manipulated by:
 
 VM Abstraction: Memory Segments
 -------------------------------
+![memory-segments](./image/memory-segments.png "memory segments")
 
 VM Implementation: the Stack
 -----------------------------

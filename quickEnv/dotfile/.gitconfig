@@ -8,8 +8,10 @@
 	last = log -1 HEAD
 	map = log --graph --oneline
 	ck=checkout
-[http]
-    proxy = socks5://127.0.0.1:1086
-[https]
-    proxy = socks5://127.0.0.1:1086
+[color]
+	ui = true
+; [http]
+;     proxy = socks5://127.0.0.1:1086
+; [https]
+;     proxy = socks5://127.0.0.1:1086
 
