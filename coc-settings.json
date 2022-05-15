@@ -95,6 +95,7 @@
   ],
   "explorer.icon.enableNerdfont": true,
   "explorer.openAction.strategy": "select",
+  "snippets.autoTrigger": false,
   "json.schemas": [
     {
       "fileMatch": ["plot.json"],
