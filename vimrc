@@ -302,6 +302,16 @@ vnoremap <leader>aq :s/\t/": "/g<cr>:'<,'>s/\n/",\r"/g<cr>x'<i"<esc>:noh<cr>
 nnoremap <space><space> :keepjumps normal! mi*`i<CR>
 vnoremap <space><space> miy/<c-r>"<cr>`i
 nnoremap <leader><space> :noh<CR>
+" Highlight matches when jumping to next
+function! HLNext(blinktime) abort
+    set invcursorline
+    redraw
+    exec 'sleep' . float2nr(a:blinktime * 1000) . 'm'
+    set invcursorline
+    redraw
+endfunction
+nnoremap <silent> n n:call HLNext(0.3)<cr>
+nnoremap <silent> N N:call HLNext(0.3)<cr>
 
 "json{{{
 " 正确处理中文: 修改json.tool源码(module.__file__), 添加ensure_ascii=False
