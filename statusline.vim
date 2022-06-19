@@ -44,11 +44,11 @@ function! StatusLine(current, width)
 
   " git
   if a:current && a:width > 100
-    let l:gbranch = fugitive#head()
+    let l:gbranch = FugitiveHead()
     if l:gbranch == ""
         let l:s .= crystalline#right_sep('', 'Fill')
     else
-        let l:s .= crystalline#right_sep('', 'Fill') . ' %{fugitive#head()}' . " \ue0a0 "
+        let l:s .= crystalline#right_sep('', 'Fill') . ' %{FugitiveHead()}' . " \ue0a0 "
     endif
   endif
 

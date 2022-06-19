@@ -52,7 +52,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do':'pip3 install genson && brew install figlet && brew install fzf'}
 " Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'metakirby5/codi.vim'
 
 " 语法高亮
@@ -62,7 +62,7 @@ Plug 'yuezk/vim-js', {'for': 'javascript'}
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
 " Plug 'luochen1990/rainbow'
 " search
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'mileszs/ack.vim', {'do': 'brew install ack'}
 " quickrun
 Plug 'skywind3000/asyncrun.vim'
@@ -85,6 +85,7 @@ endif
 " Teach Vim about titlecase, with support for motions and text objects. Using `gt`, `gT` will apply to a line.
 Plug 'christoomey/vim-titlecase'      "gt gT
 Plug 'christoomey/vim-system-copy' , {'do': 'sudo apt install xsel'} "cp cP cv cV
+" Plug 'thylakoids/vim-sort-motion'
 Plug 'tpope/vim-commentary'           "gc gcc
 Plug 'tpope/vim-surround'             "ds, cs, ys, S
 " Text object
@@ -166,8 +167,10 @@ let g:mkdp_auto_close = 0
 " }}}
 " vimwiki{{{
 let g:vimwiki_list = [{'path': '~/.vim/vimwiki/',
+                      \ 'path_html': '~/.vim/vimwiki_html/',
                       \ 'syntax': 'markdown', 'ext': '.md', 
                       \ 'links_space_char': '-'}]
+let g:vimwiki_global_ext = 1
 let g:vimwiki_key_mappings = { 'table_mappings': 0 }
 let g:vimwiki_markdown_link_ext = 1
 " }}}
@@ -403,6 +406,7 @@ noremap <space>m :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 " noremap <space>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 " noremap <space>f :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
 " let g:Lf_ExternalCommand = 'rg --files --no-ignore "%s"'    "gitignore affect the Lf_WildIgnore in a git repo
+let g:Lf_CommandMap = {'<C-]>': ['<C-V>'], '<C-V>': ['<C-]>']}
 "}}}
 "Ack{{{
 noremap <F4> :Ag 

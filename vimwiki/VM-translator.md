@@ -14,6 +14,15 @@ VM Translator
 	* [**Implementing**  static](#implementing--static)
 	* [**Implementing**  temp](#implementing--temp)
 	* [**Implementing**  pointer](#implementing--pointer)
+* [VM Implementation: Program Control](#vm-implementation-program-control)
+	* [Function Call and Return](#function-call-and-return)
+	* [Handling call](#handling-call)
+	* [Handling Function](#handling-function)
+	* [Handling Return](#handling-return)
+	* [Booting](#booting)
+	* [mapping](#mapping)
+	* [symbols](#symbols)
+* [Reference](#reference)
 
 <!-- vim-markdown-toc -->
 registers:
@@ -114,7 +123,7 @@ addr = segmentPointer + i, SP--, *addr=*SP
 ...
 pop static 5
 ...
-pip static 2
+pop static 2
 ...
 ```
 
@@ -162,3 +171,97 @@ pop pointer 0/1
 SP--, THIS/THAT=*SP
 ```
 
+VM Implementation: Program Control
+----------------------------------
+### Function Call and Return
+VM code(arbitrary example):
+``` c
+function Foo.main 4
+   ...
+   // computes -(19 * (local 3))
+   push constant 19
+   push local 3
+   call Bar.mult 2
+   neg
+   ...
+function Bar.mult 2
+    // Returns the product of two
+    // arguments(result in local 1)
+    ...
+    push local 1
+    return
+```
+-->
+``` c
+(Foo.main)
+    ...
+    // sets up for the function call, and the:
+    goto Bar.mult // (in assembly)
+(Foo$ret.1)
+    // assembly code that handles neg
+    ...
+(Bar.mult)
+    ...
+    // assembly code that handles push local 1
+    // Assembly code that moves the return value to the caller, reinstates the
+    // caller's state, and the:
+    goto Foo$ret.1 // (in assembly) 
+```
+
+
+VM function commands:
+
+* call `functionName nArgs`
+* function `functionName nVars`
+* return
+
+Contract: the calling function's view
+* Before calling another function, I must push as many arguments as the
+  function expects to get
+* Next, I invoke the function using call `functionName nArgs`
+* After the called function returns, the arguments values that I pushed before
+  the call have disappeared from the stack, and a `return value`(that always
+  exists) appears at the top of the stack;
+* After the called function returns, all my memory segments are exactly the
+  same as they were before the call
+
+(except that `temp` is undefined and some values of my `static` segments may
+have changed).
+
+Contract: the called function's view
+* Before I start executing, my argument segment has been initialized the
+  argument values passed by the caller
+* My `local` variables segment has been allocated and initialized to zeros
+* My `static` segment has been set to the static segment of the VM to which I
+  belong
+
+(memory segments `this`, `that`, `pointer`, and `temp` are undefined upon entry)
+
+* My working stack is empty
+* Before returning, I must push a value onto the stack.
+
+### Handling call
+![call](./image/call.png "call")
+
+### Handling Function
+![function](./image/function.png "function")
+
+### Handling Return
+![return](./image/return.png "return")
+
+### Booting
+![booting](./image/booting.png "booting")
+
+### mapping
+![mapping](./image/mapping.png "mapping")
+
+### symbols
+![symbols](./image/symbols.png "symbols")
+
+
+Reference
+---------
+
+- https://www.coursera.org/lecture/nand2tetris2/unit-1-8-vm-translator-proposed-implementation-qmJl3
+- https://github.com/rose/nand2tetris
+- https://github.com/xctom/Nand2Tetris/blob/master/projects/07/MemoryAccess/BasicTest/BasicTest.asm

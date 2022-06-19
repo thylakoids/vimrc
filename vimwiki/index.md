@@ -8,9 +8,10 @@ Note Book for y.l.Li
 * [OHIF](#ohif)
 * [Python](#python)
 * [C++/C](#cc)
-* [nan2tetris2](#nan2tetris2)
+* [Nand2tetris2](#nand2tetris2)
 * [Programming Tools](#programming-tools)
 * [Algorithms](#algorithms)
+* [Design Pattern](#design-pattern)
 * [Math](#math)
 * [Neural Networks From Scratch](#neural-networks-from-scratch)
 * [Latex](#latex)
@@ -59,28 +60,45 @@ Python
 ------
 
 * [Python io – BytesIO StringIO](Python-io-–-BytesIO-StringIO.md)
-* concurrent
+* [concurrent](concurrent.md)
 * [redis](redis.md)
 * [celery](celery.md)
+* pythonic
 
 C++/C
 -----
 * [Vim environment](vim-environment.md)
 * [`printf` format](-printf--format.md)
+* [Darknet](darknet.md)
 
-nan2tetris2
+Nand2tetris2
 ------------
 
 * [VM translator](VM-translator.md)
+* [Donuts in Jack](donuts-in-jack.md)
 
 Programming Tools
 -----------------
 * [json schema](json-schema.md)
 * [git](git.md)
 * [mermaid](mermaid.md)
+* [makefile](makefile.md)
 
 Algorithms
 ----------
+
+Design Pattern
+----------------------
+> Each pattern describes a problem that occurs over and over again in our 
+environment and then describes the core of the solution to the problem.
+
+In Object-Oriented programming we can find 3 types of Design Patterns:
+
+  **[Creational](Creational.md)**: for design the creation of objects
+
+  **Structural**: for design relationship between objects
+
+  **Behavioral**: for design interaction and responsibility of objects
 
 Math
 ----
@@ -88,6 +106,7 @@ Math
 * [entropy](entropy.md)
 * [Essence of linear algebra](essence-of-linear-algebra.md)
 * [EM Algorithm](em-algorithm.md)
+* [Sampling](Sampling.md)
 
 Neural Networks From Scratch
 ----------------------------

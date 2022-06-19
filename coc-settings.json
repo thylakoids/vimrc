@@ -6,6 +6,7 @@
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "trace.server": "verbose",
       "rootPatterns": [
         ".ccls",
         "compile_commands.json",
@@ -17,13 +18,14 @@
         "cache": {
           "directory": "/tmp/ccls"
         },
+        "reatainInMemory": 1,
         // see https://github.com/MaskRay/ccls/issues/191
         "clang": {
           // from clang -v -fsyntax-only -x c++ /dev/null
           "extraArgs": [
             //"-isystem/opt/homebrew/opt/llvm/bin/../include/c++/v1",
             "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1",
-            "-isystem/opt/homebrew/Cellar/llvm/11.1.0/lib/clang/11.1.0/include",
+            "-isystem/opt/homebrew/Cellar/llvm/13.0.1_1/lib/clang/13.0.1/include",
             "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
             "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
           ]
@@ -39,7 +41,6 @@
   "suggest.enablePreselect": true,
   "suggest.noselect": false,
   "suggest.autoTrigger": "none",
-  "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
@@ -78,8 +79,9 @@
   "diagnostic.hintSign": "▶︎",
 
   "python.pythonPath": "/opt/homebrew/bin/python3",
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
+  "python.analysis.useLibraryCodeForTypes": false,
+  "python.linting.enabled": false,
+  "python.linting.flake8Enabled": false,
   "python.formatting.provider": "yapf",
   // "python.linting.flake8CategorySeverity.E": "Warning",
   "coc.preferences.formatOnSaveFiletypes": [
