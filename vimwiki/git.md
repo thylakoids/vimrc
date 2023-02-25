@@ -99,7 +99,7 @@ Vim fugitive
 
 command | affect
 :-------|:--
--       | add/reset file (works in visual mode too)
+\-       | add/reset file (works in visual mode too)
 \<Enter> | open current file in the window below
 p       | run `git add –patch` for current file
 C       | invoke :**Gcommit**
