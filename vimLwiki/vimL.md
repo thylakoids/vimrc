@@ -336,4 +336,4 @@ The right way to use Vim is to get out of insert mode as soon as you can and use
 
 2. **g_**, **^**
 
-    Quick moving to the none-blank beginning or end of the current line.
+    Quick moving to the none-blank beginning or end of [the](the.md) current line.

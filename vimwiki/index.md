@@ -16,6 +16,7 @@ Note Book for y.l.Li
 * [Neural Networks From Scratch](#neural-networks-from-scratch)
 * [Latex](#latex)
 * [Hacking](#hacking)
+* [Quantitative Trading](#quantitative-trading)
 
 <!-- vim-markdown-toc -->
 
@@ -69,6 +70,8 @@ C++/C
 -----
 * [Vim environment](vim-environment.md)
 * [`printf` format](-printf--format.md)
+* [pointer and string](pointer-and-string.md)
+* [lvalues and rvalues](lvalues-and-rvalues.md)
 * [Darknet](darknet.md)
 
 Nand2tetris2
@@ -121,3 +124,8 @@ Latex
 Hacking
 -------
 * [Buffer Overflow Attack](buffer-overflow-attack.md)
+
+Quantitative Trading
+--------------------
+[Portfolio Management](portfolio-management.md)
+

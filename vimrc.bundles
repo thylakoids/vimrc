@@ -349,6 +349,14 @@ let g:UltiSnipsJumpForwardTrigger      = '<F12>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-F12>'
 let g:UltiSnipsEditSplit="horizontal"
 "}}}
+"codi{{{
+let g:codi#interpreters = {
+    \ 'python3': {
+        \ 'bin': 'python3',
+        \ 'prompt': '^\(>>>\|\.\.\.\) ',
+        \ },
+    \ }
+"}}}
 "autopairs{{{
 let g:AutoPairsMapCR = 0
 "}}}
