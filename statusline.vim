@@ -106,7 +106,6 @@ function! TabLine()
         " filename
         let bufnr = buflist[winnr - 1]
         let buftype = getbufvar(bufnr, '&ft')
-        echo buftype
         let file = bufname(bufnr)
 
         " icon
