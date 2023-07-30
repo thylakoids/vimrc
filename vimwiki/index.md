@@ -79,6 +79,8 @@ Nand2tetris2
 
 * [VM translator](VM-translator.md)
 * [Donuts in Jack](donuts-in-jack.md)
+* [JackAnalyzer](JackAnalyzer.md)
+* [CodeGeneration](CodeGeneration.md)
 
 Programming Tools
 -----------------
