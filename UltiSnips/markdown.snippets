@@ -10,11 +10,12 @@ def create_table(snip):
     snip.buffer[snip.line] = ''
 
     # create anonymous snippet with expected content and number of tabstops
-    anon_snippet_title = ' | '.join(['$' + str(col) for col in range(1,columns_amount+1)]) + "\n"
-    anon_snippet_delimiter = ':-|' * (columns_amount-1) + ":-\n"
+    f = lambda x: f'|{x}|'
+    anon_snippet_title = f(' | '.join(['$' + str(col) for col in range(1,columns_amount+1)])) + "\n"
+    anon_snippet_delimiter = f(':-|' * (columns_amount-1)+":-") + "\n"
     anon_snippet_body = ""
     for row in range(1,rows_amount+1):
-        anon_snippet_body += ' | '.join(['$' + str(row*columns_amount+col) for col in range(1,columns_amount+1)]) + "\n"
+        anon_snippet_body += f(' | '.join(['$' + str(row*columns_amount+col) for col in range(1,columns_amount+1)])) + "\n"
     anon_snippet_table = anon_snippet_title + anon_snippet_delimiter + anon_snippet_body
 
     # expand anonymous snippet
