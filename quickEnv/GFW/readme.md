@@ -1,4 +1,4 @@
-Science
+Science surfing
 =======
 
 V2ray(service)
@@ -9,6 +9,7 @@ V2ray(service)
 ```shell
 bash <(curl -s -L https://git.io/v2ray.sh)
 ```
+[详细教程](https://github.com/233boy/v2ray/wiki/V2Ray%E6%90%AD%E5%BB%BA%E8%AF%A6%E7%BB%86%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B)
 
 2. 如果要自己更改`/etc/vray/config.json`配置
 
@@ -112,3 +113,32 @@ systemctl enable v2ray
 systemctl start | stop | restart
 ```
 
+Issues
+------
+1. check firewall setting in VPS.
+2. check firewall setting in operating system.
+  - Ubuntu
+  ``` shell
+  sudo apt-get install ufw
+  sudo ufw enable
+  sudo ufw allow <port>
+  sudo ufw allow <port>/<optional: protocal>
+  sudo ufw deny <port>/<optional: protocol>
+
+  # e.g.
+  sudo ufw status
+  sudo ufw allow 22/tcp
+  sudo ufw allow http
+  sudo ufw allow from 69.171.224.37/16 port 80,443 proto tcp
+  sudo ufw allow from 192.168.0.1 to any port 22
+  sudo ufw status numbered
+  sudo ufw delete 5
+  sudo ufw reset
+  ```
+  > Ufw stands for Uncomplicated Firewall.
+  
+3. Caddy
+  - change ownership of caddy static file
+    ``` shell
+    chown -R caddy:caddy /usr/share/caddy
+    ```
