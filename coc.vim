@@ -157,6 +157,7 @@ let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-css',
             \ 'coc-prettier',
             \ 'coc-vimtex',
             \ 'coc-explorer',
+            \ 'coc-clangd',
             \ 'coc-highlight', 'coc-lists']
 
 
