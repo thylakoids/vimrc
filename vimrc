@@ -246,7 +246,7 @@ vnoremap < <gv
 aug addbreakpoint
   autocmd!
   autocmd FileType python noremap <silent> <buffer> <leader>b :<c-u>normal! Oimport ipdb; ipdb.set_trace()<cr>
-  autocmd FileType javascript noremap <silent> <buffer> <leader>b :<c-u>normal! Odebugger<cr>
+  autocmd FileType javascript,typescript,typescriptreact noremap <silent> <buffer> <leader>b :<c-u>normal! Odebugger<cr>
 aug END
 "markdown heading u1, u2, u3
 aug markdown
