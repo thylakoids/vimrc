@@ -39,6 +39,7 @@ autocmd! bufwritepost $HOME/.vimrc source $MYVIMRC             " Automatic reloa
 autocmd! bufwritepost $HOME/.vim/vimrc source $MYVIMRC         " Automatic reloading of .vimrc
 autocmd! bufwritepost $HOME/.vimrc.bundles source $MYVIMRC     " Automatic reloading of .vimrc
 autocmd! bufwritepost $HOME/.vim/vimrc.bundles source $MYVIMRC " Automatic reloading of .vimrc
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set encoding=utf-8
 
 fun! Setspellnospell()
