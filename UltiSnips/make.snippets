@@ -7,7 +7,11 @@ EXE = main
 OBJS = main.o
 CLEAN_RM =
 
-#
+# include generic.mk
+
+# test_AST: .objs/AST.o test_AST.cpp
+# 	$(LD) $^ $(LDFLAGS) -o $@
+
 # This is a generic Makefile designed to compile a sample directory of code.
 # This file depends on variables having been set before calling:
 #   EXE: The name of the result file
