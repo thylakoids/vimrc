@@ -67,6 +67,7 @@ function! StatusLine(current, width)
   let l:s .= '%='
 
   if a:current && a:width > 100
+    let l:s .= &fenc
     let l:s .= &spell ? ' SPELL' : ''
     let l:s .= crystalline#left_sep('', 'Fill')
     let l:ft = &ft == '' ? ' unknown ' : ' %{&ft} '
