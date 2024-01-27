@@ -7,8 +7,15 @@ Setup a New VPS in Vultr
 ``` shell
 bash <(curl -s -L https://git.io/v2ray.sh)
 sudo apt-get install ufw
+sudo ufw allow 22
+sudo ufw allow 443
 sudo ufw allow <port>
+sudo ufw allow low:high/tcp
+sudo ufw status
 v2ray bbr
+v2ray no-auto-tls
+v2ray change tls
+v2ray debug tls
 ```
 
 If you want to deploy your own site on this server:

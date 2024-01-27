@@ -101,6 +101,8 @@ if !has('nvim')
 endif
 Plug 'voldikss/vim-floaterm'
 Plug 'lambdalisue/suda.vim'
+Plug 'diepm/vim-rest-console'
+Plug 'github/copilot.vim'
 call plug#end()
 
 

@@ -46,9 +46,10 @@
 
   "python.pythonPath": "/opt/homebrew/bin/python3",
   "python.analysis.useLibraryCodeForTypes": false,
-  "python.linting.enabled": false,
-  "python.linting.flake8Enabled": false,
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
   "python.formatting.provider": "yapf",
+  "inlayHint.enable": false,
   // "python.linting.flake8CategorySeverity.E": "Warning",
   "coc.preferences.formatOnSave": false,
   "explorer.icon.enableNerdfont": true,
@@ -59,5 +60,6 @@
       "fileMatch": ["plot.json"],
       "url": "file:Users/liyulong/.vim/schema/plotschema.json"
     }
-  ]
+  ],
+  "snippets.ultisnips.pythonPrompt": false
 }
