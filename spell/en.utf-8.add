@@ -76,3 +76,6 @@ async
 arg
 LCL
 goto
+chatGPT
+tushare
+mysql
