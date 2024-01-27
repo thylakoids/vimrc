@@ -12,7 +12,7 @@ call plug#begin('~/.vim/bundle')
 
 " 移动光标到插件名上, 使用'#'快速跳转到每个插件的配置处
 if g:os=='Linux'
-    let g:python3_host_prog = '/usr/bin/python3'
+    let g:python3_host_prog = '/home/linuxbrew/.linuxbrew/bin/python3'
 elseif g:os=='Darwin'
     " let g:python2_host_prog = '/Users/dracarys/miniconda2/bin/python2'
     let g:python3_host_prog = '/opt/homebrew/bin/python3'
@@ -170,7 +170,7 @@ let g:vimwiki_list = [{'path': '~/.vim/vimwiki/',
                       \ 'path_html': '~/.vim/vimwiki_html/',
                       \ 'syntax': 'markdown', 'ext': '.md', 
                       \ 'links_space_char': '-'}]
-let g:vimwiki_global_ext = 1
+let g:vimwiki_global_ext = 0
 let g:vimwiki_key_mappings = { 'table_mappings': 0 }
 let g:vimwiki_markdown_link_ext = 1
 " }}}
@@ -301,6 +301,8 @@ function! s:compile_and_run()
     elseif &filetype =='tex'
         exec "VimtexCompile"
     elseif &filetype == 'markdown'
+        exec "MarkdownPreview"
+    elseif &filetype == 'markdown.mkd'
         exec "MarkdownPreview"
     elseif &filetype == 'vimwiki'
         exec "MarkdownPreview"

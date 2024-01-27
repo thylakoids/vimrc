@@ -44,7 +44,7 @@
   "diagnostic.infoSign": "◉",
   "diagnostic.hintSign": "▶︎",
 
-  "python.pythonPath": "/usr/bin/python3",
+  "python.pythonPath": "python3",
   "python.analysis.useLibraryCodeForTypes": false,
   "python.linting.enabled": false,
   "python.linting.flake8Enabled": false,
