@@ -1,140 +1,173 @@
-" [Lightweight and sexy status bar in vim](https://dustri.org/b/lightweight-and-sexy-status-bar-in-vim.html)
-" The only fancy features that it comes with are dynamic colouring of the
-" current mode and indication of the paste and spellcheck status.
-"    - you have to escape spaces with \
-"    - everything between %{…} will be evaluated
-"    - you can set colours with %#your_colour_name#
-"    - everything you need to know is in :help statusline
-" autocmd! bufwritepost ~/.vim/statusline.vim source $MYVIMRC
+" spacevim
 autocmd! bufwritepost ~/.vim/statusline.vim source %
-" hi mystatusline guibg='None' guifg='NONE' cterm=NONE ctermfg=grey ctermbg=blue
 
-" set statusline=
-" set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
-" set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
-" set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
-" set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
-" set statusline+=\ %n\           " buffer number
-" set statusline+=%#Visual#       " colour
-" set statusline+=%{&paste?'\ PASTE\ ':''}
-" set statusline+=%{&spell?'\ SPELL\ ':''}
-" set statusline+=%#ICursor#     " colour
-" set statusline+=%R                        " readonly flag
-" set statusline+=%M                        " modified [+] flag
-" set statusline+=%H                        " help buffer flag
-" set statusline+=%W                        " preview window flag
-" set statusline+=%#Cursor#               " colour
-" set statusline+=%#CursorLine#     " colour
-" set statusline+=\ %t\                   " short file name
-" set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
-" set statusline+=%=                          " right align
-" set statusline+=%#CursorLine#   " colour
-" set statusline+=\ %Y\                   " file type
-" set statusline+=%#ICursor#     " colour
-" set statusline+=\ %3l:%-2c\         " line + column
-" set statusline+=%#Cursor#       " colour
-" set statusline+=\ %3p%%\                " percentage
-""""""""""""""""
-"  statusline  "
-""""""""""""""""
-function! s:SetMyStatusLine(...) abort
-    set statusline=%M
+function! ElelineBufnrWinnr() abort
+  let l:bufnr = bufnr('%')
+   " transform to circled num: nr2char(9311 + l:bufnr)
+   let l:bufnr = l:bufnr > 20 ? l:bufnr : nr2char(9311 + l:bufnr).' '
+  return l:bufnr.' ❖ '.winnr()
 endfunction
 
-if exists('*timer_start')
-    call timer_start(100, function('s:SetMyStatusLine'))
-else
-    call s:SetMyStatusLine()
-endif
-"""""""""""""
-"  tabline  "
-"""""""""""""
-if exists("+showtabline")
+function! ElelineFsize(f) abort
+  let l:size = getfsize(expand(a:f))
+  if l:size == 0 || l:size == -1 || l:size == -2
+    return ''
+  endif
+  if l:size < 1024
+    let size = l:size.' bytes'
+  elseif l:size < 1024*1024
+    let size = printf('%.1f', l:size/1024.0).'k'
+  elseif l:size < 1024*1024*1024
+    let size = printf('%.1f', l:size/1024.0/1024.0) . 'm'
+  else
+    let size = printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
+  endif
+  return '  '.size.' '
+endfunction
 
-" Rename tabs to show tab number.
-" (Based on http://stackoverflow.com/questions/5927952/whats-implementation-of-vims-default-tabline-function)
+function! StatusLine(current)
 
-function! MyTabLine()
-    let s = ''
+  let l:s = ''
+  if index(g:popwindow, &ft) >= 0 || !a:current || winwidth(a:current) <= 100
+    let l:s .= ' %f%h%w%m%r '
+    return l:s
+  endif
+
+  if a:current && winwidth(a:current) > 100
+    let l:bufnr_winnr = '%{ElelineBufnrWinnr()}'
+    let l:s .= crystalline#ModeSection(0, 'A', 'B') . l:bufnr_winnr . crystalline#right_mode_sep('')
+    let l:fsize = '%#ElelineFsize#%{ElelineFsize(@%)}%*'
+    let l:s .= l:fsize
+  else
+    let l:s .= '%#CrystallineInactive#'
+  endif
+
+  " git
+  if a:current && winwidth(a:current) > 100
+    let l:gbranch = FugitiveHead()
+    if l:gbranch == ""
+        let l:s .= crystalline#right_sep('', 'Fill')
+    else
+        let l:s .= crystalline#right_sep('', 'Fill') . ' %{FugitiveHead()}' . " \ue0a0 "
+    endif
+  endif
+
+
+  if a:current && winwidth(a:current) > 100
+    " coc status
+    let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
+    " full path
+    let l:filePath = expand('%:p')
+    if len(filePath) > 33
+      let  l:filePath = pathshorten(l:filePath)
+    endif
+    let l:s .= l:filePath . '%h%w%m%r '
+  endif
+
+  let l:s .= '%='
+
+  if a:current && winwidth(a:current) > 100
+    let l:s .= &fenc
+    let l:s .= &spell ? ' SPELL' : ''
+    let l:s .= crystalline#left_sep('', 'Fill')
+    let l:ft = &ft == '' ? ' unknown ' : ' %{&ft} '
+    let l:s .= l:ft .  crystalline#left_mode_sep('') .WebDevIconsGetFileFormatSymbol() . ' %3l:%-2v %3P '
+  endif
+
+  return l:s
+endfunction
+
+function! TabLine()
+    let l:s = ''
     let t = tabpagenr()
+    let tabn = tabpagenr('$')
     let i = 1
-    while i <= tabpagenr('$')
+    while i <= tabn
         let buflist = tabpagebuflist(i)
         let winnr = tabpagewinnr(i)
-        let s .= '%' . i . 'T'
-        let s .= (i == t ? '%1*' : '%2*')
+        let l:s .= '%' . i . 'T'
 
-        " let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-        " let s .= ' '
-        let s .= (i == t ? '%#TabNumSel#' : '%#TabNum#')
-        let s .= ' ' . i . ' '
-        let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+        " left sep
+        if i == t && i > 1
+            if mode() == 'n'
+                let l:s .= crystalline#right_sep('Fill', 'NormalMode')
+            elseif mode() == 'i'
+                let l:s .= crystalline#right_sep('Fill', 'InsertMode')
+            elseif mode() == 'v'
+                let l:s .= crystalline#right_sep('Fill', 'VisualMode')
+            elseif mode() == 'r'
+                let l:s .= crystalline#right_sep('Fill', 'ReplaceMode')
+            endif
+        endif
 
+        " tabpagenr
+        let l:s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
+        let l:s .= ' ' . i
+
+        " filename
         let bufnr = buflist[winnr - 1]
+        let buftype = getbufvar(bufnr, '&ft')
         let file = bufname(bufnr)
-        let buftype = getbufvar(bufnr, '&buftype')
+
+        " icon
+        let s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
+        let l:s .= ' ' . (i == t ? WebDevIconsGetFileTypeSymbol(file) :'')
 
         if buftype == 'help'
             let file = 'help:' . fnamemodify(file, ':t:r')
-
-        elseif buftype == 'quickfix'
+        elseif buftype == 'qf'
             let file = 'quickfix'
-
+        elseif buftype == 'nerdtree'
+            let file = 'nerdtree'
         elseif buftype == 'nofile'
             if file =~ '\/.'
                 let file = substitute(file, '.*\/\ze.', '', '')
             endif
-
         else
-            let file = pathshorten(fnamemodify(file, ':p:~:.'))
+            let file = pathshorten(fnamemodify(file, ':p:t'))
             if getbufvar(bufnr, '&modified')
                 let file = '+' . file
             endif
-
         endif
-
         if file == ''
             let file = '[No Name]'
         endif
+        let l:s .= ' ' . file
 
-        let s .= ' ' . file
+        " " windows
+        " let nwins = tabpagewinnr(i, '$')
+        " if nwins > 1
+        "     let modified = ''
+        "     for b in buflist
+        "         if getbufvar(b, '&modified') && b != bufnr
+        "             let modified = '*'
+        "             break
+        "         endif
+        "     endfor
+        "     let s .= modified . '(' . winnr . '/' . nwins . ')'
+        " endif
 
-        let nwins = tabpagewinnr(i, '$')
-        if nwins > 1
-            let modified = ''
-            for b in buflist
-                if getbufvar(b, '&modified') && b != bufnr
-                    let modified = '*'
-                    break
-                endif
-           endfor
-            let hl = (i == t ? '%#WinNumSel#' : '%#WinNum#')
-            let nohl = (i == t ? '%#TabLineSel#' : '%#TabLine#')
-            let s .= ' ' . modified . '(' . hl . winnr . nohl . '/' . nwins . ')'
+
+        " right sep
+        if i==t
+            if i == tabn
+                let l:s .= crystalline#right_mode_sep('TabFill')
+            else
+                let l:s .= crystalline#right_mode_sep('Fill')
+            endif
+        elseif i == tabn
+            let l:s .= crystalline#right_sep('Fill','TabFill')
         endif
 
-        if i < tabpagenr('$')
-            let s .= ' %#TabLine#|'
-        else
-            let s .= ' '
-        endif
-
-        let i = i + 1
-
+        let i = i +1
     endwhile
-
-    let s .= '%T%#TabLineFill#%='
-    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
-    return s
-
+    " X
+    let s .= '%T%#CrystallineTabFill#%='
+    let s .= (tabn > 1 ? '%999XX' : 'X')
+    return l:s
 endfunction
 
-" set showtabline=1
-highlight! TabNum term=bold,underline cterm=bold,underline ctermfg=1 ctermbg=7 gui=bold,underline guibg=LightGrey
-highlight! TabNumSel term=bold,reverse cterm=bold,reverse ctermfg=1 ctermbg=7 gui=bold
-highlight! WinNum term=bold,underline cterm=bold,underline ctermfg=11 ctermbg=7 guifg=DarkBlue guibg=LightGrey
-highlight! WinNumSel term=bold cterm=bold ctermfg=7 ctermbg=14 guifg=DarkBlue guibg=LightGrey
-
-set tabline=%!MyTabLine()
-
-endif " exists("+showtabline")
+let g:crystalline_enable_sep = 1
+" let g:CrystallineStatuslineFn = 'StatusLine'
+" let g:CrystallineTablineFn = 'TabLine'
+let g:crystalline_theme = 'onedark'

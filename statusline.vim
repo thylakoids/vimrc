@@ -1,173 +1,63 @@
-" spacevim
-autocmd! bufwritepost ~/.vim/statusline.vim source %
-
-function! ElelineBufnrWinnr() abort
-  let l:bufnr = bufnr('%')
-   " transform to circled num: nr2char(9311 + l:bufnr)
-   let l:bufnr = l:bufnr > 20 ? l:bufnr : nr2char(9311 + l:bufnr).' '
-  return l:bufnr.' ❖ '.winnr()
+function! g:GroupSuffix()
+  if mode() ==# 'i' && &paste
+    return '2'
+  endif
+  if &modified
+    return '1'
+  endif
+  return ''
 endfunction
 
-function! ElelineFsize(f) abort
-  let l:size = getfsize(expand(a:f))
-  if l:size == 0 || l:size == -1 || l:size == -2
-    return ''
-  endif
-  if l:size < 1024
-    let size = l:size.' bytes'
-  elseif l:size < 1024*1024
-    let size = printf('%.1f', l:size/1024.0).'k'
-  elseif l:size < 1024*1024*1024
-    let size = printf('%.1f', l:size/1024.0/1024.0) . 'm'
-  else
-    let size = printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
-  endif
-  return '  '.size.' '
-endfunction
-
-function! StatusLine(current, width)
-
+function! g:CrystallineStatuslineFn(winnr)
+  let g:crystalline_group_suffix = g:GroupSuffix()
+  let l:curr = a:winnr == winnr()
   let l:s = ''
-  if index(g:popwindow, &ft) >= 0 || !a:current || a:width <= 100
-    let l:s .= ' %f%h%w%m%r '
-    return l:s
-  endif
 
-  if a:current && a:width > 100
-    let l:bufnr_winnr = '%{ElelineBufnrWinnr()}'
-    let l:s .= crystalline#mode() . l:bufnr_winnr . crystalline#right_mode_sep('')
-    let l:fsize = '%#ElelineFsize#%{ElelineFsize(@%)}%*'
-    let l:s .= l:fsize
+  if l:curr
+    let l:s .= crystalline#ModeSection(0, 'A', 'B')
   else
-    let l:s .= '%#CrystallineInactive#'
+    let l:s .= crystalline#HiItem('Fill')
   endif
-
-  " git
-  if a:current && a:width > 100
-    let l:gbranch = FugitiveHead()
-    if l:gbranch == ""
-        let l:s .= crystalline#right_sep('', 'Fill')
-    else
-        let l:s .= crystalline#right_sep('', 'Fill') . ' %{FugitiveHead()}' . " \ue0a0 "
-    endif
-  endif
-
-
-  if a:current && a:width > 100
-    " coc status
-    let l:s .= "%{coc#status()}%{get(b:,'coc_current_function','')}"
-    " full path
-    let l:filePath = expand('%:p')
-    if len(filePath) > 33
-      let  l:filePath = pathshorten(l:filePath)
-    endif
-    let l:s .= l:filePath . '%h%w%m%r '
+  let l:s .= ' %f%h%w%m%r '
+  if l:curr
+    let l:s .= crystalline#Sep(0, 'B', 'Fill') . ' %{fugitive#Head()}'
   endif
 
   let l:s .= '%='
-
-  if a:current && a:width > 100
-    let l:s .= &fenc
-    let l:s .= &spell ? ' SPELL' : ''
-    let l:s .= crystalline#left_sep('', 'Fill')
-    let l:ft = &ft == '' ? ' unknown ' : ' %{&ft} '
-    let l:s .= l:ft .  crystalline#left_mode_sep('') .WebDevIconsGetFileFormatSymbol() . ' %3l:%-2v %3P '
+  if l:curr
+    let l:s .= crystalline#Sep(1, 'Fill', 'B') . '%{&paste ? " PASTE " : " "}'
+    let l:s .= crystalline#Sep(1, 'B', 'A')
+  endif
+  if winwidth(a:winnr) > 80
+    let l:s .= ' %{&ft} %l/%L %2v '
+  else
+    let l:s .= ' '
   endif
 
   return l:s
 endfunction
 
-function! TabLine()
-    let l:s = ''
-    let t = tabpagenr()
-    let tabn = tabpagenr('$')
-    let i = 1
-    while i <= tabn
-        let buflist = tabpagebuflist(i)
-        let winnr = tabpagewinnr(i)
-        let l:s .= '%' . i . 'T'
+function! g:CrystallineTablineFn()
+  let l:max_width = &columns
+  let l:right = '%='
 
-        " left sep
-        if i == t && i > 1
-            if mode() == 'n'
-                let l:s .= crystalline#right_sep('Fill', 'NormalMode')
-            elseif mode() == 'i'
-                let l:s .= crystalline#right_sep('Fill', 'InsertMode')
-            elseif mode() == 'v'
-                let l:s .= crystalline#right_sep('Fill', 'VisualMode')
-            elseif mode() == 'r'
-                let l:s .= crystalline#right_sep('Fill', 'ReplaceMode')
-            endif
-        endif
+  let l:right .= crystalline#Sep(1, 'TabFill', 'TabType')
+  let l:max_width -= 1
 
-        " tabpagenr
-        let l:s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
-        let l:s .= ' ' . i
+  let l:vimlabel = has('nvim') ?  ' NVIM ' : ' VIM '
+  let l:right .= l:vimlabel
+  let l:max_width -= strchars(l:vimlabel)
 
-        " filename
-        let bufnr = buflist[winnr - 1]
-        let buftype = getbufvar(bufnr, '&ft')
-        let file = bufname(bufnr)
+  let l:max_tabs = 23
 
-        " icon
-        let s .= (i == t ? crystalline#mode_color() : '%#CrystallineFill#')
-        let l:s .= ' ' . (i == t ? WebDevIconsGetFileTypeSymbol(file) :'')
-
-        if buftype == 'help'
-            let file = 'help:' . fnamemodify(file, ':t:r')
-        elseif buftype == 'qf'
-            let file = 'quickfix'
-        elseif buftype == 'nerdtree'
-            let file = 'nerdtree'
-        elseif buftype == 'nofile'
-            if file =~ '\/.'
-                let file = substitute(file, '.*\/\ze.', '', '')
-            endif
-        else
-            let file = pathshorten(fnamemodify(file, ':p:t'))
-            if getbufvar(bufnr, '&modified')
-                let file = '+' . file
-            endif
-        endif
-        if file == ''
-            let file = '[No Name]'
-        endif
-        let l:s .= ' ' . file
-
-        " " windows
-        " let nwins = tabpagewinnr(i, '$')
-        " if nwins > 1
-        "     let modified = ''
-        "     for b in buflist
-        "         if getbufvar(b, '&modified') && b != bufnr
-        "             let modified = '*'
-        "             break
-        "         endif
-        "     endfor
-        "     let s .= modified . '(' . winnr . '/' . nwins . ')'
-        " endif
-
-
-        " right sep
-        if i==t
-            if i == tabn
-                let l:s .= crystalline#right_mode_sep('TabFill')
-            else
-                let l:s .= crystalline#right_mode_sep('Fill')
-            endif
-        elseif i == tabn
-            let l:s .= crystalline#right_sep('Fill','TabFill')
-        endif
-
-        let i = i +1
-    endwhile
-    " X
-    let s .= '%T%#CrystallineTabFill#%='
-    let s .= (tabn > 1 ? '%999XX' : 'X')
-    return l:s
+  return crystalline#DefaultTabline({
+        \ 'enable_sep': 1,
+        \ 'max_tabs': l:max_tabs,
+        \ 'max_width': l:max_width
+        \ }) . l:right
 endfunction
 
-let g:crystalline_enable_sep = 1
-let g:crystalline_statusline_fn = 'StatusLine'
-let g:crystalline_tabline_fn = 'TabLine'
-let g:crystalline_theme = 'onedark'
+set showtabline=2
+set guioptions-=e
+set laststatus=2
+let g:crystalline_auto_prefix_groups = 1
