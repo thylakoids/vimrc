@@ -24,6 +24,11 @@ let g:colorscheme_gruvbox = 1
 let g:popwindow = ['floaterm', 'qf', 'leaderf', 'startify', 'coc-explorer', 'help', 'nerdtree']
 "}}}
 
+" statusline and tabline:lightweight and sexy status bar in vim
+if filereadable(expand("~/.vim/statusline.vim"))
+    source ~/.vim/statusline.vim
+endif
+
 "==========================
 "Initial Plugin 加载插件
 "==========================
@@ -215,10 +220,6 @@ function! SynGroup()
 endfun
 map <F10> :call SynGroup()<CR>
 
-" statusline and tabline:lightweight and sexy status bar in vim
-if filereadable(expand("~/.vim/statusline.vim"))
-    source ~/.vim/statusline.vim
-endif
 "==========================
 "ShortCuts settings 快捷键设置
 "==========================
