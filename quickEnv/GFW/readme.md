@@ -42,12 +42,13 @@ bash <(curl -s -L https://git.io/v2ray.sh)
 V2ray(Client)
 -------------
 
-1. 安装
+1. [安装](https://github.com/v2fly/fhs-install-v2ray)
 
 ```shell
-# bash <(curl -L -s https://install.direct/go.sh)
-curl -LROJ https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
-bash install-release.sh
+# install v2ray
+bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+# remove v2ray
+bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh) --remove
 ```
 
 2. 配置`/etc/v2ray/config.json`
