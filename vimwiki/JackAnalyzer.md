@@ -26,9 +26,9 @@ Output:
   * complete version (handles everything)
 
 ### JackAnalyzer
-Top -level driver that sets up and invokes the other modules.
+Top-level driver that sets up and invokes the other modules.
 
-#### JackTokenizer
+### JackTokenizer
 ![jackTokenizer](image/tokenizer.png)
 ![tokenizerApi0](image/tokenizerApi0.png)
 ![tokenizerApi1](image/tokenizerApi1.png)
