@@ -153,6 +153,7 @@ endfunction
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-css',
             \'coc-pyright',
             \ 'coc-html',
+            \ 'coc-css',
             \ 'coc-snippets',
             \ 'coc-prettier',
             \ 'coc-vimtex',

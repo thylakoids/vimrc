@@ -401,7 +401,7 @@ set wmw=20
 function! EditLargefile() abort
     let ft = &ft
     if len(ft) && index(g:popwindow, ft) < 0
-        if getfsize(expand(@%))> 1024*200
+        if getfsize(expand(@%))> 1024*20000
             syntax clear
             setlocal norelativenumber
             exe "NoMatchParen" 
@@ -454,6 +454,8 @@ noremap tf :r !figlet
 
 " run shell command in current line
 noremap <leader>Q !!$SHELL<CR>
+
+noremap <leader>t :%!column -t -s,<CR>
 
 " ========================================
 " FileType Settings  文件类型设置

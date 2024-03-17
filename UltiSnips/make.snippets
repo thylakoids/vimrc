@@ -44,7 +44,7 @@ $(OBJS_DIR):
 # Rules for compiling source code.
 # - Every object file is required by $(EXE)
 # - Generates the rule requiring the .cpp file of the same name
-$(OBJS_DIR)/%.o: %.cpp | $(OBJS_DIR)
+$(OBJS_DIR)/%.o: %.cpp %.h | $(OBJS_DIR)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 # Standard C++ Makefile rules:
