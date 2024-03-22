@@ -21,7 +21,7 @@ endif
 " 美观
 "-------------------
 " colorscheme
-Plug '~/.vim/bundle_local/vim-colors-off'
+Plug 'thylakoids/vim-colors-off'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'lifepillar/vim-solarized8'
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' }
