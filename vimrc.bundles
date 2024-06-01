@@ -102,7 +102,7 @@ endif
 Plug 'voldikss/vim-floaterm'
 Plug 'lambdalisue/suda.vim'
 Plug 'diepm/vim-rest-console'
-Plug 'CoderCookE/vim-chatgpt'
+Plug 'CoderCookE/vim-chatgpt', { 'on': ['Review', 'Explain', 'Ask', 'Rewrite', 'Document', 'Test', 'Fix']}
 " Plug 'github/copilot.vim'
 call plug#end()
 
