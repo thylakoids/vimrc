@@ -443,6 +443,7 @@ augroup templates
   autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c
   autocmd BufNewFile .gitignore 0r ~/.vim/templates/skeleton.gitignore
   autocmd BufNewFile .ccls 0r ~/.vim/templates/skeleton.ccls
+  autocmd BufNewFile *.h execute '0r ~/.vim/templates/skeleton.h' | execute ':%s/FILE_NAME/'.toupper(expand('%:t:r')).'/'
 augroup END
 "}}}
 
