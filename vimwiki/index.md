@@ -17,6 +17,8 @@ Note Book for y.l.Li
 * [Latex](#latex)
 * [Hacking](#hacking)
 * [Quantitative Trading](#quantitative-trading)
+* [Compiler](#compiler)
+* [Tinygrad](#tinygrad)
 
 <!-- vim-markdown-toc -->
 
@@ -131,3 +133,11 @@ Quantitative Trading
 --------------------
 [Portfolio Management](portfolio-management.md)
 
+
+Compiler
+--------
+* [Compiler Tutorial in C](Compiler-Tutorial-in-C.md)
+
+Tinygrad
+--------
+* [[Shapertracker]]
