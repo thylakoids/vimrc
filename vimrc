@@ -19,8 +19,8 @@
 
 "Global variables{{{
 let g:os = substitute(system('uname'), "\n", "", "")
-let g:colorscheme_off = 0
-let g:colorscheme_gruvbox = 1
+let g:colorscheme_off = 1
+let g:colorscheme_gruvbox = 0
 let g:popwindow = ['floaterm', 'qf', 'leaderf', 'startify', 'coc-explorer', 'help', 'nerdtree']
 "}}}
 

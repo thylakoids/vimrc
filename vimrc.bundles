@@ -103,7 +103,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'lambdalisue/suda.vim'
 Plug 'diepm/vim-rest-console'
 Plug 'CoderCookE/vim-chatgpt', { 'on': ['Review', 'Explain', 'Ask', 'Rewrite', 'Document', 'Test', 'Fix']}
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 call plug#end()
 
 
@@ -468,7 +468,7 @@ let g:hardtime_default_on = 0
 """""""""""""
 "vim-chatgpt{{{
 let g:chat_gpt_max_tokens=2000
-let g:chat_gpt_model='gpt-3.5-turbo-1106'
+let g:chat_gpt_model='gpt-4o-mini'
 let g:chat_gpt_session_mode=0
 let g:chat_gpt_temperature = 0.7
 let g:chat_gpt_split_direction = 'vertical'
