@@ -88,5 +88,8 @@ goto
 chatGPT
 tushare
 mysql
+OpenAI
+uuid
+gpt
 PyTorch
 Autograd
