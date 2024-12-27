@@ -19,14 +19,14 @@ CLEAN_RM =
 #   CLEAN_RM: Optional list of additional files to delete on 
 
 # Compiler/linker config and object/depfile directory:
-CXX = g++
-LD = g++
+CXX = clang++
+LD = clang++
 OBJS_DIR = .objs
 
 # Flags for linking:
-LDFLAGS += -std=c++14
+LDFLAGS += -std=c++17
 # Flags for compile:
-CXXFLAGS += -std=c++14 -g -c
+CXXFLAGS += -std=c++17 -g -c
 
 # Rule for  (first/default rule):
 all: $(EXE)
