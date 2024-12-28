@@ -61,5 +61,6 @@
       "url": "file:Users/liyulong/.vim/schema/plotschema.json"
     }
   ],
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "clangd.fallbackFlags": ["-std=c++20"]
 }
